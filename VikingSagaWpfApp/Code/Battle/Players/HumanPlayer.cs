@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace VikingSagaWpfApp.Code.Battle
+namespace VikingSagaWpfApp.Code.BattleNs
 {
     class HumanPlayer : Player
     {
-        public override void TakeTurn(Battle battle)
+        public override void TakeTurn()
         {
             Observer.WaitForHumanDecisions();
         }

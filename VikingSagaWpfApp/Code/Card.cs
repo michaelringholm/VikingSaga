@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
-using VikingSagaWpfApp.Code.Battle.Cards;
+using VikingSagaWpfApp.Code.BattleNs.Cards;
 
 namespace VikingSaga.Code
 {
@@ -24,7 +24,7 @@ namespace VikingSaga.Code
             get
             {
                 if(_battleCard == null)
-                    _battleCard = VikingSagaWpfApp.Code.Battle.Cards.CardFactory.Create(BattleCardType);
+                    _battleCard = VikingSagaWpfApp.Code.BattleNs.Cards.CardFactory.Create(BattleCardType);
 
                 return _battleCard;
             }

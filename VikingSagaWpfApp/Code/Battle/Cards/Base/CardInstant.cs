@@ -1,8 +1,9 @@
 ﻿using System;
 
-namespace VikingSagaWpfApp.Code.Battle.Cards
+namespace VikingSagaWpfApp.Code.BattleNs.Cards
 {
-    public class CardInstant : BattleCard
+    public abstract class CardInstant : BattleCard
     {
+        public abstract SpellProperty.Result Effect { get; }
     }
 }

@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using VikingSagaWpfApp.Code.BattleNs.Cards;
 
-namespace VikingSagaWpfApp.Code.Battle
+namespace VikingSagaWpfApp.Code.BattleNs
 {
     public class SpellProperty
     {
@@ -11,6 +12,7 @@ namespace VikingSagaWpfApp.Code.Battle
 
         public Guid Id { get; private set; }
         public Result Effect { get; set; }
+        public int Value { get; set; }
 
         private static SpellProperty Create(SpellPropertyType type, int amount, string mainMsg, Result effect)
         {
@@ -32,6 +34,47 @@ namespace VikingSagaWpfApp.Code.Battle
         {
             Data = new Dictionary<DataName, object>();
             Id = Guid.NewGuid();
+            Value = 5;
+        }
+
+        private bool IsMatchEitherWay(SpellPropertyType type1, SpellPropertyType type2, CardBasicMob card)
+        {
+            return (card.HasSpellProperty(type1) && this.Type == type2) || (card.HasSpellProperty(type2) && this.Type == type1);
+        }
+
+        // Score based on specific card. Ex. DoubleAttack + rage = good, Shield on protector = good
+        public float SituationalBonus(CardBasicMob card)
+        {
+            float result = 0.0f;
+
+            // Don't apply if already on card (no exceptions currently)
+            if (card.HasSpellProperty(this.Type))
+                result -= 10;
+
+            // DoubleAttack and Rage = good
+            if (IsMatchEitherWay(SpellPropertyType.Rage, SpellPropertyType.DoubleAttack, card))
+                result += 5;
+
+            if (this.Type == SpellPropertyType.Regen && card.HpPct < 50)
+                result += 1;
+
+            if (this.Type == SpellPropertyType.Taunt)
+                result += card.Hp;
+
+            if (this.Type == SpellPropertyType.DoubleAttack)
+                result += card.Dmg;
+
+            if (this.Type == SpellPropertyType.Revive)
+                result += card.Dmg;
+
+            return result;
+        }
+
+        public SpellProperty Clone()
+        {
+            var clone = (SpellProperty)this.MemberwiseClone();
+            clone.Data = new Dictionary<DataName, object>(this.Data);
+            return clone;
         }
 
         public int GetAmount()
@@ -53,11 +96,12 @@ namespace VikingSagaWpfApp.Code.Battle
         public static SpellProperty LifeDrain(int amount, string onDrainMsg) { return Create(SpellPropertyType.LifeDrain, amount, onDrainMsg, Result.Positive); }
         public static SpellProperty Regen(int amount, string onRegenMsg) { return Create(SpellPropertyType.Regen, amount, onRegenMsg, Result.Positive); }
         public static SpellProperty Charge(string onChargeMsg) { return Create(SpellPropertyType.Charge, onChargeMsg, Result.Positive); }
-        public static SpellProperty ProtectLeftAndRight(string onProtect) { return Create(SpellPropertyType.ProtectLeftAndRight, onProtect, Result.Positive); }
         public static SpellProperty Sacrifice(string onSacrifice) { return Create(SpellPropertyType.Sacrifice, onSacrifice, Result.Unknown); }
         public static SpellProperty Taunt(string onTaunt) { return Create(SpellPropertyType.Taunt, onTaunt, Result.Positive); }
         public static SpellProperty DoubleAttack() { return Create(SpellPropertyType.DoubleAttack, string.Empty, Result.Positive); }
+
         public static SpellProperty HealLeftAndRight(int amount, string onHeal) { return Create(SpellPropertyType.HealLeftAndRight, amount, onHeal, Result.Positive); }
+        public static SpellProperty ProtectLeftAndRight(string onProtect) { return Create(SpellPropertyType.ProtectLeftAndRight, onProtect, Result.Positive); }
 
         public static SpellProperty Revive(bool removeAddedProperties, string onReviveMsg)
         {

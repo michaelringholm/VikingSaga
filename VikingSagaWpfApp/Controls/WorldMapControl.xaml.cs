@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VikingSaga.Code;
+using VikingSaga.Code.Resources;
 
 namespace VikingSagaWpfApp.Controls
 {
@@ -28,7 +29,7 @@ namespace VikingSagaWpfApp.Controls
 
             if (DesignerProperties.GetIsInDesignMode(this))
             {
-                mapCanvas.Background = WPFGUIUtil.GetImageBrush(WPFGUIUtil.ImageEnum.WorldMap);
+                mapCanvas.Background = ResourceManager.GetImageBrush(ResourceManager.ImageEnum.WorldMap);
             }
             else
                 GridBackgroundBrush.ImageSource = null;
@@ -41,7 +42,7 @@ namespace VikingSagaWpfApp.Controls
             Dispatcher.Invoke(new Action(() =>
             {
                 HeroControl.UpdateHeroCard(hero);
-                mapImage.Source = WPFGUIUtil.GetImage(map.MapImagePath).Source;
+                mapImage.Source = ResourceManager.GetImage(map.MapImagePath).Source;
                 Opacity = 0.95;
                 PlotMapLocations(map);
             }));
@@ -79,11 +80,13 @@ namespace VikingSagaWpfApp.Controls
         {
             Image markerImage = null;
             if (mapLocation.Marker == MapLocation.MarkerTypeEnum.Path)
-                markerImage = WPFGUIUtil.GetImage("\\markers\\green-marker-24x24.png");
+                markerImage = ResourceManager.GetImage("markers/green-marker-24x24.png");
             else if (mapLocation.Marker == MapLocation.MarkerTypeEnum.Hero)
-                markerImage = WPFGUIUtil.GetImage("\\markers\\green-highlighted-marker-24x24.png");
+                markerImage = ResourceManager.GetImage("markers/green-highlighted-marker-24x24.png");
             else if (mapLocation.Marker == MapLocation.MarkerTypeEnum.Boss)
-                markerImage = WPFGUIUtil.GetImage("\\markers\\boss4-marker-64x47.png");
+                markerImage = ResourceManager.GetImage("markers/boss4-marker-64x47.png");
+            else if (mapLocation.Marker == MapLocation.MarkerTypeEnum.Village)
+                markerImage = ResourceManager.GetImage("markers/village.png");
             else
                 throw new Exception("Unsupported map location marker [" + mapLocation.Marker.ToString() + "]");
 
@@ -113,7 +116,7 @@ namespace VikingSagaWpfApp.Controls
             {
                 //MessageBox.Show("Hero moved to X=[" + newMapLocation.X + "] Y=[" + newMapLocation.Y + "]");
                 var mapLocationImage = _mapLocationImages.Where(ml => (ml.MapLocation.Coordinates.X == newMapLocation.Coordinates.X) && (ml.MapLocation.Coordinates.Y == newMapLocation.Coordinates.Y)).SingleOrDefault();
-                mapLocationImage.Source = WPFGUIUtil.GetImage("\\markers\\green-highlighted-marker-24x24.png").Source;
+                mapLocationImage.Source = ResourceManager.GetImage("markers/green-highlighted-marker-24x24.png").Source;
                 UpdateTexts();
             }));
         }
@@ -143,7 +146,7 @@ namespace VikingSagaWpfApp.Controls
 
         public ImageSource GetMainWindowBackgroundImage()
         {
-            return WPFGUIUtil.GetImage(@"maps\WorldMap.png").Source;
+            return ResourceManager.GetImage(@"maps\WorldMap.png").Source;
             //return null;
         }
     }

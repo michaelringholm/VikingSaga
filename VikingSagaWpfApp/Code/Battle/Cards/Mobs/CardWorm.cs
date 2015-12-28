@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VikingSagaWpfApp.Code.Battle.Cards
+namespace VikingSagaWpfApp.Code.BattleNs.Cards
 {
     class CardWorm : CardBasicMob
     {

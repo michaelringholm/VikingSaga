@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using VikingSaga.Code;
-using VikingSagaWpfApp.Code.Battle.Cards;
+using VikingSagaWpfApp.Code.BattleNs.Cards;
 
-namespace VikingSagaWpfApp.Code.Battle
+namespace VikingSagaWpfApp.Code.BattleNs
 {
     public abstract class Player
     {
@@ -17,6 +17,16 @@ namespace VikingSagaWpfApp.Code.Battle
         public List<BattleCard> DefeatedCards { get; private set; }
         public Battle Battle { get; set; }
 
+        public List<string> ScoreDebug = new List<string>();
+
+        private float _score;
+        public float Score { get { return _score; } }
+        public void UpdateScore(float amount, string reason)
+        {
+            _score += amount;
+            ScoreDebug.Add(string.Format("{0} : {1:0.0}", reason, amount));
+        }
+
         public Player()
         {
             Deck = new BattleDeck();
@@ -24,30 +34,36 @@ namespace VikingSagaWpfApp.Code.Battle
             DefeatedCards = new List<BattleCard>();
         }
 
-        public abstract void TakeTurn(Battle battle);
+        public abstract void TakeTurn();
 
         public int HpChange(int amount)
         {
-            Log.Line(string.Format("Player {0} + Hp : {1}", this.Name, amount));
             Hp += amount;
+            UpdateScore(amount * 4, "Hp change (player)");
+
+            if (IsDead)
+                UpdateScore(-100000, "Self died");
 
             return amount;
         }
 
         public int ManaChange(int amount)
         {
-            Log.Line(string.Format("Player {0} + mana : {1}", this.Name, amount));
             Mana += amount;
+            UpdateScore(amount, "Mana change (player)");
             return amount;
         }
 
         public bool IsDead { get { return Hp <= 0; } }
 
-        // Draw from deck until hand is full or deck is empty
-        public virtual void DrawFromDeck()
+        public virtual void DrawFromDeck(int max = int.MaxValue)
         {
+            int count = 0;
             while (true)
             {
+                if (count >= max)
+                    break;
+
                 int handPosition;
                 if (!Hand.TryGetFreePosition(out handPosition))
                     break;
@@ -62,6 +78,8 @@ namespace VikingSagaWpfApp.Code.Battle
                 Hand.Cards[handPosition] = card;
 
                 Observer.CardDrawn(this, handPosition);
+
+                count++;
             }
         }
 
@@ -85,6 +103,12 @@ namespace VikingSagaWpfApp.Code.Battle
 
             Mana -= card.Mana;
 
+            UpdateScore(1, "Dropped on board");
+            if (card.HasAnySpellProperty())
+            {
+                UpdateScore(1, "Dropped has SpellProp");
+            }
+
             Observer.CardPlacedOnBoard(card, handPosition, boardPosition, isAi);
             card.OnBattleFlowEvent(BattleFlowEvent.AfterEnterBoard);
 
@@ -97,6 +121,7 @@ namespace VikingSagaWpfApp.Code.Battle
 
                 Observer.ShowNotifications();
                 Battle.OutOfOrderCardTurn(this, card.BoardPosition);
+                UpdateScore(card.Dmg, "Charge");
             }
         }
 
@@ -104,13 +129,19 @@ namespace VikingSagaWpfApp.Code.Battle
         {
             ClearHandPosition(src);
 
+            Mana -= src.Mana;
+
             if (src is CardInstantHpChange)
             {
                 var c = (CardInstantHpChange)src;
                 int amount = dst.ChangeHp(c.Amount, c.AmountType);
+                float score = amount * (dst.Owner == this ? 1 : -1);
+                UpdateScore(amount, c.Name + " on " + dst.Name);
+
                 if (dst.IsDead)
                 {
                     src.BattleStatistics.KillingBlowsOnEnemyCards++;
+                    UpdateScore(dst.Dmg, c.Name + " on " + dst.Name + " (kill bonus)");
                 }
 
                 Observer.DropCardOnCard(src, dst, amount, isAi);
@@ -123,13 +154,26 @@ namespace VikingSagaWpfApp.Code.Battle
             else if (src is CardInstantSpellProperty)
             {
                 var c = (CardInstantSpellProperty)src;
+
+                float situationalBonus = c.Property.SituationalBonus(dst);
+                if (situationalBonus != 0.0f)
+                {
+                    UpdateScore(situationalBonus, c.Name + " on " + dst.Name + " (Prop score)");
+                }
+
                 dst.AddSpellProperty(c.Property);
+
+                float score = 5 * (c.Effect == SpellProperty.Result.Positive ? 1 : -1) * (dst.Owner == this ? 1 : -1);
+                UpdateScore(score, c.Name + " on " + dst.Name);
+
                 Observer.DropCardOnCard(src, dst, 0, isAi);
             }
             else if (src is CardInstantDmgChange)
             {
                 var c = (CardInstantDmgChange)src;
                 dst.ChangeDmgSpell(c.Amount);
+                float score = c.Amount * (dst.Owner == this ? 1 : -1);
+                UpdateScore(score, c.Name + " on " + dst.Name);
                 Observer.DropCardOnCard(src, dst, c.Amount, isAi);
             }
             else if (src is CardInstantCustom)
@@ -137,6 +181,8 @@ namespace VikingSagaWpfApp.Code.Battle
                 var c = (CardInstantCustom)src;
                 c.Execute();
                 Observer.DropCardOnCard(src, dst, 0, isAi);
+                float score = 5 * (c.Effect == SpellProperty.Result.Positive ? 1 : -1) * (dst.Owner == this ? 1 : -1);
+                UpdateScore(score, c.Name + " on " + dst.Name);
                 int count = Battle.HandleDeadCards();
                 if (count > 0)
                 {
@@ -160,18 +206,22 @@ namespace VikingSagaWpfApp.Code.Battle
             {
                 var c = (CardInstantHpChange)card;
                 int amount = dst.HpChange(c.Amount);
+                // score handled by examining dst player Hp after round
                 Observer.DropCardOnPlayer(dst, card, amount, isAi);
             }
             else if (card is CardInstantManaChange)
             {
                 var c = (CardInstantManaChange)card;
                 int amount = dst.ManaChange(c.Amount);
+                UpdateScore(amount, card.Name + " on self");
                 Observer.DropCardOnPlayer(dst, card, amount, isAi);
             }
             else if (card is CardInstantCustom)
             {
                 var c = (CardInstantCustom)card;
                 c.Execute();
+                float score = 5 * (c.Effect == SpellProperty.Result.Positive ? 1 : -1) * (dst == this ? 1 : -1);
+                UpdateScore(score, card.Name + " on player");
                 Observer.DropCardOnPlayer(dst, card, 0, isAi);
                 int count = Battle.HandleDeadCards();
                 if (count > 0)

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VikingSagaWpfApp.Code.Battle.Cards
+namespace VikingSagaWpfApp.Code.BattleNs.Cards
 {
     public class CardCataclysm : CardInstantCustom
     {
@@ -12,17 +12,16 @@ namespace VikingSagaWpfApp.Code.Battle.Cards
         {
             Name = "Cataclysm";
             Description = "Deals 50 dmg to ALL cards!";
-            ExecuteAction = Do;
 
             CanTargetOwnPlayer = true;
             CanTargetOwnCard = true;
             CanTargetEnemyPlayer = true;
             CanTargetEnemyCard = true;
-
-            Effect = SpellProperty.Result.Unknown;
         }
 
-        private void Do()
+        public override SpellProperty.Result Effect { get { return SpellProperty.Result.Positive; } }
+
+        public override void Execute()
         {
             var cards = this.Owner.Battle.Board.AllCards();
             foreach (var card in cards)

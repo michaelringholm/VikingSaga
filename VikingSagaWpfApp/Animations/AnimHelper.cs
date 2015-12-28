@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -8,6 +10,29 @@ namespace VikingSagaWpfApp.Animations
 {
     public static class AnimHelper
     {
+        public static PathGeometry PathFromPoints(IEnumerable<Point> points)
+        {
+            var list = points.ToList();
+            if (list.Count < 2)
+                return new PathGeometry();
+
+            PathGeometry result = new PathGeometry();
+            PathFigure pFigure = new PathFigure();
+            pFigure.StartPoint = list[0];
+
+            var segment = new PolyLineSegment();
+            for (int i = 0; i < list.Count; ++i)
+            {
+                segment.Points.Add(list[i]);
+            }
+
+            pFigure.Segments.Add(segment);
+            result.Figures.Add(pFigure);
+
+            result.Freeze();
+            return result;
+        }
+
         public static Duration Duration(int ms)
         {
             return new Duration(TimeSpan(ms));
@@ -16,6 +41,15 @@ namespace VikingSagaWpfApp.Animations
         public static TimeSpan TimeSpan(int ms)
         {
             return new TimeSpan(0, 0, 0, 0, ms);
+        }
+
+        public static DoubleAnimationUsingPath GetPathAnim(PathGeometry path, int ms, PathAnimationSource source)
+        {
+            var result = new DoubleAnimationUsingPath();
+            result.PathGeometry = path;
+            result.Duration = AnimHelper.Duration(ms);
+            result.Source = source;
+            return result;
         }
 
         public static DoubleAnimation GetAnim(double from, double to, int ms, int startTime = 0)

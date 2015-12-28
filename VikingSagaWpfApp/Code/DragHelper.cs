@@ -6,7 +6,8 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using VikingSaga.Code;
 using VikingSagaWpfApp.Animations;
-using VikingSagaWpfApp.Code.Battle.Cards;
+using VikingSagaWpfApp.Code.BattleNs.Cards;
+using VikingSagaWpfApp.Code.BattleNs.Players.AI;
 
 namespace VikingSagaWpfApp
 {

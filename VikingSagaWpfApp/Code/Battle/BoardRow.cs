@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using VikingSaga.Code;
-using VikingSagaWpfApp.Code.Battle.Cards;
+using VikingSagaWpfApp.Code.BattleNs.Cards;
 
-namespace VikingSagaWpfApp.Code.Battle
+namespace VikingSagaWpfApp.Code.BattleNs
 {
     public class BoardRow
     {
@@ -11,6 +11,23 @@ namespace VikingSagaWpfApp.Code.Battle
         {
             _cards = new CardBasicMob[Board.CardsPerRow];
             Cards = (IReadOnlyList<CardBasicMob>)_cards;
+        }
+
+        public void CopyFrom(BoardRow other, Player newOwner)
+        {
+            Array.Clear(_cards, 0, _cards.Length);
+
+            for (int i = 0; i < other._cards.Length; ++i)
+            {
+                var card = other._cards[i];
+                if (card != null)
+                {
+                    var clone = (CardBasicMob)card.Clone();
+                    clone.Owner = newOwner;
+                    clone.Observer = newOwner.Observer;
+                    _cards[i] = clone;
+                }
+            }
         }
 
         public bool TryGetFreePosition(out int position)
@@ -31,6 +48,15 @@ namespace VikingSagaWpfApp.Code.Battle
             var card = _cards[position];
             _cards[position] = null;
             return card;
+        }
+
+        public IEnumerable<CardBasicMob> AllCards()
+        {
+            foreach (CardBasicMob card in Cards)
+            {
+                if (card != null)
+                    yield return card;
+            }
         }
 
         private CardBasicMob[] _cards;

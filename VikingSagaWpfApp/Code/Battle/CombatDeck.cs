@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using VikingSagaWpfApp.Code.Battle;
+using VikingSagaWpfApp.Code.BattleNs;
 
 namespace VikingSaga.Code
 {

@@ -1,0 +1,18 @@
+﻿<vik:FakeWindow x:Class="Vik.Code.Controls.Utility.VikMessageBoxWindow"
+             xmlns:vik="clr-namespace:Vik.Code.Controls"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" Effect="{StaticResource DropShadow}"
+             d:DesignHeight="300" d:DesignWidth="300" HorizontalAlignment="Center" VerticalAlignment="Center" SnapsToDevicePixels="True">
+    <Border BorderBrush="#46463E" BorderThickness="4" CornerRadius="10" Grid.RowSpan="2" Background="#E6000000">
+        <DockPanel>
+            <TextBlock Name="tbText" TextAlignment="Center" Margin="20" DockPanel.Dock="Top" Foreground="#FFFBFBFB" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" TextOptions.TextFormattingMode="Display" TextOptions.TextHintingMode="Fixed" >sdksdkdlskldsakdlksldkasldk skldklsad lskd lsakd lsd lksalkd lsad lks d</TextBlock>
+            <StackPanel Name="ButtonPanel" Margin="10" DockPanel.Dock="Bottom" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" >
+                <Button Content="OK"></Button>
+                <Button Content="Cancel"></Button>
+            </StackPanel>
+        </DockPanel>
+    </Border>
+</vik:FakeWindow>

@@ -43,7 +43,12 @@ namespace VikingSagaWpfApp.Controls
 
         private void btnVisitVillage_Click(object sender, RoutedEventArgs e)
         {
-            GameController.Current.ShowVillage();
+            GameController.Current.TryEnterVillage();
+        }
+
+        private void ButtonControl_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            GameController.Current.ShowQuestList();
         }
     }
 }

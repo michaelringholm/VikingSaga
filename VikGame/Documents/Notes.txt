@@ -1,0 +1,42 @@
+﻿AI: Party required
+
+Cards
+-----
+
+State. ChangeState - show state.
+
+Start full power
+Regen power
+Core abilitis costs power (max two core ab.)
+Abilities costs power (must match card type)
+
+Random starter
+Switch turns - AI, Player
+Selectable cards are green.
+Click to select a card - then action. Use click to select target.
+
+At every attack, check all taunters (pct), sucesss or fail.
+
+Player turn:
+
+Highlight cards that didn't take their turn yet.
+On select card, show large card + core abilities + HIGHLIGHT ability cards that matches card type.
+On select core ability, highlight valid targets (show cancel button + escape cancels. most override game menu)
+On select target, activate core ability
+
+Battle AI:
+
+Select card
+
+----------
+
+PostWINWin
+PostLOSEWin
+	After travel battle -> Continue journey or turn back?
+
+Win / lose button. What happens on lose?
+
+----------
+
+Missions? Send scout to investigate X, takes Y hours, costs Z whatever, reward is chance of relevant card.
+Only one at a time?

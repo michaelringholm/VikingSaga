@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml.Serialization;
 using VikingSagaWpfApp.Code;
 
 namespace VikingSaga.Code
 {
     public abstract class Hero
     {
+        public Map Map { get; set; }
         public enum ConditionEnum { Perfect, Suffer, Immune, Defeated };
         public string Name { get; set; }
         public ConditionEnum Condition { get; set; } // TODO check condition based on HP after battle
@@ -19,7 +21,16 @@ namespace VikingSaga.Code
         public int RemainingMana { get; set; }
         public String CardImageURL { get; set; }
         public bool HasGainedNewLevel { get; set; }
-        public Campaign.Campaign Campaign { get; set; }
+        [XmlIgnore]
+        public Campaign.CampaignFactory.CampaignEnum CampaignType { get; set; }
+        /* Serialization helper as enums can't be serialized */
+        public String CampaignTypeString
+        {
+            get { return CampaignType.ToString(); }
+            set { CampaignType = (Campaign.CampaignFactory.CampaignEnum)Enum.Parse(typeof(Campaign.CampaignFactory.CampaignEnum), CampaignTypeString); }
+        }
+
+        public List<Campaign.QuestProgress> Quests { get; set; }
 
         internal void PrepareForBattle()
         {
@@ -54,8 +65,6 @@ namespace VikingSaga.Code
             if (XP < 0)
                 XP = 0;
         }
-
-        public Map Map { get; set; }
 
         public abstract List<Level> GetLevels();
 

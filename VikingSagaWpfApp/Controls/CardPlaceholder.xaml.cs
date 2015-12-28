@@ -6,8 +6,8 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using VikingSaga.Code;
-using VikingSagaWpfApp.Code.Battle;
-using VikingSagaWpfApp.Code.Battle.Cards;
+using VikingSagaWpfApp.Code.BattleNs;
+using VikingSagaWpfApp.Code.BattleNs.Cards;
 
 namespace VikingSagaWpfApp
 {

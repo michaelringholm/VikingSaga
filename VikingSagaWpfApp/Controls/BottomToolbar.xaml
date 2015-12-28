@@ -109,6 +109,6 @@
                 </ControlTemplate>
             </Button.Resources>
         </Button>        
-        <Controls:ButtonControl Text="TEST" />
+        <Controls:ButtonControl Text="Quests" PreviewMouseLeftButtonDown="ButtonControl_PreviewMouseLeftButtonDown" />
     </DockPanel>
 </UserControl>

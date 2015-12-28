@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using VikingSaga.Code;
-using VikingSagaWpfApp.Code.Battle.Cards;
+using VikingSagaWpfApp.Code.BattleNs.Cards;
+using VikingSagaWpfApp.Code.BattleNs.Players.AI;
 
-namespace VikingSagaWpfApp.Code.Battle
+namespace VikingSagaWpfApp.Code.BattleNs
 {
     public class BattleObserver : IBattleObserver
     {
@@ -40,7 +42,7 @@ namespace VikingSagaWpfApp.Code.Battle
 
         private void Status(string s)
         {
-            Log.Line(s);
+            //Log.Line(s);
         }
 
         void IBattleObserver.CardDrawn(Player player, int position)
@@ -58,6 +60,11 @@ namespace VikingSagaWpfApp.Code.Battle
             {
                 _battleBoardUI.SetStatusMessage("Your turn, " + player.Name, 1500);
             }
+        }
+
+        void IBattleObserver.ShowPlayerInfo(Player player, string info)
+        {
+            _battleBoardUI.ShowPlayerInfo(player, info);
         }
 
         void IBattleObserver.ShowNotifications()
@@ -121,13 +128,18 @@ namespace VikingSagaWpfApp.Code.Battle
 
         void IBattleObserver.AiArtificialDelay()
         {
-            Thread.Sleep(500);
+            Thread.Sleep(300);
         }
 
         void IBattleObserver.BattleEnded(Player winner, Player loser)
         {
             Status("BattleEnded, winner : " + winner.Name);
             GameEngine.Current.OnBattleEnded(winner, loser);
+        }
+
+        void IBattleObserver.AiDebug(IEnumerable<AiPlay> plays, int ms)
+        {
+            _battleBoardUI.AiDebug(plays, ms);
         }
     }
 }

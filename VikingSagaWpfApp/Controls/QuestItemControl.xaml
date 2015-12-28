@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="VikingSaga.Controls.QuestItemControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" Width="440" >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="37*"/>
+            <ColumnDefinition Width="294*"/>
+            <ColumnDefinition Width="109*"/>
+        </Grid.ColumnDefinitions>
+        <Image Source="/VikingSagaWpfApp;component/Resources/quests/quest-journal-exclamation-mark.png" Width="24" />
+        <TextBlock x:Name="tbQuestTitle" Grid.Column="1" Grid.ColumnSpan="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FFD9D6C7" Height="25" Width="74" Margin="12,0,0,0">Quest title</TextBlock>
+        <TextBlock x:Name="tbStatus" Grid.Column="2" Grid.ColumnSpan="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FFD9D6C7" Height="25" Width="45" Margin="12,0,0,0">Status</TextBlock>
+    </Grid>
+</UserControl>

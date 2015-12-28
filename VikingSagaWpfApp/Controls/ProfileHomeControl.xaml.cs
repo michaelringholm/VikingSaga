@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VikingSaga.Code;
+using VikingSaga.Code.Resources;
 
 namespace VikingSagaWpfApp.Controls
 {
@@ -24,7 +25,7 @@ namespace VikingSagaWpfApp.Controls
         public ProfileHomeControl()
         {
             InitializeComponent();
-            //Background = WPFGUIUtil.GetImageBrush("backgrounds\\general-form-background-1900x1200.jpg");
+            //Background = ResourceManager.GetImageBrush("backgrounds\\general-form-background-1900x1200.jpg");
             //InitHeroDetails(GameController.Current.Profile.Hero);
             if (!System.ComponentModel.DesignerProperties.GetIsInDesignMode(this))
                 Background = Brushes.Transparent;
@@ -51,7 +52,7 @@ namespace VikingSagaWpfApp.Controls
 
         public ImageSource GetMainWindowBackgroundImage()
         {
-            return WPFGUIUtil.GetImage(@"\backgrounds\battle-form-background-1900x1200.jpg").Source;
+            return ResourceManager.GetImage(@"backgrounds/battle-form-background-1900x1200.jpg").Source;
         }
     }
 }

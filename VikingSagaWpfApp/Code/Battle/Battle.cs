@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using VikingSaga.Code;
-using VikingSagaWpfApp.Code.Battle.Cards;
+using VikingSagaWpfApp.Code.BattleNs.Cards;
 
-namespace VikingSagaWpfApp.Code.Battle
+namespace VikingSagaWpfApp.Code.BattleNs
 {
     public class Battle
     {
         public Player Player1 { get; private set; }
         public Player Player2 { get; private set; }
+
+        public Player FirstPlayer { get; private set; }
+        public Player SecondPlayer { get; private set; }
+
         public Board Board { get; private set; }
         public int Round { get; private set; }
 
@@ -24,13 +27,22 @@ namespace VikingSagaWpfApp.Code.Battle
             Player2.Battle = this;
 
             Observer = observer;
-            InitCards(observer);
-            SetPlayersObserver(observer);
-
             Board = new Board(player1, player2);
+
+            SetPlayerObserver(observer);
+            SetObserverAllCards(observer, true);
         }
 
-        private void SetPlayersObserver(IBattleObserver observer)
+        public void CopyFrom(Battle other)
+        {
+            this.Round = other.Round;
+            this.Board.CopyFrom(other.Board);
+
+            this.FirstPlayer = other.IsPlayer1(other.FirstPlayer) ? this.Player1 : this.Player2;
+            this.SecondPlayer = other.IsPlayer1(other.FirstPlayer) ? this.Player2 : this.Player1;
+        }
+
+        private void SetPlayerObserver(IBattleObserver observer)
         {
             Player1.Observer = observer;
             Player2.Observer = observer;
@@ -61,60 +73,104 @@ namespace VikingSagaWpfApp.Code.Battle
             Task.Run(() => Start());
         }
 
-        private void RollForStartingplayer(out Player firstPlayer, out Player secondPlayer)
+        private void RollForStartingplayer()
         {
             Random rnd = new Random(DateTime.Now.Millisecond);
             double roll = rnd.NextDouble();
-            firstPlayer = roll < 0.5 ? Player1 : Player2;
-            secondPlayer = roll < 0.5 ? Player2 : Player1;
+            FirstPlayer = roll < 0.5 ? Player1 : Player2;
+            SecondPlayer = roll < 0.5 ? Player2 : Player1;
+
+            FirstPlayer = Player1;
+            SecondPlayer = Player2;
         }
 
-        private void InitCards(IBattleObserver observer)
+        public void SetObserverAllCards(IBattleObserver observer, bool doInit = false)
         {
-            var allCards = Player1.Deck.Cards.Concat(Player2.Deck.Cards);
+            var deckCards = Player1.Deck.Cards.Concat(Player2.Deck.Cards);
+            var boardCards = Board.AllCards();
+            var handCards = Player1.Hand.AllCards();
+            var allCards = deckCards.Concat(boardCards).Concat(handCards);
+
             foreach (var card in allCards)
             {
                 card.Observer = observer;
-                card.Init();
+                if (doInit)
+                {
+                    card.Init();
+                }
             }
         }
 
         public void Start()
         {
-            Player firstPlayer;
-            Player secondPlayer;
-            RollForStartingplayer(out firstPlayer, out secondPlayer);
-            Log.Line(string.Format("{0} is first, {1} is second", firstPlayer.Name, secondPlayer.Name));
+            RollForStartingplayer();
 
-            Observer.BattleStart(firstPlayer);
+            Log.Line(string.Format("{0} is first, {1} is second", FirstPlayer.Name, SecondPlayer.Name));
+
+            Observer.BattleStart(FirstPlayer);
 
             Round = 1;
             while (true)
             {
-                firstPlayer.DrawFromDeck();
-                secondPlayer.DrawFromDeck();
-
-                SendBattleFlowEvent(firstPlayer, BattleFlowEvent.BeforeRound);
-                SendBattleFlowEvent(secondPlayer, BattleFlowEvent.BeforeRound);
-
-                PlayerTurn(firstPlayer);
-                PlayerTurn(secondPlayer);
-
-                DoCombat(firstPlayer, secondPlayer);
+                DoRound(FirstPlayer, SecondPlayer);
 
                 if (WinnerFound())
                     break;
-
-                AddRoundMana(Player1, Round);
-                AddRoundMana(Player2, Round);
-
-                SendBattleFlowEvent(firstPlayer, BattleFlowEvent.AfterRound);
-                SendBattleFlowEvent(secondPlayer, BattleFlowEvent.AfterRound);
-
-                Round++;
             }
 
             Observer.BattleEnded(Player1.IsDead ? Player2 : Player1, Player1.IsDead ? Player1 : Player2);
+        }
+
+        private void RoundPreBattle(Player firstPlayer, Player secondPlayer)
+        {
+            firstPlayer.DrawFromDeck();
+            secondPlayer.DrawFromDeck();
+
+            SendBattleFlowEvent(firstPlayer, BattleFlowEvent.BeforeRound);
+            SendBattleFlowEvent(secondPlayer, BattleFlowEvent.BeforeRound);
+
+            PlayerTurn(firstPlayer);
+            PlayerTurn(secondPlayer);
+        }
+
+        public void RoundPostBattle(Player firstPlayer, Player secondPlayer)
+        {
+            AddRoundMana(Player1, Round);
+            AddRoundMana(Player2, Round);
+
+            SendBattleFlowEvent(firstPlayer, BattleFlowEvent.AfterRound);
+            SendBattleFlowEvent(secondPlayer, BattleFlowEvent.AfterRound);
+
+            Round++;
+        }
+
+        public void DoCombat(Player firstPlayer, Player secondPlayer)
+        {
+            for (int i = 0; i < Board.CardsPerRow; ++i)
+            {
+                BoardCardTurn(firstPlayer, secondPlayer, i);
+                if (WinnerFound())
+                    return;
+            }
+
+            for (int i = 0; i < Board.CardsPerRow; ++i)
+            {
+                BoardCardTurn(secondPlayer, firstPlayer, i);
+                if (WinnerFound())
+                    return;
+            }
+        }
+
+        private void DoRound(Player firstPlayer, Player secondPlayer)
+        {
+            RoundPreBattle(firstPlayer, secondPlayer);
+
+            DoCombat(firstPlayer, secondPlayer);
+
+            if (WinnerFound())
+                return;
+
+            RoundPostBattle(firstPlayer, secondPlayer);
         }
 
         private void AddRoundMana(Player player, int round)
@@ -131,7 +187,7 @@ namespace VikingSagaWpfApp.Code.Battle
             Observer.BeforePlayerTurn(player);
             SendBattleFlowEvent(player, BattleFlowEvent.BeforeMyTurn);
 
-            player.TakeTurn(this);
+            player.TakeTurn();
 
             SendBattleFlowEvent(player, BattleFlowEvent.AfterMyTurn);
         }
@@ -141,23 +197,6 @@ namespace VikingSagaWpfApp.Code.Battle
             if (WinnerFound())
             {
                 Observer.BattleEnded(Player1.IsDead ? Player2 : Player1, Player1.IsDead ? Player1 : Player2);
-            }
-        }
-
-        private void DoCombat(Player firstPlayer, Player secondPlayer)
-        {
-            for (int i = 0; i < Board.CardsPerRow; ++i)
-            {
-                BoardCardTurn(firstPlayer, secondPlayer,  i);
-                if (WinnerFound())
-                    return;
-            }
-
-            for (int i = 0; i < Board.CardsPerRow; ++i)
-            {
-                BoardCardTurn(secondPlayer, firstPlayer, i);
-                if (WinnerFound())
-                    return;
             }
         }
 

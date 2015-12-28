@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VikingSagaWpfApp.Code.Battle.Cards
+namespace VikingSagaWpfApp.Code.BattleNs.Cards
 {
     public class CardInstantSpellProperty : CardInstant
     {
@@ -16,7 +16,7 @@ namespace VikingSagaWpfApp.Code.Battle.Cards
         public SpellProperty Property { get; protected set; }
         public string OnApplyMsg { get; protected set; }
 
-        public SpellProperty.Result Effect
+        public override SpellProperty.Result Effect
         {
             get
             {

@@ -75,7 +75,7 @@ namespace VikingSagaWpfApp.Controls
         private void StoreProfile(String profileName, String profilePW)
         {
             //var cardImageURL = @"heroes\nord-viking.jpg";
-            var map = MapFactory.CreateMap(MapFactory.MapEnum.DefaultWorld);
+            var map = MapFactory.CreateMap(MapFactory.MAP1);
             //Hero hero = new Warrior { Name = profileName, HP = 10, Mana = 3, Level = 1, XP = 0, Gold = 0, CardImageURL = cardImageURL, Map = map };
             var profile = new VikingSagaUserProfile { Name = profileName, Password = profilePW, Gold = 0, Deck = CardFactory.CreateCampaignStarterDeck(), SelectedHero = null };
 

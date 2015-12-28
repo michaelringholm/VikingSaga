@@ -1,0 +1,53 @@
+﻿<vik:FakeWindow
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             xmlns:vik="clr-namespace:Vik.Code.Controls"
+             xmlns:Utility="clr-namespace:Vik.Code.Controls.Utility" xmlns:Cards="clr-namespace:Vik.Code.Controls.Cards" x:Class="Vik.Code.Controls.Login.LoginWindow"
+             mc:Ignorable="d" 
+             d:DesignHeight="757.678" d:DesignWidth="1017">
+
+    <vik:FakeWindow.Resources>
+        <DataTemplate x:Key="ProfileTemplate">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,5,0,5">
+                <Button x:Name="btnSelect" Width="200" Content="{Binding .}" Tag="{Binding .}" Margin="0,0,5,0" Click="btnSelect_Click" />
+                <Image x:Name="btnDelete" Width="20" Tag="{Binding .}" PreviewMouseLeftButtonDown="btnDelete_Click" Source="/VikGame;component/Data/Gfx/Buttons/delete-icon24.png" />
+            </StackPanel>
+        </DataTemplate>
+    </vik:FakeWindow.Resources>
+
+
+    <Grid x:Name="MainGrid">
+        <Grid.Background>
+            <ImageBrush Stretch="Uniform" ImageSource="/VikGame;component/Data/Gfx/Backgrounds/LoginWindow.jpg"/>
+        </Grid.Background>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="73*"/>
+            <RowDefinition Height="99*"/>
+            <RowDefinition Height="373*"/>
+            <RowDefinition Height="213*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="272.597"/>
+            <ColumnDefinition Width="527.403"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical" Grid.ColumnSpan="2">
+            <TextBlock FontFamily="Kristen ITC" Foreground="#46463E" FontSize="36" FontWeight="Bold">VikingSaga</TextBlock>
+            <TextBlock FontFamily="Kristen ITC" Foreground="#46463E" FontSize="22" FontWeight="Bold" Margin="10">Warlords of Fjordheim</TextBlock>
+        </StackPanel>
+        <Border Padding="10" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2">
+            <StackPanel>
+                <ItemsControl x:Name="Profiles" ItemTemplate="{StaticResource ProfileTemplate}" Margin="0 0 0 20">
+                    <System:String>Ethlore</System:String>
+                    <System:String>BrorKanin</System:String>
+                </ItemsControl>
+                <Button x:Name="btnCreate" Content="Start New Game" Click="btnCreate_Click" HorizontalAlignment="Left" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</vik:FakeWindow>

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using VikingSaga.Code.Resources;
 
 namespace VikingSaga.Code
 {
@@ -12,7 +13,7 @@ namespace VikingSaga.Code
     {
         private static MediaPlayer _mediaPlayer = new MediaPlayer();
 
-        public enum SoundEnum { SwordSlash, MaleHurtShort, RipCard, BattleLost, BattleWon, Danger, WalkForest, LevelGained };
+        public enum SoundEnum { SwordSlash, MaleHurtShort, RipCard, BattleLost, BattleWon, Danger, WalkForest, LevelGained, ImportantMessage };
 
         internal static void PlaySound(SoundEnum soundEnum)
         {
@@ -21,7 +22,7 @@ namespace VikingSaga.Code
 
         internal static void StartMP3Loop(string soundLocation)
         {
-            MediaTimeline timeline = new MediaTimeline(new Uri(ConfigurationManager.AppSettings["ResourceBasePath"] + soundLocation));
+            MediaTimeline timeline = new MediaTimeline(ResourceManager.getPackedUri(soundLocation));
             timeline.RepeatBehavior = RepeatBehavior.Forever;
             MediaClock clock = timeline.CreateClock();
             //MediaPlayer player = new MediaPlayer();
@@ -49,15 +50,15 @@ namespace VikingSaga.Code
         internal static void PlayMP3(string soundLocation)
         {
             MediaPlayer mediaPlayer = new MediaPlayer();
-            mediaPlayer.Open(new Uri(ConfigurationManager.AppSettings["ResourceBasePath"] + soundLocation));
+            mediaPlayer.Open(ResourceManager.getPackedUri(soundLocation));
             mediaPlayer.Play();
         }
 
         internal static void PlaySound(string soundLocation)
         {
-            System.Media.SoundPlayer player = new System.Media.SoundPlayer();
-            player.SoundLocation = ConfigurationManager.AppSettings["ResourceBasePath"] + soundLocation;
-            //player.Stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("sword-slash.wav");
+            var uri = ResourceManager.getPackedUri(soundLocation);
+            var stream = System.Windows.Application.GetResourceStream(uri).Stream;
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer(stream);
             player.Play();
         }
 
@@ -80,6 +81,8 @@ namespace VikingSaga.Code
                 soundLocation = "sounds/walk-forest.wav";
             else if (soundEnum == SoundEnum.LevelGained)
                 soundLocation = "sounds/fanfare-victory.wav";
+            else if (soundEnum == SoundEnum.ImportantMessage)
+                soundLocation = "sounds/danger.wav";
 
             return soundLocation;
         }

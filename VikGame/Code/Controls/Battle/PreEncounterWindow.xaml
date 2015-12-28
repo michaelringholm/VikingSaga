@@ -1,0 +1,52 @@
+﻿<vik:FakeWindow xmlns:Cards="clr-namespace:Vik.Code.Controls.Cards"  xmlns:Utility="clr-namespace:Vik.Code.Controls.Utility"  x:Class="Vik.Code.Controls.Battle.PreEncounterWindow"
+             xmlns:vik="clr-namespace:Vik.Code.Controls"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             Width="480" Height="370"  VerticalAlignment="Center" HorizontalAlignment="Center">
+    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="8" Effect="{DynamicResource DropShadow}">
+        <Border.Background>
+            <ImageBrush ImageSource="/VikGame;component/Data/Gfx/Backgrounds/new-quest.jpg"/>
+        </Border.Background>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="197*"/>
+                <ColumnDefinition Width="254*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="23*"/>
+                <RowDefinition Height="308*"/>
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="26*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Column="0" Grid.Row="1">
+                <Cards:CardControl x:Name="EncounterCard" Margin="3" />
+            </Grid>
+            <Grid Name="TextGrid"  Grid.Row="0" Margin="0 12 12 12" Grid.Column="1" Grid.RowSpan="2">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="49*"/>
+                        <RowDefinition Height="247*"/>
+                        <RowDefinition Height="21*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="7*"/>
+                        <ColumnDefinition Width="109*"/>
+                        <ColumnDefinition Width="12*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Row="1" Grid.Column="1">
+                        <TextBlock Foreground="Black" FontSize="12" FontStyle="Italic" TextWrapping="Wrap" Margin="0,0,0,0">While travelling you are surprised by...</TextBlock>
+                        <TextBlock Foreground="Black" x:Name="tbTitle" Text="(Title)" TextAlignment="Left" FontSize="16" TextWrapping="Wrap" FontWeight="Bold" Margin="0 10 0 0" />
+                        <TextBlock Foreground="Black" x:Name="tbDescription" Text="(Description)" TextWrapping="Wrap" FontSize="12" TextAlignment="Left" />
+                    </StackPanel>
+                </Grid>
+            </Grid>
+            <Viewbox Grid.Column="0" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="6,0,0,1">
+                <Button Name="btnFight" Click="btnFight_Click">Fight!</Button>
+            </Viewbox>
+        </Grid>
+    </Border>
+</vik:FakeWindow>

@@ -1,0 +1,630 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C3D26E19-A7BA-4C34-8134-E18F94C5105B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Vik</RootNamespace>
+    <AssemblyName>VikGame</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NAudio">
+      <HintPath>Dependencies\NAudio\NAudio.dll</HintPath>
+    </Reference>
+    <Reference Include="NVorbis">
+      <HintPath>Dependencies\NVorbis\NVorbis.dll</HintPath>
+    </Reference>
+    <Reference Include="NVorbis.NAudioSupport">
+      <HintPath>Dependencies\NVorbis\NVorbis.NAudioSupport.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="Code\Application\App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="Code\Application\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Code\Application\App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Code\Controls\Base\TabControl.xaml.cs">
+      <DependentUpon>TabControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Controls\Battle\BattleWindow.xaml.cs">
+      <DependentUpon>BattleWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Controls\Battle\EncounterLoseWindow.xaml.cs">
+      <DependentUpon>EncounterLoseWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Controls\Battle\EncounterWinWindow.xaml.cs">
+      <DependentUpon>EncounterWinWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Controls\Battle\PreEncounterWindow.xaml.cs">
+      <DependentUpon>PreEncounterWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Controls\Cards\CardControl.xaml.cs">
+      <DependentUpon>CardControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Controls\Player\CardFilter.cs" />
+    <Compile Include="Code\Controls\Player\CardFilterControl.xaml.cs">
+      <DependentUpon>CardFilterControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Controls\Player\PlayerEditDeckControl.xaml.cs">
+      <DependentUpon>PlayerEditDeckControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Controls\Player\PlayerEditPartyControl.xaml.cs">
+      <DependentUpon>PlayerEditPartyControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Controls\Quests\QuestUpdatedWindow.xaml.cs">
+      <DependentUpon>QuestUpdatedWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Controls\Quests\QuestCompletedWindow.xaml.cs">
+      <DependentUpon>QuestCompletedWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Controls\Quests\NewQuestWindow.xaml.cs">
+      <DependentUpon>NewQuestWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Controls\Quests\QuestEventArgs.cs" />
+    <Compile Include="Code\Controls\Quests\QuestListControl.xaml.cs">
+      <DependentUpon>QuestListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Controls\Quests\QuestListItemControl.xaml.cs">
+      <DependentUpon>QuestListItemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Controls\Towns\ValykrieGraveyardWindow.xaml.cs">
+      <DependentUpon>ValykrieGraveyardWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Controls\Towns\InnWindow.xaml.cs">
+      <DependentUpon>InnWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Controls\Towns\SmithShopWindow.xaml.cs">
+      <DependentUpon>SmithShopWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Controls\Towns\SeersHutWindow.xaml.cs">
+      <DependentUpon>SeersHutWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Controls\Towns\MerchantShopWindow.xaml.cs">
+      <DependentUpon>MerchantShopWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Controls\Utility\BattleDragHelper.cs" />
+    <Compile Include="Code\Controls\Utility\CardDragHelper.cs" />
+    <Compile Include="Code\Controls\Utility\FormattedTextBlock.xaml.cs">
+      <DependentUpon>FormattedTextBlock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Controls\Utility\KeyValueInfoWindow.xaml.cs">
+      <DependentUpon>KeyValueInfoWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Controls\Utility\Sound.cs" />
+    <Compile Include="Code\Controls\Utility\UiExtensionMethods.cs" />
+    <Compile Include="Code\Game\Main\Battle\EncounterController.cs" />
+    <Compile Include="Code\Utility\DragDropManager.cs" />
+    <Compile Include="Code\Utility\ObjectCache.cs" />
+    <Compile Include="Code\Controls\Cards\CardPlaceholderControl.xaml.cs">
+      <DependentUpon>CardPlaceholderControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Controls\Cards\CardScrollListControl.xaml.cs">
+      <DependentUpon>CardScrollListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Controls\Utility\ControlAdorner.cs" />
+    <Compile Include="Code\Controls\Base\FakeWindowBase.cs" />
+    <Compile Include="Code\Controls\Base\GameMenuWindow.xaml.cs">
+      <DependentUpon>GameMenuWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Controls\Login\EnterProfileNameWindow.xaml.cs">
+      <DependentUpon>EnterProfileNameWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Controls\Login\LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Controls\Maps\MapControl.xaml.cs">
+      <DependentUpon>MapControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Controls\Maps\MapNodeControl.xaml.cs">
+      <DependentUpon>MapNodeControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Controls\Maps\MapWindow.xaml.cs">
+      <DependentUpon>MapWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Controls\Player\PlayerBackpackWindow.xaml.cs">
+      <DependentUpon>PlayerBackpackWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Controls\Player\PlayerEditCardsWindow.xaml.cs">
+      <DependentUpon>PlayerEditCardsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Controls\Quests\PlayerQuestLogWindow.xaml.cs">
+      <DependentUpon>PlayerQuestLogWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Controls\Towns\LargeVillageWindow.xaml.cs">
+      <DependentUpon>LargeVillageWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Controls\Utility\ColorAdorner.cs" />
+    <Compile Include="Code\Controls\Utility\Debug\DebugSelectItemWindow.xaml.cs">
+      <DependentUpon>DebugSelectItemWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Controls\Utility\Debug\DebugTestFormattedText.xaml.cs">
+      <DependentUpon>DebugTestFormattedText.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Controls\Utility\FloatingInfo.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>FloatingInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Controls\Utility\LargeOverlayTextControl.xaml.cs">
+      <DependentUpon>LargeOverlayTextControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Controls\Utility\OutlinedTextBlock.cs" />
+    <Compile Include="Code\Controls\Utility\SequentialActions.cs" />
+    <Compile Include="Code\Controls\Utility\UiUtil.cs" />
+    <Compile Include="Code\Controls\Utility\VikMessageBoxWindow.xaml.cs">
+      <DependentUpon>VikMessageBoxWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Game\Main\Interfaces\ISpecialLocation.cs" />
+    <Compile Include="Code\Game\Main\Observers\MapObserver.cs" />
+    <Compile Include="Code\Game\Main\VikGame.cs" />
+    <Compile Include="Code\Game\Main\Profiles\IProfileManager.cs" />
+    <Compile Include="Code\Game\Main\Profiles\ProfileManagerLocalData.cs" />
+    <Compile Include="Code\Game\Main\Observers\WorldObserver.cs" />
+    <Compile Include="Code\Utility\AnimHelper.cs" />
+    <Compile Include="Code\Utility\FormattedTextParser.cs" />
+    <Compile Include="Code\Game\Main\ScreenManager.cs" />
+    <Compile Include="Code\Application\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Code\Controls\Base\GameMenuWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Code\Controls\Base\TabControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Code\Controls\Battle\BattleWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Code\Controls\Battle\EncounterLoseWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Code\Controls\Battle\EncounterWinWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Code\Controls\Battle\PreEncounterWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Code\Controls\Cards\CardControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Code\Controls\Cards\CardPlaceholderControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Code\Controls\Cards\CardScrollListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Code\Controls\Login\EnterProfileNameWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Code\Controls\Login\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Code\Controls\Maps\MapControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Code\Controls\Maps\MapNodeControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Code\Controls\Maps\MapWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Code\Controls\Player\CardFilterControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Code\Controls\Player\PlayerBackpackWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Code\Controls\Player\PlayerEditCardsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Code\Controls\Player\PlayerEditDeckControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Code\Controls\Player\PlayerEditPartyControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Code\Controls\Quests\QuestUpdatedWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Code\Controls\Quests\QuestCompletedWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Code\Controls\Quests\NewQuestWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Code\Controls\Quests\PlayerQuestLogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Code\Controls\Quests\QuestListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Code\Controls\Quests\QuestListItemControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Code\Controls\Towns\ValykrieGraveyardWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Code\Controls\Towns\InnWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Code\Controls\Towns\SmithShopWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Code\Controls\Towns\SeersHutWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Code\Controls\Towns\MerchantShopWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Code\Controls\Towns\LargeVillageWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Code\Controls\Utility\Debug\DebugSelectItemWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Code\Controls\Utility\Debug\DebugTestFormattedText.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Code\Controls\Utility\FloatingInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Code\Controls\Utility\FormattedTextBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Code\Controls\Utility\KeyValueInfoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Code\Controls\Utility\LargeOverlayTextControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Code\Controls\Utility\VikMessageBoxWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Code\Styles\AnimationResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Code\Styles\ColorResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Code\Styles\ScrollbarStylingResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Code\Styles\VikGameStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Code\Utility\ResourceChecker.cs" />
+    <Compile Include="Code\Utility\ResourceLocator.cs" />
+    <Compile Include="Code\Utility\Util.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Resource Include="Data\Fonts\ITCKRIST.TTF" />
+    <Resource Include="Data\Sound\UndeadExploration.ogg" />
+    <Resource Include="Data\Fonts\my.bleeding-scars.ttf" />
+    <Resource Include="Data\Fonts\slasha.regular.ttf" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Code\Application\App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Data\Gfx\Splash\SplashImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Gfx\Maps\SouthMap.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Gfx\Maps\Cave1Map.png" />
+    <Resource Include="Data\Gfx\Maps\Labyrinth1Map.png" />
+    <Resource Include="Data\Gfx\Maps\WestMap.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documents\WinDbg.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Documents\Notes.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GameLib\GameLib.csproj">
+      <Project>{e3cc59e0-8135-4836-aea4-1419ba6ebfbd}</Project>
+      <Name>GameLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Gfx\Buttons\tabs\selected-tab.png" />
+    <Resource Include="Data\Gfx\Buttons\tabs\unselected-tab.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Gfx\Buttons\abilities\buff.png" />
+    <Resource Include="Data\Gfx\Buttons\abilities\debuff.png" />
+    <Resource Include="Data\Gfx\Buttons\abilities\dot.png" />
+    <Resource Include="Data\Gfx\Buttons\abilities\heal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Gfx\Buttons\left-scroll.png" />
+    <Resource Include="Data\Gfx\Buttons\right-scroll.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Gfx\Buttons\filter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Gfx\Backgrounds\viking-village-1280x720.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Gfx\Backgrounds\world-map.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Gfx\Maps\StartMap.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Gfx\Backgrounds\LoginWindow.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Gfx\Buttons\delete-icon24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Gfx\Backgrounds\backpack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Gfx\Backgrounds\quest-journal-background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Gfx\Cards\Mobs\dwarf.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Gfx\Cards\Abilities\healing-potion.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Gfx\Cards\Mobs\wolf.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Gfx\Cards\Abilities\strength.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Gfx\Buttons\card-deck.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Gfx\Buttons\quest-log.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Gfx\Buttons\backpack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Gfx\Maps\Viking-Angry-icon32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Gfx\Buttons\classes\druid.jpg" />
+    <Resource Include="Data\Gfx\Buttons\classes\hunter.jpg" />
+    <Resource Include="Data\Gfx\Buttons\classes\mage.jpg" />
+    <Resource Include="Data\Gfx\Buttons\classes\priest.jpg" />
+    <Resource Include="Data\Gfx\Buttons\classes\warrior.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Gfx\Buttons\classes\minion.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Gfx\Cards\Minions\minion.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Gfx\Cards\Followers\druid.jpg" />
+    <Resource Include="Data\Gfx\Cards\Followers\hunter.jpg" />
+    <Resource Include="Data\Gfx\Cards\Followers\mage.jpg" />
+    <Resource Include="Data\Gfx\Cards\Followers\priest.jpg" />
+    <Resource Include="Data\Gfx\Cards\Followers\warrior.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Gfx\Backgrounds\edit-cards.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Gfx\Backgrounds\new-quest.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Gfx\Icons\gold-bullion-icon48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Gfx\Cards\Mobs\wild-boar.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Gfx\Cards\Bosses\narkrall.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Gfx\Cards\NPC\barmaid.jpg" />
+    <Resource Include="Data\Gfx\Cards\NPC\merchant.jpg" />
+    <Resource Include="Data\Gfx\Cards\NPC\seer.jpg" />
+    <Resource Include="Data\Gfx\Cards\NPC\smith.jpg" />
+    <Resource Include="Data\Gfx\Cards\NPC\valkyrie.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Sound\igQuestFailed.ogg" />
+    <Resource Include="Data\Sound\iQuestComplete.ogg" />
+    <Resource Include="Data\Sound\TalentScreenOpen.ogg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Sound\MapPing.ogg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Gfx\Buttons\abilities\dd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Sound\SlimeDamageA.ogg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Gfx\Cards\Mobs\leech.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Gfx\Cards\NPC\dungeon-master.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Sound\draw-card-2.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Sound\Merchant\coins.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Gfx\Cursors\coins.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Sound\Valkyrie\revive.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Gfx\Cursors\spear.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\Sound\Merchant\welcome.wav" />
+    <Resource Include="Data\Sound\Village\village.wav" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

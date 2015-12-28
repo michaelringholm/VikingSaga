@@ -7,6 +7,10 @@ namespace VikingSaga.Code.Campaign
 {
     public static class QuestFactory
     {
+        #region Quest IDs
+        public const int THE_MAD_BOAR = 1;
+        #endregion
+
         public enum QuestEnum { TheBeginning, TheMadBoar };
         public enum TriggerEnum { Barmaid, CampaignStart };
 
@@ -32,6 +36,14 @@ namespace VikingSaga.Code.Campaign
             }
             else
                 throw new Exception("Unknown quest");
+        }
+
+        internal static string GetTitle(int questId)
+        {
+            if (questId == THE_MAD_BOAR)
+                return "The mad boar";
+            else
+                return "Unknown quest";
         }
     }
 }

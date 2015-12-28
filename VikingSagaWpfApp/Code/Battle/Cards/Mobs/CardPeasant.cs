@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VikingSagaWpfApp.Code.Battle.Cards
+namespace VikingSagaWpfApp.Code.BattleNs.Cards
 {
     class CardPeasant : CardBasicMob
     {

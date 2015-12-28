@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using VikingSagaWpfApp;
-using VikingSagaWpfApp.Code.Battle;
-using VikingSagaWpfApp.Code.Battle.Cards;
+using VikingSagaWpfApp.Code.BattleNs;
+using VikingSagaWpfApp.Code.BattleNs.Cards;
+using VikingSagaWpfApp.Code.BattleNs.Players.AI;
 
 namespace VikingSaga.Code
 {
@@ -15,6 +16,7 @@ namespace VikingSaga.Code
         void CloseBattleBoard();
         void ShowBattleBoard();
         void ShowNotifications();
+        void ShowPlayerInfo(Player player, string info);
         void SetStatusMessage(string msg, int ms = 1500);
 
         void UpdateEnemyHeroControl(Player player, Hero hero);
@@ -39,5 +41,7 @@ namespace VikingSaga.Code
 
         CardPlaceholder GetOverlappedPlaceholder(Rect rect, double minCoverage = 0.3);
         HeroCardControl GetOverlappedHero(Rect rect, double minCoverage = 0.3);
+
+        void AiDebug(IEnumerable<AiPlay> plays, int ms);
     }
 }

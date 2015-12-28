@@ -1,0 +1,59 @@
+﻿<UserControl xmlns:Player="clr-namespace:Vik.Code.Controls.Player"  x:Class="Vik.Code.Controls.Player.PlayerEditDeckControl"
+             xmlns:Cards="clr-namespace:Vik.Code.Controls.Cards"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="464.116" d:DesignWidth="808.081" Background="#FF4BAE4B">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="49*"/>
+            <RowDefinition Height="415*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="62*"/>
+            <ColumnDefinition Width="13*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0" FontSize="24" HorizontalAlignment="Center" Foreground="White" VerticalAlignment="Center">Deck</TextBlock>
+        <Grid Name="CardGrid" Grid.Column="0" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150*" SharedSizeGroup="cards"/>
+                <RowDefinition Height="19*"/>
+                <RowDefinition Height="48*"/>
+                <RowDefinition Height="150*" SharedSizeGroup="cards"/>
+            </Grid.RowDefinitions>            
+            <Border Grid.Row="0" Name="Party" BorderBrush="Black" BorderThickness="0" CornerRadius="5">
+                <Cards:CardScrollList x:Name="deckCardsScrollList" />
+            </Border>
+            <Border Grid.Row="1" BorderBrush="Black" BorderThickness="0" CornerRadius="5">
+                <Separator Background="White" />
+            </Border>
+            <TextBlock Foreground="White" FontSize="24" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,12">Abilities (drag to deck)</TextBlock>
+            <Border Grid.Row="3" Name="AllCards" BorderBrush="Black" BorderThickness="0" CornerRadius="5">
+                <Cards:CardScrollList x:Name="remainingCardsScrollList" FontSize="10" />
+            </Border>
+
+        </Grid>
+        <StackPanel Grid.Column="1" Grid.Row="1">
+            <Grid Name="FilterGrid">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center">
+                        <Image HorizontalAlignment="Left" Margin="6 0 0 0" VerticalAlignment="Center" Source="/VikGame;component/Data/Gfx/Buttons/filter.png" />
+                        <StackPanel Orientation="Vertical" Margin="8 8 4 4">
+                            <TextBlock FontSize="16" Width="100" TextWrapping="Wrap" Foreground="White"><Run Text="Filter"/></TextBlock>
+                            <TextBlock FontSize="12" Width="100" TextWrapping="Wrap" Foreground="White"><Run Text="(click to filter)"/></TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel x:Name="FiltersPanel">
+                        <Player:CardFilterControl CardFlag="Buff" Selected="True"/>
+                        <Player:CardFilterControl CardFlag="DeBuff" Selected="True"/>
+                        <Player:CardFilterControl CardFlag="DoT" Selected="True"/>
+                        <Player:CardFilterControl CardFlag="DD" Selected="True"/>
+                        <Player:CardFilterControl CardFlag="Heal" Selected="True"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>

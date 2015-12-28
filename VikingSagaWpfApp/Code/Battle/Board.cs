@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
 using VikingSaga.Code;
-using VikingSagaWpfApp.Code.Battle.Cards;
+using VikingSagaWpfApp.Code.BattleNs.Cards;
 
-namespace VikingSagaWpfApp.Code.Battle
+namespace VikingSagaWpfApp.Code.BattleNs
 {
     public class Board
     {
@@ -16,6 +16,12 @@ namespace VikingSagaWpfApp.Code.Battle
 
             RowPlayer1 = new BoardRow();
             RowPlayer2 = new BoardRow();
+        }
+
+        public void CopyFrom(Board other)
+        {
+            this.RowPlayer1.CopyFrom(other.RowPlayer1, Player1);
+            this.RowPlayer2.CopyFrom(other.RowPlayer2, Player2);
         }
 
         public IEnumerable<CardBasicMob> AllCards(Player player)

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VikingSaga.Code;
+using VikingSaga.Code.Resources;
 
 namespace VikingSagaWpfApp.Controls
 {
@@ -92,7 +93,7 @@ namespace VikingSagaWpfApp.Controls
 
         public ImageSource GetMainWindowBackgroundImage()
         {
-            return WPFGUIUtil.GetImage(@"backgrounds/hero-home-background3.png").Source;
+            return ResourceManager.GetImage(@"backgrounds/hero-home-background3.png").Source;
         }
     }
 }

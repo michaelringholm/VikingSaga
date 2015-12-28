@@ -7,5 +7,6 @@ namespace VikingSaga.Code
 {
     public interface ICityUI : IUIControl
     {
+        void Show(string message);
     }
 }

@@ -1,0 +1,27 @@
+﻿<UserControl xmlns:Quests="clr-namespace:Vik.Code.Controls.Quests"  x:Class="Vik.Code.Controls.Quests.QuestListControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" Background="DarkSlateGray">
+    <StackPanel Orientation="Vertical">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="61*"/>
+                <ColumnDefinition Width="40*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="7*"/>
+                <RowDefinition Height="11*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0">Title</TextBlock>
+        </Grid>
+        <Separator Background="White" Margin="0 4 0 4" />
+        <StackPanel x:Name="QuestListPanel" Orientation="Vertical" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            <Quests:QuestListItemControl QuestSelected="QuestListItemControl_QuestSelected" Selected="False" />
+            <Quests:QuestListItemControl QuestSelected="QuestListItemControl_QuestSelected" Selected="False" />
+            <Quests:QuestListItemControl QuestSelected="QuestListItemControl_QuestSelected" Selected="False" />
+        </StackPanel>
+        <TextBlock x:Name="EmptyQuestListText">You currently have no quests assigned!</TextBlock>
+    </StackPanel>
+</UserControl>

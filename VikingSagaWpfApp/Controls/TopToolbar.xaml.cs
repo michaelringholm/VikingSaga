@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VikingSaga.Code;
+using VikingSaga.Code.Resources;
 
 namespace VikingSagaWpfApp.Controls
 {
@@ -48,13 +49,13 @@ namespace VikingSagaWpfApp.Controls
             {
                 SoundUtil.StartMP3Loop(@"music/medieval-fantasy1.mp3");
                 _isMuted = false;
-                MusicToggleImageBrush.ImageSource = WPFGUIUtil.GetImage("buttons/mute-2-48.png").Source;
+                MusicToggleImageBrush.ImageSource = ResourceManager.GetImage("buttons/mute-2-48.png").Source;
             }
             else
             {
                 SoundUtil.StopCurrentMP3Loop();
                 _isMuted = true;
-                MusicToggleImageBrush.ImageSource = WPFGUIUtil.GetImage("buttons/speaker-48.png").Source;
+                MusicToggleImageBrush.ImageSource = ResourceManager.GetImage("buttons/speaker-48.png").Source;
             }
         }
     }

@@ -8,5 +8,7 @@ namespace VikingSaga.Code
     public interface ILonghouseUI : IUIControl
     {
         void Show(Hero hero, Deck deck);
+
+        void Show(Hero hero, Deck deck, string message, bool presentNewQuest);
     }
 }

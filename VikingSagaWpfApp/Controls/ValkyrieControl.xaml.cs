@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VikingSaga.Code;
+using VikingSaga.Code.Resources;
 
 namespace VikingSagaWpfApp.Controls
 {
@@ -84,7 +85,7 @@ namespace VikingSagaWpfApp.Controls
 
         public ImageSource GetMainWindowBackgroundImage()
         {
-            return WPFGUIUtil.GetImage(@"backgrounds/valkyrie-background.jpg").Source;
+            return ResourceManager.GetImage(@"backgrounds/valkyrie-background.jpg").Source;
         }
     }
 }

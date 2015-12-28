@@ -4,9 +4,10 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
 using VikingSaga.Code;
+using VikingSaga.Code.Resources;
 using VikingSagaWpfApp.Animations;
-using VikingSagaWpfApp.Code.Battle;
-using VikingSagaWpfApp.Code.Battle.Cards;
+using VikingSagaWpfApp.Code.BattleNs;
+using VikingSagaWpfApp.Code.BattleNs.Cards;
 
 namespace VikingSagaWpfApp
 {
@@ -52,10 +53,10 @@ namespace VikingSagaWpfApp
                     HP.Text = hero.RemainingHP.ToString();
                     HeroName.Text = hero.Name;
                     Mana.Text = hero.RemainingMana.ToString();
-                    BackgroundCardBrush.ImageSource = WPFGUIUtil.GetImage(hero.CardImageURL).Source;
+                    BackgroundCardBrush.ImageSource = ResourceManager.GetImage(hero.CardImageURL).Source;
                 }
                 else
-                    BackgroundCardBrush.ImageSource = WPFGUIUtil.GetImage(WPFGUIUtil.ImageEnum.UnknownHeroCard).Source;
+                    BackgroundCardBrush.ImageSource = ResourceManager.GetImage(ResourceManager.ImageEnum.UnknownHeroCard).Source;
             });
         }
 

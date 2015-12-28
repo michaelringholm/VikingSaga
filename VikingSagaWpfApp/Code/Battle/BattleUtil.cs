@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VikingSagaWpfApp.Code.Battle
+namespace VikingSagaWpfApp.Code.BattleNs
 {
     internal static class BattleUtil
     {

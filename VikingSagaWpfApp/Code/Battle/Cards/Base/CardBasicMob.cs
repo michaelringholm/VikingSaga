@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using VikingSaga.Code.BattleNs.Players.AI;
 
-namespace VikingSagaWpfApp.Code.Battle.Cards
+namespace VikingSagaWpfApp.Code.BattleNs.Cards
 {
     public enum MobType { Unknown, Beast, Undead, Human, Magic }
 
@@ -10,6 +11,8 @@ namespace VikingSagaWpfApp.Code.Battle.Cards
     public class CardBasicMob : BattleCard
     {
         private List<SpellProperty> _spellProperties = new List<SpellProperty>();
+        private List<SpellProperty> _startingProperties = new List<SpellProperty>();
+        private AiPlacementBonus _placementBonus = new AiPlacementBonus();
 
         public int BoardPosition { get; set; }
 
@@ -20,14 +23,13 @@ namespace VikingSagaWpfApp.Code.Battle.Cards
         public int HpSpell { get; private set; }
         public int HpMax { get { return HpBase + HpSpell; } }
         public int Hp { get { return _currentHp + HpSpell; } }
+        public float HpPct { get { return ((float)Hp / HpMax) * 100; } }
         private int _currentHp;
         public bool IsDead { get { return Hp <= 0; } }
 
         public int DmgBase { get; protected set; }
         public int DmgSpell { get; private set; }
         public int Dmg { get { return Math.Max(DmgBase + DmgSpell, 0); } }
-
-        private List<SpellProperty> _startingProperties = new List<SpellProperty>();
 
         public CardBasicMob()
         {
@@ -36,6 +38,20 @@ namespace VikingSagaWpfApp.Code.Battle.Cards
             CanTargetOwnBoard = true;
             BoardPosition = -1;
             EnableUiOutput = true;
+        }
+
+        private IEnumerable<SpellProperty> CloneSpellProperties(IEnumerable<SpellProperty> other)
+        {
+            foreach (var prop in other)
+                yield return prop.Clone();
+        }
+
+        public override BattleCard Clone()
+        {
+            var clone = (CardBasicMob)base.Clone();
+            clone._spellProperties = CloneSpellProperties(_spellProperties).ToList();
+            clone._startingProperties = CloneSpellProperties(_startingProperties).ToList();
+            return clone;
         }
 
         public override void Init()
@@ -47,7 +63,7 @@ namespace VikingSagaWpfApp.Code.Battle.Cards
         public void AddUiSpellOutput(string msg)
         {
             if (!string.IsNullOrWhiteSpace(msg))
-                UiOutput.Add(msg);
+                AddUiOutput(msg);
         }
 
         public void AddMainUiSpellOutput(SpellProperty prop)
@@ -56,18 +72,35 @@ namespace VikingSagaWpfApp.Code.Battle.Cards
             AddUiOutput(msg);
         }
 
+        public bool HasAnySpellProperty()
+        {
+            return _spellProperties.Any();
+        }
+
+        public int SpellPropertyValue()
+        {
+            return _spellProperties.Sum(prop => prop.Value);
+        }
+
+        public virtual float CalcLocationBonus()
+        {
+            return _placementBonus.CalcBonusForAlreadyPlacedCard(this);
+        }
+
+        public void AddSpellProperty(SpellProperty prop)
+        {
+            _placementBonus.SpellPropertyAdded(prop);
+            _spellProperties.Add(prop);
+        }
+
         public bool HasSpellProperty(SpellPropertyType propType)
         {
             return _spellProperties.Exists((sp) => sp.Type == propType);
         }
 
-        public void AddSpellProperty(SpellProperty prop)
-        {
-            _spellProperties.Add(prop);
-        }
-
         public void RemoveSpellProperty(SpellProperty prop)
         {
+            _placementBonus.SpellPropertyRemoved(prop);
             _spellProperties.Remove(prop);
         }
 
@@ -76,7 +109,8 @@ namespace VikingSagaWpfApp.Code.Battle.Cards
             var item = GetSpellProperty(propType);
             if (item == null)
                 throw new InvalidOperationException("SpellPropertyType not found: " + propType.ToString());
-            _spellProperties.Remove(item);
+
+            RemoveSpellProperty(item);
             return item;
         }
 
@@ -215,7 +249,7 @@ namespace VikingSagaWpfApp.Code.Battle.Cards
                 SpellPropertyHpChange(-amount, prop, Cards.HpChangeType.Poison);
                 if (++count < maxRounds)
                 {
-                    prop.SetData<int>(SpellProperty.DataName.IntegerValue2, ++count);
+                    prop.SetData<int>(SpellProperty.DataName.IntegerValue2, count);
                 }
             }
 

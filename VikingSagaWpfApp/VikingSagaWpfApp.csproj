@@ -19,7 +19,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>Bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -41,6 +41,8 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -60,6 +62,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Animations\AnimHelper.cs" />
+    <Compile Include="Animations\CallbackAnimation.cs" />
     <Compile Include="Animations\EffectHelper.cs" />
     <Compile Include="Code\AIEncounter.cs" />
     <Compile Include="Code\Battle\Battle.cs" />
@@ -117,21 +120,55 @@
     <Compile Include="Code\Battle\Hand.cs" />
     <Compile Include="Code\Battle\Interfaces\EmptyBattleObserver.cs" />
     <Compile Include="Code\Battle\Interfaces\IBattleObserver.cs" />
+    <Compile Include="Code\Battle\Players\AI\AiHelper.cs" />
+    <Compile Include="Code\Battle\Players\AI\CardCombinations.cs" />
+    <Compile Include="Code\Battle\Players\AI\CardTargetGenerator.cs" />
+    <Compile Include="Code\Battle\Players\AI\PlacementBonus.cs" />
     <Compile Include="Code\Battle\Players\AwesomeAiPlayer.cs" />
     <Compile Include="Code\Battle\Players\GenericAiPlayer.cs" />
     <Compile Include="Code\Battle\Players\HumanPlayer.cs" />
+    <Compile Include="Code\Battle\Players\NetworkPlayer.cs" />
+    <Compile Include="Code\Battle\Players\Network\IRemoteCommand.cs" />
     <Compile Include="Code\Battle\Players\Player.cs" />
+    <Compile Include="Code\Battle\Players\TestPlayer.cs" />
     <Compile Include="Code\Battle\Spells\Spell.cs" />
     <Compile Include="Code\Campaign\Campaign.cs" />
     <Compile Include="Code\Campaign\CampaignFactory.cs" />
+    <Compile Include="Code\Campaign\NPC\Midheim\MidheimBarmaid.cs" />
+    <Compile Include="Code\Campaign\NPC\QuestNPC.cs" />
+    <Compile Include="Code\Campaign\PEE\DataStore\DTO.cs" />
+    <Compile Include="Code\Campaign\PEE\DataStore\IGameDataStore.cs" />
+    <Compile Include="Code\Campaign\PEE\Maps\LocationSerialization.cs" />
+    <Compile Include="Code\Campaign\PEE\Maps\MapLocationLink.cs" />
+    <Compile Include="Code\Campaign\PEE\Maps\MapLocation.cs" />
+    <Compile Include="Code\Campaign\PEE\Maps\MapSpecialLocation.cs" />
+    <Compile Include="Code\Campaign\PEE\Maps\MartinsMapLocations.cs" />
+    <Compile Include="Code\Campaign\PEE\Maps\Map.cs" />
+    <Compile Include="Code\Campaign\PEE\DataStore\GameDataStore.cs" />
+    <Compile Include="Code\Campaign\PEE\DataStore\StoreKeys.cs" />
+    <Compile Include="Code\Campaign\PEE\Maps\MartinsMap.cs" />
+    <Compile Include="Code\Campaign\PEE\Maps\MartinsMap_Campfire.cs" />
+    <Compile Include="Code\Campaign\PEE\Maps\PathHelper.cs" />
+    <Compile Include="Code\Campaign\PEE\Maps\WorldLocationDTO.cs" />
+    <Compile Include="Code\Campaign\PEE\Observers\IMapObserver.cs" />
+    <Compile Include="Code\Campaign\PEE\Observers\IWorldObserver.cs" />
+    <Compile Include="Code\Campaign\PEE\Q\Q.cs" />
+    <Compile Include="Code\Campaign\PEE\WorldNs\GameEvent.cs" />
+    <Compile Include="Code\Campaign\PEE\WorldNs\GameEventManager.cs" />
+    <Compile Include="Code\Campaign\PEE\WorldNs\World.cs" />
+    <Compile Include="Code\Campaign\PEE\WorldNs\GlobalData.cs" />
+    <Compile Include="Code\Campaign\Villages\Midheim.cs" />
+    <Compile Include="Code\Campaign\Villages\Village.cs" />
     <Compile Include="Code\Campaign\Quest.cs" />
     <Compile Include="Code\Campaign\QuestFactory.cs" />
+    <Compile Include="Code\Campaign\QuestProgress.cs" />
     <Compile Include="Code\Card.cs" />
     <Compile Include="Code\CardAbility.cs" />
     <Compile Include="Code\CardFactory.cs" />
     <Compile Include="Code\DragHelper.cs" />
     <Compile Include="Code\ICityUI.cs" />
     <Compile Include="Code\ICreateHeroUI.cs" />
+    <Compile Include="Code\IQuestListUI.cs" />
     <Compile Include="Code\ISmithUI.cs" />
     <Compile Include="Code\IMerchantUI.cs" />
     <Compile Include="Code\IPostBattleUI.cs" />
@@ -162,10 +199,15 @@
     <Compile Include="Code\Druid.cs" />
     <Compile Include="Code\Sorcerer.cs" />
     <Compile Include="Code\Hunter.cs" />
-    <Compile Include="Code\WPFGUIUtil.cs" />
     <Compile Include="Code\Hero.cs" />
     <Compile Include="Code\SoundUtil.cs" />
     <Compile Include="Code\Treasure.cs" />
+    <Compile Include="Code\Util\FormattedTextParser.cs" />
+    <Compile Include="Code\Util\Global.cs" />
+    <Compile Include="Code\Util\ResourceChecker.cs" />
+    <Compile Include="Code\Util\ScreenManager.cs" />
+    <Compile Include="Code\Util\SerializationHelper.cs" />
+    <Compile Include="Code\Util\ZipHelper.cs" />
     <Compile Include="Code\VikingSagaUserProfile.cs" />
     <Compile Include="Code\Warrior.cs" />
     <Compile Include="Controls\BattleBoardControl.xaml.cs">
@@ -185,6 +227,18 @@
     </Compile>
     <Compile Include="Controls\CreateProfileControl.xaml.cs">
       <DependentUpon>CreateProfileControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Map\MapControl.xaml.cs">
+      <DependentUpon>MapControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Map\MapNodeControl.xaml.cs">
+      <DependentUpon>MapNodeControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\QuestItemControl.xaml.cs">
+      <DependentUpon>QuestItemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\QuestListControl.xaml.cs">
+      <DependentUpon>QuestListControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\LonghouseControl.xaml.cs">
       <DependentUpon>LonghouseControl.xaml</DependentUpon>
@@ -235,6 +289,9 @@
     <Compile Include="Controls\MessageInfoControl.xaml.cs">
       <DependentUpon>MessageInfoControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\AiDebugWindow.xaml.cs">
+      <DependentUpon>AiDebugWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\CreateHeroWindow.xaml.cs">
       <DependentUpon>CreateHeroWindow.xaml</DependentUpon>
     </Compile>
@@ -250,6 +307,7 @@
     <Compile Include="Windows\PreBattleWindow.xaml.cs">
       <DependentUpon>PreBattleWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Code\Resources\ResourceManager.cs" />
     <Compile Include="Windows\SurrenderWindow.xaml.cs">
       <DependentUpon>SurrenderWindow.xaml</DependentUpon>
     </Compile>
@@ -280,6 +338,22 @@
     <Page Include="Controls\CreateProfileControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Map\MapControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Map\MapNodeControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\QuestItemControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\QuestListControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\LonghouseControl.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -338,6 +412,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\MessageInfoControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AiDebugWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -503,7 +581,7 @@
     <Resource Include="Resources\backgrounds\market-background.jpg" />
     <Resource Include="Resources\backgrounds\smithy-background.jpg" />
     <Resource Include="Resources\borders\selected-card-green.png" />
-    <Content Include="Resources\long-scream.mp3" />
+    <Resource Include="Resources\long-scream.mp3" />
     <Resource Include="Resources\maps\middle-earth-map-1600x1200.jpg" />
     <Resource Include="Resources\markers\green-marker-24x24.png" />
     <Resource Include="Resources\markers\green-highlighted-marker-24x24.png" />
@@ -534,20 +612,23 @@
     <Resource Include="Resources\mobs\diseased-rabbit.png" />
     <Resource Include="Resources\mobs\warcry.png" />
     <Resource Include="Resources\maps\map1_viking_saga.png" />
-    <Content Include="Resources\music\medieval-fantasy1.mp3" />
-    <Content Include="Resources\short-hurt-male.wav" />
-    <Content Include="Resources\sounds\danger.wav" />
-    <Content Include="Resources\sounds\draw-card-1.wav" />
-    <Content Include="Resources\sounds\draw-card-2.wav" />
-    <Content Include="Resources\sounds\fanfare-victory.wav" />
-    <Content Include="Resources\sounds\loss.wav" />
-    <Content Include="Resources\sounds\paper-rip.mp3" />
-    <Content Include="Resources\sounds\paper-rip.wav" />
-    <Content Include="Resources\sounds\paper-tear.mp3" />
-    <Content Include="Resources\sounds\paper-tear.wav" />
-    <Content Include="Resources\sounds\walk-forest.wav" />
-    <Content Include="Resources\sword-draw.wav" />
-    <Content Include="Resources\sword-slash.wav" />
+    <Resource Include="Resources\markers\village.png" />
+    <Resource Include="Resources\music\medieval-fantasy1.mp3" />
+    <Resource Include="Resources\quests\quest-journal-background.png" />
+    <Resource Include="Resources\quests\quest-journal-exclamation-mark.png" />
+    <Resource Include="Resources\short-hurt-male.wav" />
+    <Resource Include="Resources\sounds\danger.wav" />
+    <Resource Include="Resources\sounds\draw-card-1.wav" />
+    <Resource Include="Resources\sounds\draw-card-2.wav" />
+    <Resource Include="Resources\sounds\fanfare-victory.wav" />
+    <Resource Include="Resources\sounds\loss.wav" />
+    <Resource Include="Resources\sounds\paper-rip.mp3" />
+    <Resource Include="Resources\sounds\paper-rip.wav" />
+    <Resource Include="Resources\sounds\paper-tear.mp3" />
+    <Resource Include="Resources\sounds\paper-tear.wav" />
+    <Resource Include="Resources\sounds\walk-forest.wav" />
+    <Resource Include="Resources\sword-draw.wav" />
+    <Resource Include="Resources\sword-slash.wav" />
     <Resource Include="Resources\viking-beard-helmet-150x150.png" />
     <Resource Include="Resources\middle-earth-map.jpg" />
     <Resource Include="Resources\general-form-background-1600x1200.png" />
@@ -559,7 +640,9 @@
     <Resource Include="Resources\battle-form-background-1900x1200.jpg" />
     <Resource Include="Resources\battle-form-background-1600x1200.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Code\Campaign\PEE\Towns\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

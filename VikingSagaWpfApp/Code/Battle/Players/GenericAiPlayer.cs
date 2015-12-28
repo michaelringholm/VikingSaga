@@ -1,18 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using VikingSagaWpfApp.Code.Battle.Cards;
+using VikingSagaWpfApp.Code.BattleNs.Cards;
+using VikingSagaWpfApp.Code.BattleNs.Players.AI;
 
-namespace VikingSagaWpfApp.Code.Battle
+namespace VikingSagaWpfApp.Code.BattleNs
 {
     class GenericAiPlayer : Player
     {
         private Random _rnd = new Random(DateTime.UtcNow.Millisecond);
+        public Player Opponent { get { return Battle.GetOpponent(this); } }
 
-        public override void TakeTurn(Battle battle)
+        public override void TakeTurn()
         {
             while (true)
             {
-                int count = AiPlaceCardsSimple(battle);
+                int count = AiPlaceCardsSimple(Battle);
                 if (count == 0)
                     break;
             }

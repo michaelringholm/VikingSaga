@@ -4,20 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VikingSagaWpfApp.Code.Battle.Cards
+namespace VikingSagaWpfApp.Code.BattleNs.Cards
 {
     class CardAuraOfHealing : CardInstantCustom
     {
         public CardAuraOfHealing()
         {
             Name = "Hero: Aura of Healing";
-            ExecuteAction = DoAura;
 
             CanTargetOwnPlayer = true;
-            Effect = SpellProperty.Result.Positive;
         }
 
-        private void DoAura()
+        public override SpellProperty.Result Effect { get { return SpellProperty.Result.Positive; } }
+
+        public override void Execute()
         {
             var cards = this.Owner.Battle.Board.AllCards(this.Owner);
             foreach (var card in cards)

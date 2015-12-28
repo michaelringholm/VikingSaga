@@ -8,9 +8,12 @@ using System.Windows.Threading;
 using System.Linq;
 using VikingSaga.Code;
 using VikingSagaWpfApp.Animations;
-using VikingSagaWpfApp.Code.Battle;
-using VikingSagaWpfApp.Code.Battle.Cards;
+using VikingSagaWpfApp.Code.BattleNs;
+using VikingSagaWpfApp.Code.BattleNs.Cards;
 using System.Threading.Tasks;
+using VikingSagaWpfApp.Code.BattleNs.Players.AI;
+using VikingSaga.Windows;
+using VikingSaga.Code.Resources;
 
 namespace VikingSagaWpfApp.Controls
 {
@@ -36,7 +39,7 @@ namespace VikingSagaWpfApp.Controls
             InitializeComponent();
 
             BuildPlaceholderLut();
-            //Background = WPFGUIUtil.GetImageBrush("\\backgrounds\\battle-form-background-1900x1200.jpg");
+            //Background = ResourceManager.GetImageBrush("\\backgrounds\\battle-form-background-1900x1200.jpg");
             borderInfo.Opacity = 0;
         }
 
@@ -176,6 +179,15 @@ namespace VikingSagaWpfApp.Controls
             }
 
             return null;
+        }
+
+        public void ShowPlayerInfo(Player player, string info)
+        { 
+            var heroControl = IsPlayer1(player) ? yourHeroCardControl : enemyHeroCardControl;
+            Ui.Post(() =>
+                {
+                    ShowFloatingInfoMid(heroControl, info, Colors.Yellow, FloatingInfoParam.CategoryType.HeroInfo);
+                });
         }
 
         public void ShowNotifications()
@@ -517,8 +529,9 @@ namespace VikingSagaWpfApp.Controls
                 }
             }
 
+            // Safety: Don't move on until dead cards are removed from the model
             if (deadCardsFound)
-                yield return ms / 2;
+                yield return ms + 100;
         }
 
         public IEnumerable<int> CardVsPlayer(Player src, Player dst, int position, int amount)
@@ -620,7 +633,7 @@ namespace VikingSagaWpfApp.Controls
                 enemyHeroCardControl.HP.Text = Convert.ToString(player.Hp);
                 enemyHeroCardControl.HeroName.Text = Convert.ToString(player.Name);
                 enemyHeroCardControl.Level.Text = hero.Level.ToString();
-                enemyHeroCardControl.BackgroundCardBrush.ImageSource = WPFGUIUtil.GetImage(hero.CardImageURL).Source;
+                enemyHeroCardControl.BackgroundCardBrush.ImageSource = ResourceManager.GetImage(hero.CardImageURL).Source;
             }));
         }
 
@@ -634,7 +647,7 @@ namespace VikingSagaWpfApp.Controls
                 yourHeroCardControl.HP.Text = Convert.ToString(player.Hp);
                 yourHeroCardControl.HeroName.Text = Convert.ToString(player.Name);
                 yourHeroCardControl.Level.Text = hero.Level.ToString();
-                yourHeroCardControl.BackgroundCardBrush.ImageSource = WPFGUIUtil.GetImage(hero.CardImageURL).Source;
+                yourHeroCardControl.BackgroundCardBrush.ImageSource = ResourceManager.GetImage(hero.CardImageURL).Source;
             }));
         }
 
@@ -706,7 +719,7 @@ namespace VikingSagaWpfApp.Controls
 
         public ImageSource GetMainWindowBackgroundImage()
         {
-            return WPFGUIUtil.GetImage(@"\backgrounds\battle-form-background-1900x1200.jpg").Source;
+            return ResourceManager.GetImage(@"\backgrounds\battle-form-background-1900x1200.jpg").Source;
         }
 
         private void btnPlayRound_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -719,5 +732,23 @@ namespace VikingSagaWpfApp.Controls
             GameController.Current.PrepareSurrender();
         }
 
+        AiDebugWindow AiWin = null;
+
+        public void AiDebug(IEnumerable<AiPlay> plays, int ms)
+        {
+            Ui.Send(() =>
+            {
+                if (!(cbDebug.IsChecked ?? false))
+                    return;
+
+                if (AiWin == null)
+                {
+                    AiWin = new AiDebugWindow();
+                    AiWin.Show();
+                }
+
+                AiWin.SetPlays(plays, ms);
+            });
+        }
     }
 }

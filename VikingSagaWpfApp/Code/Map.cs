@@ -30,5 +30,7 @@ namespace VikingSaga.Code
         {
             return (mapCoordinates1.X == mapCoordinates2.X && (mapCoordinates1.Y == mapCoordinates2.Y));
         }
+
+        public int ID { get; set; }
     }
 }

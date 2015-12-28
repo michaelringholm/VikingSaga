@@ -2,7 +2,7 @@
 using VikingSagaWpfApp.Controls;
 using VikingSagaWpfApp.Windows;
 using VikingSagaWpfApp.Code;
-using VikingSagaWpfApp.Code.Battle;
+using VikingSagaWpfApp.Code.BattleNs;
 using VikingSagaWpfApp;
 
 namespace VikingSaga.Code
@@ -18,6 +18,7 @@ namespace VikingSaga.Code
         public IDeckEditUI DeckEditUI { get; set; }
         public IValkyrieUI ValkyrieUI { get; set; }
         public IMerchantUI MerchantUI { get; set; }
+        public IQuestListUI QuestListUI { get; set; }
         public ISmithUI SmithUI { get; set; }
         public ISeerUI SeerUI { get; set; }
         public ILonghouseUI LonghouseUI { get; set; }
@@ -56,6 +57,7 @@ namespace VikingSaga.Code
             DeckEditUI = new EditDeckControl();
             ValkyrieUI = new ValkyrieControl();
             MerchantUI = new MerchantControl();
+            QuestListUI = new QuestListControl();
             SeerUI = new SeerControl();
             LonghouseUI = new LonghouseControl();
             SmithUI = new SmithHouseControl();
@@ -166,11 +168,6 @@ namespace VikingSaga.Code
             MainWindowUI.ChangeBodyContent(WorldMapUI);
         }
 
-        internal void ShowVillage()
-        {
-            MainWindowUI.ChangeBodyContent(CityUI);
-        }
-
         internal void CreateHero(String heroName, string selectedHeroClass)
         {
             GameEngine.Current.CreateHero(Profile, heroName, selectedHeroClass);
@@ -236,10 +233,9 @@ namespace VikingSaga.Code
         {
             if (heroType == typeof(Warrior))
             {
-                var cardImageURL = @"heroes\warrior-hero.png";
-                var map = MapFactory.CreateMap(MapFactory.MapEnum.DefaultWorld);
-                var campaign = Campaign.CampaignFactory.CreateCampaign(Campaign.CampaignFactory.CampaignEnum.TheBloodWolf);
-                Hero hero = new Warrior { Name = heroName, HP = 10, Mana = 5, Level = 1, XP = 0, Gold = 0, CardImageURL = cardImageURL, Map = map, Campaign = campaign };
+                var cardImageURL = @"heroes/warrior-hero.png";
+                var map = MapFactory.CreateMap(MapFactory.MAP1);
+                Hero hero = new Warrior { Name = heroName, HP = 10, Mana = 5, Level = 1, XP = 0, Gold = 0, CardImageURL = cardImageURL, Map = map, CampaignType = Campaign.CampaignFactory.CampaignEnum.TheBloodWolf };
                 Profile.Heroes[heroIndex] = hero;
 
                 DAC.StoreProfile(Profile);
@@ -258,9 +254,27 @@ namespace VikingSaga.Code
             GameEngine.Current.BuyCard(card);
         }
 
+        internal void ShowVillage()
+        {
+            CityUI.Show(null);
+            MainWindowUI.ChangeBodyContent(CityUI);
+        }
+
+        internal void ShowVillage(string message)
+        {
+            CityUI.Show(message);
+            MainWindowUI.ChangeBodyContent(CityUI);
+        }
+
         internal void ShowLonghouse()
         {            
-            LonghouseUI.Show(Profile.SelectedHero, Profile.Deck);
+            LonghouseUI.Show(Profile.SelectedHero, Profile.Deck, null, false);
+            MainWindowUI.ChangeBodyContent(LonghouseUI);
+        }
+
+        internal void ShowLonghouse(string message, bool presentNewQuest)
+        {
+            LonghouseUI.Show(Profile.SelectedHero, Profile.Deck, message, presentNewQuest);
             MainWindowUI.ChangeBodyContent(LonghouseUI);
         }
 
@@ -286,6 +300,22 @@ namespace VikingSaga.Code
         {
             MerchantUI.Show(Profile.SelectedHero, Profile.Deck);
             MainWindowUI.ChangeBodyContent(MerchantUI);
+        }
+
+        internal void ShowQuestList()
+        {
+            QuestListUI.Show(Profile.SelectedHero.Quests);
+            MainWindowUI.ChangeBodyContent(QuestListUI);
+        }
+
+        internal void TryEnterVillage()
+        {
+            GameEngine.Current.EnterVillage();
+        }
+
+        internal void TryEnterLonghouse()
+        {
+            GameEngine.Current.EnterLonghouse();
         }
     }
 }

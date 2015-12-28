@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Xml.Serialization;
 
 namespace VikingSaga.Code
@@ -24,10 +25,9 @@ namespace VikingSaga.Code
             Debug.WriteLine("**** Started *****");
 
             var cardImageURL = @"heroes\warrior-hero.png";
-            var map = MapFactory.CreateMap(MapFactory.MapEnum.DefaultWorld);
-            var campaign = Campaign.CampaignFactory.CreateCampaign(Campaign.CampaignFactory.CampaignEnum.TheBloodWolf);
-            Hero hero = new Warrior { Name = "Ragnar", HP = 10, Mana = 5, Level = 1, XP = 0, Gold = 0, CardImageURL = cardImageURL, Map = map, Campaign = campaign };
-            var profile = new VikingSagaUserProfile { Name="ethlore", Password="viking", Gold=0, Deck = CardFactory.CreateCampaignStarterDeck(), SelectedHero = hero };
+            var map = MapFactory.CreateMap(MapFactory.MAP1);
+            Hero hero = new Warrior { Name = "Ragnar", HP = 10, Mana = 5, Level = 1, XP = 0, Gold = 0, CardImageURL = cardImageURL, Map = map, CampaignType = Campaign.CampaignFactory.CampaignEnum.TheBloodWolf };
+            var profile = new VikingSagaUserProfile { Name = "ethlore", Password = "viking", Gold = 0, Deck = CardFactory.CreateCampaignStarterDeck(), SelectedHero = hero };
             profile.Heroes[0] = hero;
 
             StoreUser(ConfigurationManager.AppSettings["BasePath"] + @"xml\" + profile.Name.ToLower() + ".xml", profile);
@@ -56,10 +56,15 @@ namespace VikingSaga.Code
         {
             lock (m_lock)
             {
-                var xmlSerializer = new XmlSerializer(typeof(VikingSagaUserProfile));
-                var fileStream = new FileStream(filePath, FileMode.Create);
-                xmlSerializer.Serialize(fileStream, user);
-                fileStream.Close();
+                if (File.Exists(filePath))
+                {
+                    var xmlSerializer = new XmlSerializer(typeof(VikingSagaUserProfile));
+                    var fileStream = new FileStream(filePath, FileMode.Create);
+                    xmlSerializer.Serialize(fileStream, user);
+                    fileStream.Close();
+                }
+                else
+                    throw new Exception("File [" + filePath + "] does not exist!");
             }
         }
 

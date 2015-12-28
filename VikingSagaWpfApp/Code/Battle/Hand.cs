@@ -1,7 +1,9 @@
-﻿using VikingSaga.Code;
-using VikingSagaWpfApp.Code.Battle.Cards;
+﻿using System;
+using System.Collections.Generic;
+using VikingSaga.Code;
+using VikingSagaWpfApp.Code.BattleNs.Cards;
 
-namespace VikingSagaWpfApp.Code.Battle
+namespace VikingSagaWpfApp.Code.BattleNs
 {
     public class Hand
     {
@@ -10,6 +12,32 @@ namespace VikingSagaWpfApp.Code.Battle
         public Hand()
         {
             Cards = new BattleCard[Board.CardsPerRow];
+        }
+
+        public IEnumerable<BattleCard> AllCards()
+        {
+            foreach (BattleCard card in Cards)
+            {
+                if (card != null)
+                    yield return card;
+            }
+        }
+
+        public void CopyFrom(Hand other, Player newOwner)
+        {
+            Array.Clear(this.Cards, 0, this.Cards.Length);
+
+            for (int i = 0; i < other.Cards.Length; ++i)
+            {
+                var card = other.Cards[i];
+                if (card != null)
+                {
+                    var clone = card.Clone();
+                    clone.Owner = newOwner;
+                    clone.Observer = newOwner.Observer;
+                    Cards[i] = clone;
+                }
+            }
         }
 
         public bool TryGetFreePosition(out int position)

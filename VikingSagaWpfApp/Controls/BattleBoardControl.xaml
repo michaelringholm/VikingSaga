@@ -121,5 +121,6 @@
 
         <local1:ButtonControl x:Name="btnPlayRound" Text="Fight" ButtonWidth="120" ButtonHeight="30" HorizontalAlignment="Left" Margin="36,538,0,0" VerticalAlignment="Top" PreviewMouseLeftButtonDown="btnPlayRound_PreviewMouseLeftButtonDown"/>
         <local1:ButtonControl x:Name="btnSurrender" Text="Surrender" ButtonWidth="120" ButtonHeight="30" HorizontalAlignment="Left" Margin="36,576,0,0" VerticalAlignment="Top" PreviewMouseLeftButtonDown="btnSurrender_PreviewMouseLeftButtonDown"  />
+        <CheckBox x:Name="cbDebug" Content="Debug AI" HorizontalAlignment="Left" Margin="216,10,0,0" VerticalAlignment="Top" Foreground="White" Background="#FF080808"/>
     </Grid>
 </UserControl>

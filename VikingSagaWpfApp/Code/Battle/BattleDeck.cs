@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using VikingSaga.Code;
-using VikingSagaWpfApp.Code.Battle.Cards;
+using VikingSagaWpfApp.Code.BattleNs.Cards;
 
-namespace VikingSagaWpfApp.Code.Battle
+namespace VikingSagaWpfApp.Code.BattleNs
 {
     public class BattleDeck
     {
@@ -13,6 +13,16 @@ namespace VikingSagaWpfApp.Code.Battle
         public BattleDeck()
         {
             Cards = new List<BattleCard>();
+        }
+
+        public void CopyFrom(BattleDeck other)
+        {
+            Cards.Clear();
+            foreach(var card in other.Cards)
+            {
+                var clone = card.Clone();
+                Cards.Add(clone);
+            }
         }
 
         public static void Shuffle(List<BattleCard> cards)

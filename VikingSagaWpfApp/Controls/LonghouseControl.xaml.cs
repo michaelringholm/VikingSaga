@@ -9,10 +9,12 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VikingSaga.Code;
+using VikingSaga.Code.Resources;
 
 namespace VikingSagaWpfApp.Controls
 {
@@ -29,48 +31,61 @@ namespace VikingSagaWpfApp.Controls
         public LonghouseControl()
         {
             InitializeComponent();
-            btnScrollLeft.Visibility = Visibility.Hidden;
-            btnScrollRight.Visibility = Visibility.Hidden;
         }
 
         public void Show(Hero hero, Deck deck)
         {
-            Visibility = Visibility.Visible;
-            Update(hero, deck);
+            Show(hero, deck, null, false);
         }
 
-        public void Update(Hero hero, Deck deck)
+        public void Show(Hero hero, Deck deck, String message, bool presentNewQuest)
+        {
+            Visibility = Visibility.Visible;
+            Update(hero, deck);
+
+            if (!String.IsNullOrEmpty(message))
+            {
+                //MessageInfo.BeginAnimation(new DependencyProperty(), new Animations.)
+                SoundUtil.PlaySound(SoundUtil.SoundEnum.ImportantMessage);
+                MessageInfo.InfoMessage = message;
+            }
+
+            if(presentNewQuest)
+            {
+                //TODO Right now we assume the barmaid always has the quest
+                animate(CardBarmaid);
+            }
+        }
+
+        private void animate(Control control)
+        {
+            var fade = new DoubleAnimation()
+            {
+                From = 0,
+                To = 1,
+                Duration = TimeSpan.FromSeconds(5)
+            };
+
+            Storyboard.SetTarget(fade, control);
+            Storyboard.SetTargetProperty(fade, new PropertyPath(Button.OpacityProperty));
+
+            var sb = new Storyboard();
+            sb.Children.Add(fade);
+
+            sb.Begin();
+        }
+
+        private void Update(Hero hero, Deck deck)
         {
             heroCardControl.UpdateHeroCard(hero);
 
             heroCardControl.ToolTip = hero.Name;
-            tbGold.Text = hero.Gold.ToString();
-            tbLevel.Text = hero.Level.ToString();
 
-            pbXP.ToolTip = hero.XP.ToString() + "/" + hero.GetLevel().EndXP.ToString();
-            pbXP.Minimum = hero.GetLevel().StartXP;
-            pbXP.Maximum = hero.GetLevel().EndXP;
-            pbXP.Value = hero.XP;
-
-            PaintDeck(deck);
-
-            btnScrollLeft.Visibility = Visibility.Visible;
-            btnScrollRight.Visibility = Visibility.Visible;
             _deck = deck;
             _hero = hero;
             _maxDeckSize = deck.AllCards.Count;
         }
 
-        private void PaintDeck(Deck deck)
-        {
-            Card[] cards = deck.AllCards.Skip(_deckStartIndex).Take(5).ToArray();
-
-            VisibleCard1.UpdateCardControl(cards[0]);            
-            VisibleCard2.UpdateCardControl(cards[1]);
-            VisibleCard3.UpdateCardControl(cards[2]);
-            VisibleCard4.UpdateCardControl(cards[3]);
-            VisibleCard5.UpdateCardControl(cards[4]);
-        }
 
         private void btnScrollLeft_Click(object sender, RoutedEventArgs e)
         {
@@ -92,7 +107,7 @@ namespace VikingSagaWpfApp.Controls
 
         public ImageSource GetMainWindowBackgroundImage()
         {
-            return WPFGUIUtil.GetImage(@"backgrounds/longhouse-background.png").Source;
+            return ResourceManager.GetImage(@"backgrounds/longhouse-background.png").Source;
         }
     }
 }

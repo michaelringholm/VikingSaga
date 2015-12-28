@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using VikingSaga.Code;
+using VikingSaga.Code.Resources;
 
 namespace VikingSagaWpfApp.Windows
 {
@@ -49,7 +50,7 @@ namespace VikingSagaWpfApp.Windows
             {
                 var popup = new PostBattleWindow();
                 popup.tbPostCombatText.Text = "You won and gained [" + encounter.Treasure.XP + "] XP and [" + encounter.Treasure.Gold + "] gold pieces!";
-                popup.BackgroundImageBrush.ImageSource = WPFGUIUtil.GetImage(WPFGUIUtil.ImageEnum.BattleWonBackground).Source;
+                popup.BackgroundImageBrush.ImageSource = ResourceManager.GetImage(ResourceManager.ImageEnum.BattleWonBackground).Source;
                 SoundUtil.PauseMP3Loop();
                 SoundUtil.PlaySound(SoundUtil.SoundEnum.BattleWon);
                 SoundUtil.ResumeMP3Loop();
@@ -64,7 +65,7 @@ namespace VikingSagaWpfApp.Windows
                 //MessageBox.Show(Application.Current.MainWindow, );
                 var popup = new PostBattleWindow();
                 popup.tbPostCombatText.Text = "You were defeated and lost [" + encounter.Treasure.XP + "] XP.";
-                popup.BackgroundImageBrush.ImageSource = WPFGUIUtil.GetImage(WPFGUIUtil.ImageEnum.BattleLostBackground).Source;
+                popup.BackgroundImageBrush.ImageSource = ResourceManager.GetImage(ResourceManager.ImageEnum.BattleLostBackground).Source;
                 SoundUtil.PauseMP3Loop();
                 SoundUtil.PlaySound(SoundUtil.SoundEnum.BattleLost);
                 SoundUtil.ResumeMP3Loop();
@@ -79,7 +80,7 @@ namespace VikingSagaWpfApp.Windows
                 //MessageBox.Show(Application.Current.MainWindow, );
                 var popup = new PostBattleWindow();
                 popup.tbPostCombatText.Text = "You gained a new level! Your experience in life has made you stronger and you are now level " + hero.Level + "!";
-                popup.BackgroundImageBrush.ImageSource = WPFGUIUtil.GetImage(WPFGUIUtil.ImageEnum.BattleWonBackground).Source;
+                popup.BackgroundImageBrush.ImageSource = ResourceManager.GetImage(ResourceManager.ImageEnum.BattleWonBackground).Source;
                 SoundUtil.PauseMP3Loop();
                 SoundUtil.PlaySound(SoundUtil.SoundEnum.LevelGained);
                 SoundUtil.ResumeMP3Loop();

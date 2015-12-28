@@ -22,5 +22,7 @@ namespace VikingSaga.Code.Campaign
             get { return Trigger.ToString(); }
             set { Trigger = (QuestFactory.TriggerEnum)Enum.Parse(typeof(QuestFactory.TriggerEnum), TriggerString); }
         }
+
+        public int EndStep { get; set; }
     }
 }

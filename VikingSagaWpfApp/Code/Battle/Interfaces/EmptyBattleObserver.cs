@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VikingSagaWpfApp.Code.Battle.Cards;
+using VikingSagaWpfApp.Code.BattleNs.Cards;
+using VikingSagaWpfApp.Code.BattleNs.Players.AI;
 
-namespace VikingSagaWpfApp.Code.Battle.Interfaces
+namespace VikingSagaWpfApp.Code.BattleNs.Interfaces
 {
     public class EmptyBattleObserver : IBattleObserver
     {
@@ -14,6 +15,8 @@ namespace VikingSagaWpfApp.Code.Battle.Interfaces
         void IBattleObserver.BeforePlayerTurn(Player player) { }
 
         void IBattleObserver.ShowNotifications() { }
+
+        void IBattleObserver.ShowPlayerInfo(Player player, string info) { }
 
         void IBattleObserver.ShowCardHpChange(CardBasicMob card, int amount) { }
 
@@ -40,5 +43,7 @@ namespace VikingSagaWpfApp.Code.Battle.Interfaces
         void IBattleObserver.ShowCardDmgChange(CardBasicMob card, int amount) { }
 
         void IBattleObserver.ShowPlayerManaChange(Player player, int amount) { }
+
+        void IBattleObserver.AiDebug(IEnumerable<AiPlay> plays, int ms) { }
     }
 }

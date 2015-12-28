@@ -1,0 +1,13 @@
+﻿<Window x:Class="VikingSaga.Windows.AiDebugWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="AiDebugWindow" Height="300" Width="300">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100*"/>
+            <RowDefinition Height="100*"/>
+        </Grid.RowDefinitions>
+        <ListBox x:Name="ListBox" Background="#FFECECEC" Padding="4" BorderThickness="2" FontFamily="Segoe Print" FontSize="12" SelectionChanged="ListBox_SelectionChanged" />
+        <ListBox x:Name="ListBox2" Grid.Row="1" Background="White" Padding="4" BorderThickness="2" FontFamily="Segoe Print" FontSize="12" SelectionChanged="ListBox_SelectionChanged" />
+    </Grid>
+</Window>

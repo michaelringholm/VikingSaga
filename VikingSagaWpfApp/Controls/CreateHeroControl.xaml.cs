@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VikingSaga.Code;
+using VikingSaga.Code.Resources;
 
 namespace VikingSagaWpfApp.Controls
 {
@@ -35,10 +36,10 @@ namespace VikingSagaWpfApp.Controls
 
         private void PaintCards()
         {
-            HeroCard1.BackgroundCardBrush.ImageSource = WPFGUIUtil.GetImage("heroes/warrior-hero.png").Source;
-            HeroCard2.BackgroundCardBrush.ImageSource = WPFGUIUtil.GetImage("heroes/druid-hero.png").Source;
-            HeroCard3.BackgroundCardBrush.ImageSource = WPFGUIUtil.GetImage("heroes/sorcerer-hero.png").Source;
-            HeroCard4.BackgroundCardBrush.ImageSource = WPFGUIUtil.GetImage("heroes/hunter-hero.png").Source;
+            HeroCard1.BackgroundCardBrush.ImageSource = ResourceManager.GetImage("heroes/warrior-hero.png").Source;
+            HeroCard2.BackgroundCardBrush.ImageSource = ResourceManager.GetImage("heroes/druid-hero.png").Source;
+            HeroCard3.BackgroundCardBrush.ImageSource = ResourceManager.GetImage("heroes/sorcerer-hero.png").Source;
+            HeroCard4.BackgroundCardBrush.ImageSource = ResourceManager.GetImage("heroes/hunter-hero.png").Source;
         }
 
         private void btnCreateNewHero_Click(object sender, RoutedEventArgs e)
@@ -49,7 +50,7 @@ namespace VikingSagaWpfApp.Controls
 
         public ImageSource GetMainWindowBackgroundImage()
         {
-            return WPFGUIUtil.GetImage(@"\backgrounds\battle-form-background-1900x1200.jpg").Source;
+            return ResourceManager.GetImage(@"backgrounds/battle-form-background-1900x1200.jpg").Source;
         }
     }
 }

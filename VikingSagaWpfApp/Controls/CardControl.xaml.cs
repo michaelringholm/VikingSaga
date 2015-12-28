@@ -4,8 +4,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
 using VikingSaga.Code;
+using VikingSaga.Code.Resources;
 using VikingSagaWpfApp.Animations;
-using VikingSagaWpfApp.Code.Battle.Cards;
+using VikingSagaWpfApp.Code.BattleNs.Cards;
 
 namespace VikingSagaWpfApp
 {
@@ -97,7 +98,7 @@ namespace VikingSagaWpfApp
         public void InitCardControl(BattleCard card)
         {
             Card = card;
-            BackgroundCardBrush.ImageSource = WPFGUIUtil.GetImage("\\mobs\\" + card.ImageUrl).Source;
+            BackgroundCardBrush.ImageSource = ResourceManager.GetImage("mobs/" + card.ImageUrl).Source;
             CardName.Text = card.Name;
             CardDescription.Text = card.Description;
             ManaCost.Text = card.Mana.ToString();

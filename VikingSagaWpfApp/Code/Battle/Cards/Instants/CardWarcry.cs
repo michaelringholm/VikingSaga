@@ -1,20 +1,20 @@
 ﻿using System;
 
-namespace VikingSagaWpfApp.Code.Battle.Cards
+namespace VikingSagaWpfApp.Code.BattleNs.Cards
 {
     class CardWarcry : CardInstantCustom
     {
         public CardWarcry()
         {
             Name = "Hero: Warcry";
-            ExecuteAction = DoWarcry;
 
             CanTargetOwnPlayer = true;
-            Effect = SpellProperty.Result.Positive;
             ImageUrl = "warcry.png";
         }
 
-        private void DoWarcry()
+        public override SpellProperty.Result Effect { get { return SpellProperty.Result.Positive; } }
+
+        public override void Execute()
         {
             var cards = this.Owner.Battle.Board.AllCards(this.Owner);
             foreach(var card in cards)

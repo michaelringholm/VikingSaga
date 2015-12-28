@@ -1,0 +1,24 @@
+﻿
+Load sos
+	.loadby sos clr
+
+Overview
+	!dumpheap -stat
+
+Specific type (-short for addresses only)
+	!dumpheap -type LoginWindow (-short)
+
+Inspect single object
+	!do {address}
+
+Who hold reference to object?
+	!gcroot {address}
+
+
+
+Who holds an object, step by step:
+----------------------------------
+
+.loadby sos clr								Load sos extension
+!dumpheap -type {type to be checked}		Pick an address from this output
+!gcroot {address}							This shows all roots. If there is a root object cannot be GC'ed

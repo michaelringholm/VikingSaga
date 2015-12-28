@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VikingSaga.Code.Campaign;
+using VikingSaga.Code.Campaign.NPC;
 using VikingSagaWpfApp.Code;
-using VikingSagaWpfApp.Code.Battle;
-using VikingSagaWpfApp.Code.Battle.Cards;
+using VikingSagaWpfApp.Code.BattleNs;
+using VikingSagaWpfApp.Code.BattleNs.Cards;
 
 namespace VikingSaga.Code
 {
@@ -23,6 +25,7 @@ namespace VikingSaga.Code
         private GameEngine(VikingSagaUserProfile profile) : this()
         {
             _profile = profile;
+            _activeCampaign = Campaign.CampaignFactory.CreateCampaign(_profile.SelectedHero.CampaignType); // TODO change if selected hero changes
             ResetHero();
         }
 
@@ -155,7 +158,7 @@ namespace VikingSaga.Code
         {
             Hero hero = null;
             if (selectedHeroClass.ToLower() == "warrior")
-                hero = new Warrior { Name = heroName, Map = MapFactory.CreateMap(MapFactory.MapEnum.DefaultWorld) };
+                hero = new Warrior { Name = heroName, Map = MapFactory.CreateMap(MapFactory.MAP1) };
             else
                 throw new Exception("Unknown hero class [" + selectedHeroClass + "]");
         }
@@ -191,6 +194,7 @@ namespace VikingSaga.Code
         public Encounter CurrentEncounter { get; set; }
         public MapLocation PendingLocation { get; set; }
         private VikingSagaUserProfile _profile { get; set; }
+        private Campaign.Campaign _activeCampaign { get; set; }
 
         internal void ReviveCard(Card cardToRevive)
         {
@@ -208,6 +212,50 @@ namespace VikingSaga.Code
         internal void BuyCard(Card card)
         {
             _profile.Deck.AllCards.Add(CardFactory.CreateCard(CardFactory.MobTypeEnum.Rabbit1));
+        }
+
+        internal void EnterVillage()
+        {
+            GetVillage().EnterVillage(_profile.SelectedHero);            
+        }
+
+        public QuestProgress PendingQuest { get; set; }
+        internal void AcceptPendingQuest()
+        {
+            _profile.SelectedHero.Quests.Add(PendingQuest);
+            _profile.Save();
+        }
+
+        internal void DeclinePendingQuest()
+        {
+            PendingQuest = null;
+        }
+
+        private MapLocation GetHeroMapLocation()
+        {
+            var hero = _profile.SelectedHero;
+            Map map = MapFactory.CreateMap(_profile.SelectedHero.Map.ID);
+            var currentLocation = map.Locations.Single(l => l.Coordinates.X == hero.Map.HeroCoordinates.X && l.Coordinates.Y == hero.Map.HeroCoordinates.Y);
+            return currentLocation;
+        }
+
+        internal Village GetVillage()
+        {
+            var hero = _profile.SelectedHero;            
+            var currentLocation = GetHeroMapLocation();
+            
+
+            if (currentLocation.Village != null)
+            {
+                return currentLocation.Village;
+            }
+            else
+                throw new Exception("No village found at the current location X=" + hero.Map.HeroCoordinates.X + " Y=" + hero.Map.HeroCoordinates.Y);
+        }
+
+        internal void EnterLonghouse()
+        {
+            GetVillage().EnterLonghouse(_profile.SelectedHero);
         }
     }
 }

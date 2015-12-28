@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VikingSaga.Code;
+using VikingSaga.Code.Resources;
 using VikingSagaWpfApp.Animations;
 
 namespace VikingSagaWpfApp.Controls
@@ -30,7 +31,7 @@ namespace VikingSagaWpfApp.Controls
 
         public ImageSource GetMainWindowBackgroundImage()
         {
-            return WPFGUIUtil.GetImage(@"backgrounds/viking-village-1280x720.jpg").Source;
+            return ResourceManager.GetImage(@"backgrounds/viking-village-1280x720.jpg").Source;
         }
 
         public void SetStatusMessage(string msg, int ms = 1500)
@@ -72,8 +73,14 @@ namespace VikingSagaWpfApp.Controls
 
         private void CardBarmaid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            GameController.Current.ShowLonghouse();
+            GameController.Current.TryEnterLonghouse();
         }
 
+
+        public void Show(string message)
+        {
+            SoundUtil.PlaySound(SoundUtil.SoundEnum.ImportantMessage);
+            SetStatusMessage(message, 5000);
+        }
     }
 }

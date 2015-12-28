@@ -1,14 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 using VikingSaga.Code;
-using VikingSagaWpfApp.Code.Battle.Cards;
+using VikingSagaWpfApp.Code.BattleNs.Cards;
+using VikingSagaWpfApp.Code.BattleNs.Players.AI;
 
-namespace VikingSagaWpfApp.Code.Battle
+namespace VikingSagaWpfApp.Code.BattleNs
 {
     public interface IBattleObserver
     {
         void BattleStart(Player firstPlayer);
         void BeforePlayerTurn(Player player);
         void ShowNotifications();
+        void ShowPlayerInfo(Player player, string info);
 
         void ShowCardHpChange(CardBasicMob card, int amount);
         void ShowCardDmgChange(CardBasicMob card, int amount);
@@ -28,5 +31,7 @@ namespace VikingSagaWpfApp.Code.Battle
         void WaitForHumanDecisions();
         void AiArtificialDelay();
         void BattleEnded(Player winner, Player loser);
+
+        void AiDebug(IEnumerable<AiPlay> plays, int ms);
     }
 }

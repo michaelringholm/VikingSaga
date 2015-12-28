@@ -1,0 +1,189 @@
+﻿<vik:FakeWindow x:Class="Vik.Code.Controls.Battle.BattleWindow"
+             xmlns:Cards="clr-namespace:Vik.Code.Controls.Cards"
+             xmlns:vik="clr-namespace:Vik.Code.Controls"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+                mc:Ignorable="d" 
+             d:DesignHeight="900" d:DesignWidth="1280">
+    <Border BorderThickness="2" Background="#FFB2B2B2" BorderBrush="Black" Margin="0,0,0,0">
+
+        <Border.Resources>
+            <System:Double x:Key="CardWidth">115</System:Double>
+            <System:Double x:Key="CardHeight">180</System:Double>
+            <Thickness x:Key="CardMargin">10</Thickness>
+            
+            <Style TargetType="{x:Type Cards:CardPlaceholderControl}">
+                <Setter Property="Margin" Value="{StaticResource CardMargin}"/>
+            </Style>
+        </Border.Resources>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="18*"/>
+                <ColumnDefinition Width="11*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+            </Grid.RowDefinitions>
+            <Grid x:Name="cardGrid" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="55"/>
+                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="55"/>
+                    <RowDefinition Height="200"/>
+                </Grid.RowDefinitions>
+                <TextBlock Name="tbYourTurn" Text="Your turn, " Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="20" Foreground="{DynamicResource OrangeBrush}">
+                    <TextBlock.Effect>
+                        <DropShadowEffect BlurRadius="1" ShadowDepth="2"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+                <TextBlock Name="tbEnemyTurn" Text="Enemy turn" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="20" Foreground="{DynamicResource OrangeBrush}">
+                    <TextBlock.Effect>
+                        <DropShadowEffect BlurRadius="1" ShadowDepth="2"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="0" Name="Ply2Hand">
+                    <Cards:CardPlaceholderControl x:Name="Ply2Hand1" IsHand="True" HorizontalAlignment="Left" VerticalAlignment="Top" CardPlaceholderIndex="0" Height="{StaticResource CardHeight}" Width="{StaticResource CardWidth}" RenderTransformOrigin="0.5,0.5">
+                        <Cards:CardPlaceholderControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="10"/>
+                                <TranslateTransform X="15"/>
+                            </TransformGroup>
+                        </Cards:CardPlaceholderControl.RenderTransform>
+                    </Cards:CardPlaceholderControl>
+                    <Cards:CardPlaceholderControl x:Name="Ply2Hand2" IsHand="True" HorizontalAlignment="Left" VerticalAlignment="Top" CardPlaceholderIndex="1" Height="{StaticResource CardHeight}" Width="{StaticResource CardWidth}" RenderTransformOrigin="0.5,0.5">
+                        <Cards:CardPlaceholderControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="5"/>
+                                <TranslateTransform Y="7" X="8"/>
+                            </TransformGroup>
+                        </Cards:CardPlaceholderControl.RenderTransform>
+                    </Cards:CardPlaceholderControl>
+                    <Cards:CardPlaceholderControl x:Name="Ply2Hand3" IsHand="True" HorizontalAlignment="Left" VerticalAlignment="Top" CardPlaceholderIndex="2" Height="{StaticResource CardHeight}" Width="{StaticResource CardWidth}" RenderTransformOrigin="0.5,0.5">
+                        <Cards:CardPlaceholderControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform Y="15"/>
+                            </TransformGroup>
+                        </Cards:CardPlaceholderControl.RenderTransform>
+                    </Cards:CardPlaceholderControl>
+                    <Cards:CardPlaceholderControl x:Name="Ply2Hand4" IsHand="True" HorizontalAlignment="Left" VerticalAlignment="Top" CardPlaceholderIndex="3" Height="{StaticResource CardHeight}" Width="{StaticResource CardWidth}" RenderTransformOrigin="0.5,0.5">
+                        <Cards:CardPlaceholderControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-5"/>
+                                <TranslateTransform Y="7" X="-8"/>
+                            </TransformGroup>
+                        </Cards:CardPlaceholderControl.RenderTransform>
+                    </Cards:CardPlaceholderControl>
+                    <Cards:CardPlaceholderControl x:Name="Ply2Hand5" IsHand="True" HorizontalAlignment="Left" VerticalAlignment="Top" CardPlaceholderIndex="4" Height="{StaticResource CardHeight}" Width="{StaticResource CardWidth}" RenderTransformOrigin="0.5,0.5">
+                        <Cards:CardPlaceholderControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-10"/>
+                                <TranslateTransform X="-15"/>
+                            </TransformGroup>
+                        </Cards:CardPlaceholderControl.RenderTransform>
+                    </Cards:CardPlaceholderControl>
+                </StackPanel>
+                <StackPanel x:Name="Ply1Hand" Orientation="Horizontal" Grid.Row="6">
+                    <Cards:CardPlaceholderControl x:Name="Ply1Hand1" IsHand="True" IsYours="True" HorizontalAlignment="Left" VerticalAlignment="Top" CardPlaceholderIndex="0" Height="{StaticResource CardHeight}" Width="{StaticResource CardWidth}" RenderTransformOrigin="0.5,0.5">
+                        <Cards:CardPlaceholderControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-10"/>
+                                <TranslateTransform X="15"/>
+                            </TransformGroup>
+                        </Cards:CardPlaceholderControl.RenderTransform>
+                    </Cards:CardPlaceholderControl>
+                    <Cards:CardPlaceholderControl x:Name="Ply1Hand2" IsHand="True" IsYours="True" HorizontalAlignment="Left" VerticalAlignment="Top" CardPlaceholderIndex="1" Height="{StaticResource CardHeight}" Width="{StaticResource CardWidth}" RenderTransformOrigin="0.5,0.5">
+                        <Cards:CardPlaceholderControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-5"/>
+                                <TranslateTransform Y="-7" X="8"/>
+                            </TransformGroup>
+                        </Cards:CardPlaceholderControl.RenderTransform>
+                    </Cards:CardPlaceholderControl>
+                    <Cards:CardPlaceholderControl x:Name="Ply1Hand3" IsHand="True" IsYours="True" HorizontalAlignment="Left" VerticalAlignment="Top" CardPlaceholderIndex="2" Height="{StaticResource CardHeight}" Width="{StaticResource CardWidth}" RenderTransformOrigin="0.5,0.5">
+                        <Cards:CardPlaceholderControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform Y="-15"/>
+                            </TransformGroup>
+                        </Cards:CardPlaceholderControl.RenderTransform>
+                    </Cards:CardPlaceholderControl>
+                    <Cards:CardPlaceholderControl x:Name="Ply1Hand4" IsHand="True" IsYours="True" HorizontalAlignment="Left" VerticalAlignment="Top" CardPlaceholderIndex="3" Height="{StaticResource CardHeight}" Width="{StaticResource CardWidth}" RenderTransformOrigin="0.5,0.5">
+                        <Cards:CardPlaceholderControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="5"/>
+                                <TranslateTransform Y="-7" X="-8"/>
+                            </TransformGroup>
+                        </Cards:CardPlaceholderControl.RenderTransform>
+                    </Cards:CardPlaceholderControl>
+                    <Cards:CardPlaceholderControl x:Name="Ply1Hand5" IsHand="True" IsYours="True" HorizontalAlignment="Left" VerticalAlignment="Top" CardPlaceholderIndex="4" Height="{StaticResource CardHeight}" Width="{StaticResource CardWidth}" RenderTransformOrigin="0.5,0.5">
+                        <Cards:CardPlaceholderControl.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="10"/>
+                                <TranslateTransform X="-15"/>
+                            </TransformGroup>
+                        </Cards:CardPlaceholderControl.RenderTransform>
+                    </Cards:CardPlaceholderControl>
+                </StackPanel>
+                <StackPanel x:Name="Ply2Board" Orientation="Horizontal" Grid.Row="2">
+                    <Cards:CardPlaceholderControl x:Name="Ply2Board1" HorizontalAlignment="Left" VerticalAlignment="Top" CardPlaceholderIndex="0" Height="{StaticResource CardHeight}" Width="{StaticResource CardWidth}"/>
+                    <Cards:CardPlaceholderControl x:Name="Ply2Board2" HorizontalAlignment="Left" VerticalAlignment="Top" CardPlaceholderIndex="1" Height="{StaticResource CardHeight}" Width="{StaticResource CardWidth}"/>
+                    <Cards:CardPlaceholderControl x:Name="Ply2Board3" HorizontalAlignment="Left" VerticalAlignment="Top" CardPlaceholderIndex="2" Height="{StaticResource CardHeight}" Width="{StaticResource CardWidth}"/>
+                    <Cards:CardPlaceholderControl x:Name="Ply2Board4" HorizontalAlignment="Left" VerticalAlignment="Top" CardPlaceholderIndex="3" Height="{StaticResource CardHeight}" Width="{StaticResource CardWidth}"/>
+                    <Cards:CardPlaceholderControl x:Name="Ply2Board5" HorizontalAlignment="Left" VerticalAlignment="Top" CardPlaceholderIndex="4" Height="{StaticResource CardHeight}" Width="{StaticResource CardWidth}"/>
+                </StackPanel>
+                <StackPanel x:Name="Ply1Board" Orientation="Horizontal" Grid.Row="4">
+                    <Cards:CardPlaceholderControl x:Name="Ply1Board1" HorizontalAlignment="Left" VerticalAlignment="Top" CardPlaceholderIndex="0" IsYours="True" Height="{StaticResource CardHeight}" Width="{StaticResource CardWidth}" RenderTransformOrigin="0.5,0.5"/>
+                    <Cards:CardPlaceholderControl x:Name="Ply1Board2" HorizontalAlignment="Left" VerticalAlignment="Top" CardPlaceholderIndex="1" IsYours="True" Height="{StaticResource CardHeight}" Width="{StaticResource CardWidth}" RenderTransformOrigin="0.5,0.5"/>
+                    <Cards:CardPlaceholderControl x:Name="Ply1Board3" HorizontalAlignment="Left" VerticalAlignment="Top" CardPlaceholderIndex="2" IsYours="True" Height="{StaticResource CardHeight}" Width="{StaticResource CardWidth}" RenderTransformOrigin="0.5,0.5"/>
+                    <Cards:CardPlaceholderControl x:Name="Ply1Board4" HorizontalAlignment="Left" VerticalAlignment="Top" CardPlaceholderIndex="3" IsYours="True" Height="{StaticResource CardHeight}" Width="{StaticResource CardWidth}" RenderTransformOrigin="0.5,0.5"/>
+                    <Cards:CardPlaceholderControl x:Name="Ply1Board5" HorizontalAlignment="Left" VerticalAlignment="Top" CardPlaceholderIndex="4" IsYours="True" Height="{StaticResource CardHeight}" Width="{StaticResource CardWidth}" RenderTransformOrigin="0.5,0.5"/>
+                </StackPanel>
+            </Grid>
+            <StackPanel Grid.Column="1" Grid.Row="1">
+                <TextBlock Text="Encounter Name" Name="tbEncounter" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="36" />
+                <Border Width="500" Height="15" BorderBrush="Black" Background="Lime" BorderThickness="1" />
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0,100,0,0">
+                <StackPanel Orientation="Vertical">
+                    <Cards:CardPlaceholderControl x:Name="selectedCard" HorizontalAlignment="Left" VerticalAlignment="Top" Height="360" Width="230" RenderTransformOrigin="0.5,0.5"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Cards:CardPlaceholderControl x:Name="selectedCardCoreAbility1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="{StaticResource CardHeight}" Width="{StaticResource CardWidth}" RenderTransformOrigin="0.5,0.5"/>
+                        <Cards:CardPlaceholderControl x:Name="selectedCardCoreAbility2" HorizontalAlignment="Left" VerticalAlignment="Top" Height="{StaticResource CardHeight}" Width="{StaticResource CardWidth}" RenderTransformOrigin="0.5,0.5"/>
+                    </StackPanel>
+                </StackPanel>
+                <TextBlock Name="tbEncounterHealth" Text="100%"/>
+                <Button x:Name="btnPlayRound" Content="Fight" Width="120" Height="30" PreviewMouseLeftButtonDown="btnPlayRound_PreviewMouseLeftButtonDown" />
+                <Button x:Name="btnSurrender" Content="Surrender" Width="120" Height="30" PreviewMouseLeftButtonDown="btnSurrender_PreviewMouseLeftButtonDown" />
+                <CheckBox x:Name="cbDebug" Content="Debug AI" Foreground="White" Background="#FF080808"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</vik:FakeWindow>

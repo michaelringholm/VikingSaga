@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VikingSaga.Code;
-using VikingSagaWpfApp.Code.Battle;
-using VikingSagaWpfApp.Code.Battle.Cards;
+using VikingSagaWpfApp.Code.BattleNs;
+using VikingSagaWpfApp.Code.BattleNs.Cards;
+using VikingSagaWpfApp.Code.BattleNs.Players;
 
 namespace VikingSagaWpfApp.Code
 {
@@ -17,7 +18,7 @@ namespace VikingSagaWpfApp.Code
             var eligibleCards = cards.Where(c => c.Condition == Card.CardConditionEnum.Perfect);
             foreach (Card c in eligibleCards)
             {
-                BattleCard bc = VikingSagaWpfApp.Code.Battle.Cards.CardFactory.Create(c.BattleCardType);
+                BattleCard bc = VikingSagaWpfApp.Code.BattleNs.Cards.CardFactory.Create(c.BattleCardType);
                 bc.ID = c.ID;
                 bcs.Add(bc);
             }
@@ -64,11 +65,28 @@ namespace VikingSagaWpfApp.Code
             yield return new CardFireball();
             yield return new CardSmallHealingPotion();
             yield return new CardHeal1();
+            yield return new CardWarcry();
+            yield return new CardPoison();
             yield return new CardSmallManaPotion();
             yield return new CardSmallManaPotion();
             yield return new CardSmallManaPotion();
             yield return new CardHeal1();
             yield return new CardSmallHealingPotion();
+        }
+
+        private static IEnumerable<BattleCard> TestDeck()
+        {
+            yield return new CardPoison();
+            yield return new CardRage();
+            yield return new CardDoubleAttack();
+            yield return new CardFireball();
+            yield return new CardGhost();
+            yield return new CardWarcry();
+            yield return new CardAuraOfHealing();
+            yield return new CardGhost();
+            yield return new CardGhost();
+            yield return new CardSmallManaPotion();
+            yield return new CardGhost();
         }
 
         private static T CreatePlayerFromHero<T>(Hero hero) where T : Player, new()
@@ -84,6 +102,7 @@ namespace VikingSagaWpfApp.Code
         {
             var player = CreatePlayerFromHero<HumanPlayer>(profile.SelectedHero);
 
+            //var battleCards = TestDeck();
             var battleCards = CreateBattleCards(profile.Deck.Cards);
             player.Deck.SetCards(battleCards);
 
@@ -92,9 +111,10 @@ namespace VikingSagaWpfApp.Code
 
         public static Player CreatePlayerFromEncounter(Encounter encounter)
         {
-            var player = CreatePlayerFromHero<GenericAiPlayer>(encounter.Hero);
+            var player = CreatePlayerFromHero<AwesomeAiPlayer>(encounter.Hero);
 
-            var battleCards = CreateBattleCards(encounter.PlayableCards);
+            var battleCards = TestDeck();
+            //var battleCards = CreateBattleCards(encounter.PlayableCards);
             player.Deck.SetCards(battleCards);
 
             return player;

@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="Vik.Code.Controls.Cards.CardPlaceholderControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="360" d:DesignWidth="230">
+    <Viewbox Stretch="Uniform" StretchDirection="DownOnly">
+        <Grid Margin="0,0,0,0" Width="230" Height="360">
+            <Border BorderBrush="Black" Background="#77000000" BorderThickness="2" CornerRadius="8"/>
+            <Border Name="CardControlContainer"></Border>
+            <Border Name="HighlightBorder" BorderThickness="8" CornerRadius="0"/>
+        </Grid>
+    </Viewbox>
+</UserControl>

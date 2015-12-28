@@ -12,7 +12,7 @@ namespace VikingSaga.Code
             ConnectedMapLocations = new List<MapCoordinates>();
         }
 
-        public enum MarkerTypeEnum { Path, Hero, Boss, City };
+        public enum MarkerTypeEnum { Path, Hero, Boss, Village };
 
         public MapCoordinates Coordinates { get; set; }
 
@@ -25,5 +25,7 @@ namespace VikingSaga.Code
         public bool IsBossLocation { get; set; }
 
         public bool IsBossDefeated { get; set; }
+
+        internal Campaign.NPC.Midheim Village { get; set; }
     }
 }

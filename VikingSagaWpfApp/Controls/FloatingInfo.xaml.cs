@@ -10,7 +10,7 @@ namespace VikingSagaWpfApp.Controls
 {
     public class FloatingInfoParam
     {
-        public enum CategoryType { SpellInfo, HpChange, ManaChange, DmgChange };
+        public enum CategoryType { SpellInfo, HeroInfo, HpChange, ManaChange, DmgChange };
 
         public static FloatingInfoParam Create(Control control, string text, Color color, CategoryType category)
         {

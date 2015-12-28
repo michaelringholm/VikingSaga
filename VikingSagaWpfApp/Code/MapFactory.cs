@@ -2,30 +2,34 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using VikingSaga.Code.Campaign.NPC;
 
 namespace VikingSaga.Code
 {
     public static class MapFactory
     {
-        public enum MapEnum { DefaultWorld };
+        #region Map IDs
+        public const int MAP1 = 1;
+        #endregion
 
-        internal static VikingSaga.Code.Map CreateMap(MapEnum mapEnum)
+        internal static VikingSaga.Code.Map CreateMap(int mapID)
         {
-            if (mapEnum == MapEnum.DefaultWorld)
+            if (mapID == MAP1)
             {
-                var map = CreateDefaultWorld();
+                var map = CreateMap1();
                 return map;
             }
             else
                 throw new Exception("Unknown map type");
         }
 
-        private static Map CreateDefaultWorld()
+        private static Map CreateMap1()
         {
             var map = new Map();
+            map.ID = MAP1;
             map.Width = 840;
             map.Height = 590;
-            map.MapImagePath = "maps\\map1_viking_saga.png";
+            map.MapImagePath = "maps/map1_viking_saga.png";
             map.HeroCoordinates.X = 10;
             map.HeroCoordinates.Y = 10;
 
@@ -33,7 +37,8 @@ namespace VikingSaga.Code
             map.Locations = new List<MapLocation>();
             var random = new Random();
             //var mapLocation1 = new MapLocation { Coordinates = new MapCoordinates{ X = 10, Y = 10 }, Marker = MapLocation.MarkerTypeEnum.Path, Encounter = EncounterFactory.GetRandomEncounter(random) };
-            var mapLocation1 = new MapLocation { Coordinates = new MapCoordinates { X = 10, Y = 10 }, Marker = MapLocation.MarkerTypeEnum.Path, Encounter = EncounterFactory.GetEncounter(EncounterFactory.EncounterEnum.LargeRabbit)};
+            var mapLocation1 = new MapLocation { Coordinates = new MapCoordinates { X = 10, Y = 10 }, Marker = MapLocation.MarkerTypeEnum.Village, Encounter = EncounterFactory.GetEncounter(EncounterFactory.EncounterEnum.LargeRabbit)};
+            mapLocation1.Village = new Midheim();
             map.Locations.Add(mapLocation1);
             var mapLocation2 = new MapLocation { Coordinates = new MapCoordinates { X = 12, Y = 12 }, Marker = MapLocation.MarkerTypeEnum.Path, Encounter = EncounterFactory.GetEncounter(EncounterFactory.EncounterEnum.LargeRabbit) };
             map.Locations.Add(mapLocation2);

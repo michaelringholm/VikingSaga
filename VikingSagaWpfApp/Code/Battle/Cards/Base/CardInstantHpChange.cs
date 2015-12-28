@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VikingSagaWpfApp.Code.Battle.Cards
+namespace VikingSagaWpfApp.Code.BattleNs.Cards
 {
     // Base class for instant/direct heal and direct damage
     public class CardInstantHpChange : CardInstant
@@ -18,6 +18,8 @@ namespace VikingSagaWpfApp.Code.Battle.Cards
             Amount = 0;
             AmountType = HpChangeType.Physical;
         }
+
+        public override SpellProperty.Result Effect { get { return Amount > 0 ? SpellProperty.Result.Positive : SpellProperty.Result.Negative; } }
 
         public int Amount { get; protected set; }
         public HpChangeType AmountType { get; protected set; }
