@@ -1,0 +1,38 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:VikingSagaWpfApp="clr-namespace:VikingSagaWpfApp" x:Class="VikingSagaWpfApp.Windows.PostBattleWindow"
+        Title="PostBattleWindow" Height="337.209" Width="472" BorderThickness="4" BorderBrush="DarkGray" AllowsTransparency="True" >
+    <Window.Background>
+        <ImageBrush x:Name="BackgroundImageBrush" ImageSource="/VikingSagaWpfApp;component/Resources/backgrounds/loot2.png" Opacity="0.9"/>
+    </Window.Background>
+    <Grid>
+        <TextBlock Name="tbPostCombatText" Foreground="White" HorizontalAlignment="Left" Margin="227,10,0,0" TextWrapping="Wrap" Text="[encounter text]" VerticalAlignment="Top" Width="222" Height="216"/>
+        <Button Name="btnOK" Template="{DynamicResource BackgroundButton}" Foreground="White" FontSize="14" FontFamily="/VikingSagaWpfApp;component/Resources/fonts/#Comic Runes" Content="Continue" HorizontalAlignment="Left" Margin="360,263,0,0" VerticalAlignment="Top" Width="94" RenderTransformOrigin="0.027,2.129" Height="34" Click="btnOK_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="/VikingSagaWpfApp;component/Resources/buttons/green-button.png" Opacity="0.7"/>
+            </Button.Background>
+            <Button.Resources>
+                <ControlTemplate x:Key="BackgroundButton" TargetType="Button">
+                    <Border Name="border" BorderThickness="1" BorderBrush="Black" Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="FontWeight">
+                                <Setter.Value>
+                                    Bold
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Background" TargetName="border">
+                                <Setter.Value>
+                                    <ImageBrush ImageSource="/VikingSagaWpfApp;component/Resources/buttons/green-button.png" Opacity="1" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Resources>
+        </Button>
+    </Grid>
+</Window>

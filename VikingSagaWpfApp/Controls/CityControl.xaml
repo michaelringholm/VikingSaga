@@ -1,0 +1,27 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:VikingSagaWpfApp.Controls" x:Class="VikingSagaWpfApp.Controls.CityControl" 
+             mc:Ignorable="d" Width="1600" Height="720" >
+    <Grid>
+        <Border x:Name="borderInfo" IsHitTestVisible="False" Height="100" Panel.ZIndex="999999" Background="#33000000" BorderThickness="0,2" BorderBrush="Black" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Margin="0,278,0,0">
+            <Grid>
+                <TextBlock x:Name="tbInfo" TextAlignment="Center" Text="INFO" VerticalAlignment="Center"  FontSize="36" FontWeight="Bold" Foreground="White" >
+                    <TextBlock.Effect>
+                        <DropShadowEffect/>
+                    </TextBlock.Effect>
+                    <TextBlock.CacheMode>
+                        <BitmapCache SnapsToDevicePixels="True"/>
+                    </TextBlock.CacheMode>
+                </TextBlock>
+            </Grid>
+        </Border>
+        <local:CityCardControl Width="206" Height="320" x:Name="CardValkyrie" Title="Valkyrie" Description="Visit the Valkyrie to revive your cards for gold pieces." CardImageSource="/VikingSagaWpfApp;component/Resources/cards/city-valkyrie.png" HorizontalAlignment="Left" Margin="1199,42,0,0" VerticalAlignment="Top" MouseLeftButtonDown="CardValkyrie_MouseLeftButtonDown"/>
+        <local:CityCardControl Width="206" Height="320" x:Name="CardMerchant" Title="Merchant" Description="Visit the Merchant to buy items to improve your card, or sell your loot." CardImageSource="/VikingSagaWpfApp;component/Resources/cards/city-merchant.png" HorizontalAlignment="Left" Margin="42,137,0,0" VerticalAlignment="Top" MouseLeftButtonDown="CardMerchant_MouseLeftButtonDown"/>
+        <local:CityCardControl Width="206" Height="320" x:Name="CardSeer" Title="Seer" Description="Visit the Seer to buy potions and magic items." CardImageSource="/VikingSagaWpfApp;component/Resources/cards/city-seer.png" HorizontalAlignment="Left" Margin="943,350,0,0" VerticalAlignment="Top" MouseLeftButtonDown="CardSeer_MouseLeftButtonDown"/>
+        <local:CityCardControl Width="206" Height="320" x:Name="CardSmith" Title="Smith" Description="Visit the Smith to buy weapons and armor." CardImageSource="/VikingSagaWpfApp;component/Resources/cards/city-smith.png" HorizontalAlignment="Left" Margin="310,366,0,0" VerticalAlignment="Top" MouseLeftButtonDown="CardSmith_MouseLeftButtonDown"/>
+        <local:CityCardControl Width="206" Height="320" x:Name="CardBarmaid" Title="Barmaid" Description="Visit the barmaid for comfort, rest and a good story." CardImageSource="/VikingSagaWpfApp;component/Resources/cards/city-barmaid.png" HorizontalAlignment="Left" Margin="556,70,0,0" VerticalAlignment="Top" MouseLeftButtonDown="CardBarmaid_MouseLeftButtonDown" />
+    </Grid>
+</UserControl>

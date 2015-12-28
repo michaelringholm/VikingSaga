@@ -1,0 +1,8 @@
+﻿<Window x:Class="VikingSagaWpfApp.Windows.LogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Log" Height="249" Width="514" Topmost="True" ShowActivated="False" Background="{x:Null}" WindowState="Normal">
+    <Grid Background="#FF303030">
+        <TextBlock x:Name="tbLog" Foreground="#FFFFDC00" Text="" FontFamily="Consolas"/>
+    </Grid>
+</Window>

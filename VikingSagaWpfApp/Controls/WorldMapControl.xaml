@@ -1,0 +1,26 @@
+﻿<UserControl xmlns:Controls="clr-namespace:VikingSagaWpfApp.Controls"  xmlns:VikingSagaWpfApp1="clr-namespace:VikingSagaWpfApp" 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:VikingSagaWpfApp="clr-namespace:VikingSagaWpfApp" x:Class="VikingSagaWpfApp.Controls.WorldMapControl" 
+             mc:Ignorable="d" 
+             Height="730" Width="1600">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush x:Name="GridBackgroundBrush" ImageSource="/VikingSagaWpfApp;component/Resources/maps/WorldMap.png"/>
+        </Grid.Background>
+        <VikingSagaWpfApp:HeroCardControl x:Name="HeroControl" VerticalAlignment="Center" HorizontalAlignment="Center" Height="470" Width="296" Margin="11,4,1293,256" />
+        <Canvas x:Name="mapCanvas" Height="590" Width="840" Margin="638,6,122,134"/>
+        <Image x:Name="mapImage" Source="/VikingSagaWpfApp;component/Resources/maps/map1_viking_saga.png" Stretch="Fill" Panel.ZIndex="-2"/>        
+        <Controls:MessageInfoControl InfoMessage="WELCOME TO VIKING SAGA" VerticalAlignment="Center" />
+        <TextBlock x:Name="LocationTitle" FontSize="20" Text="The Mad Boar Hills" FontWeight="Bold" HorizontalAlignment="Left" Margin="31,538,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White"/>
+        <TextBlock x:Name="LocationText" FontSize="16" HorizontalAlignment="Left" Margin="29,596,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" RenderTransformOrigin="0.171,-1.528" Height="149" Width="491" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="319,18,0,0" TextWrapping="Wrap" Text="Gold" VerticalAlignment="Top" Foreground="White"/>
+        <TextBlock x:Name="Gold" FontSize="20" HorizontalAlignment="Left" Margin="319,45,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="317,113,0,0" TextWrapping="Wrap" Text="Level" VerticalAlignment="Top" Foreground="White" RenderTransformOrigin="0.735,3.876"/>
+        <TextBlock x:Name="Level" FontSize="20" HorizontalAlignment="Left" Margin="321,135,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" Margin="319,182,0,0" TextWrapping="Wrap" Text="Cards" VerticalAlignment="Top" Foreground="White"/>
+        <TextBlock x:Name="Cards" FontSize="20" HorizontalAlignment="Left" Margin="321,207,0,0" TextWrapping="Wrap" Text="12/25" VerticalAlignment="Top" Foreground="White"/>
+    </Grid>
+</UserControl>

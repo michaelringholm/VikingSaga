@@ -1,0 +1,9 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:VikingSagaWpfApp.Controls" x:Class="VikingSagaWpfApp.CreateProfileWindow"
+        Title="CreateProfileWindow" Width="383" Height="281">
+    <ContentControl>
+        <Controls:CreateProfileControl x:Name="CreateProfileControl" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+    </ContentControl>    
+</Window>

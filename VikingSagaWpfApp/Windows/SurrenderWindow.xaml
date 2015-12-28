@@ -1,0 +1,13 @@
+﻿<Window x:Class="VikingSagaWpfApp.Windows.SurrenderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            Title="Surrender" Height="300" Width="472" BorderThickness="2" BorderBrush="DarkGray" AllowsTransparency="True" >
+    <Window.Background>
+        <ImageBrush ImageSource="/VikingSagaWpfApp;component/Resources/backgrounds/wood-dark.jpg" Opacity="0.65"/>
+    </Window.Background>
+    <Grid>
+        <TextBlock Name="tbSurrenderText" Foreground="White" HorizontalAlignment="Left" Margin="250,24,0,0" TextWrapping="Wrap" Text="[surrender text]" VerticalAlignment="Top"/>
+        <Button Name="btnSurrender" Content="Surrender" HorizontalAlignment="Left" Margin="220,205,0,0" VerticalAlignment="Top" Width="83" RenderTransformOrigin="0.027,2.129" Click="btnSurrender_Click" />
+        <Button x:Name="btnContinue" Content="Continue" HorizontalAlignment="Left" Margin="317,205,0,0" VerticalAlignment="Top" Width="75" Click="btnContinue_Click" />
+    </Grid>
+</Window>

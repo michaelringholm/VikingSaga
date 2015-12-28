@@ -1,0 +1,20 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:VikingSagaWpfApp.Controls" x:Class="VikingSagaWpfApp.Windows.MainWindow"
+        Title="Viking Saga" Width="1600" Height="870" ResizeMode="NoResize">
+    <Window.Background>
+        <ImageBrush x:Name="BackgroundImageBrush" ImageSource="/VikingSagaWpfApp;component/Resources/backgrounds/general-form-background-1900x1200.jpg"/>
+    </Window.Background>
+    <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <ContentControl x:Name="TopContent" DockPanel.Dock="Top" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <Controls:TopToolbar x:Name="TopToolbar" />
+        </ContentControl>
+        <ContentControl x:Name="BodyContent" DockPanel.Dock="Top" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Controls:ProfileHomeControl/>
+        </ContentControl>
+        <ContentControl x:Name="BottomContent" DockPanel.Dock="Bottom" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
+            <Controls:BottomToolbar x:Name="BottomToolbar" />
+        </ContentControl>
+    </DockPanel>
+</Window>

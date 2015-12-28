@@ -1,0 +1,571 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{629A2922-0400-47EE-AF89-C1D2054E7941}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VikingSaga</RootNamespace>
+    <AssemblyName>VikingSagaWpfApp</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>VikingSagaWpfApp.App</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Animations\AnimHelper.cs" />
+    <Compile Include="Animations\EffectHelper.cs" />
+    <Compile Include="Code\AIEncounter.cs" />
+    <Compile Include="Code\Battle\Battle.cs" />
+    <Compile Include="Code\Battle\BattleObserver.cs" />
+    <Compile Include="Code\Battle\BattleDeck.cs" />
+    <Compile Include="Code\Battle\BattleUtil.cs" />
+    <Compile Include="Code\Battle\Board.cs" />
+    <Compile Include="Code\Battle\BoardRow.cs" />
+    <Compile Include="Code\Battle\Cards\Base\BattleCard.cs" />
+    <Compile Include="Code\Battle\Cards\Base\CardInstant.cs" />
+    <Compile Include="Code\Battle\Cards\Base\CardInstantCustom.cs" />
+    <Compile Include="Code\Battle\Cards\Base\CardInstantDmgChange.cs" />
+    <Compile Include="Code\Battle\Cards\Base\CardInstantManaChange.cs" />
+    <Compile Include="Code\Battle\Cards\Instants\CardAuraOfHealing.cs" />
+    <Compile Include="Code\Battle\Cards\Instants\CardStrength.cs" />
+    <Compile Include="Code\Battle\Cards\Instants\CardWarcry.cs" />
+    <Compile Include="Code\Battle\Cards\Instants\CardWeaken.cs" />
+    <Compile Include="Code\Battle\Cards\Instants\CardPoison.cs" />
+    <Compile Include="Code\Battle\Cards\Instants\CardDoubleAttack.cs" />
+    <Compile Include="Code\Battle\Cards\Base\CardInstantSpellProperty.cs" />
+    <Compile Include="Code\Battle\Cards\Instants\CardSacrifice.cs" />
+    <Compile Include="Code\Battle\Cards\Instants\CardRage.cs" />
+    <Compile Include="Code\Battle\Cards\Instants\CardCataclysm.cs" />
+    <Compile Include="Code\Battle\Cards\Mobs\CardElderRabbit.cs" />
+    <Compile Include="Code\Battle\Cards\Mobs\CardFactory.cs" />
+    <Compile Include="Code\Battle\Cards\Base\CardBasicMob.cs" />
+    <Compile Include="Code\Battle\Cards\Base\CardInstantHpChange.cs" />
+    <Compile Include="Code\Battle\Cards\Mobs\CardDiseasedRabbit.cs" />
+    <Compile Include="Code\Battle\Cards\Mobs\CardBandit.cs" />
+    <Compile Include="Code\Battle\Cards\Mobs\CardDwarf.cs" />
+    <Compile Include="Code\Battle\Cards\Mobs\CardGhost.cs" />
+    <Compile Include="Code\Battle\Cards\Mobs\CardLeech.cs" />
+    <Compile Include="Code\Battle\Cards\Mobs\CardWolfPet.cs" />
+    <Compile Include="Code\Battle\Cards\Mobs\CardRat.cs" />
+    <Compile Include="Code\Battle\Cards\Mobs\CardRaven.cs" />
+    <Compile Include="Code\Battle\Cards\Mobs\CardShadow.cs" />
+    <Compile Include="Code\Battle\Cards\Mobs\CardWorm.cs" />
+    <Compile Include="Code\Battle\Cards\Instants\CardSmallHealingPotion.cs" />
+    <Compile Include="Code\Battle\Cards\Instants\CardSmallManaPotion.cs" />
+    <Compile Include="Code\Battle\Cards\Mobs\CardPeasant.cs" />
+    <Compile Include="Code\Battle\Cards\Mobs\CardWildBoar.cs" />
+    <Compile Include="Code\Battle\Cards\Mobs\CardSmallSpider.cs" />
+    <Compile Include="Code\Battle\Cards\Mobs\CardPixie.cs" />
+    <Compile Include="Code\Battle\Cards\Mobs\CardSkeletonWarrior.cs" />
+    <Compile Include="Code\Battle\Cards\Mobs\CardSmallBear.cs" />
+    <Compile Include="Code\Battle\Cards\Mobs\CardSmallFox.cs" />
+    <Compile Include="Code\Battle\Cards\Instants\CardFireball.cs" />
+    <Compile Include="Code\Battle\Cards\Mobs\CardGhoul.cs" />
+    <Compile Include="Code\Battle\Cards\Instants\CardHeal1.cs" />
+    <Compile Include="Code\Battle\Cards\Mobs\CardNoviceNecromancer.cs" />
+    <Compile Include="Code\Battle\Cards\Mobs\CardPhoenix.cs" />
+    <Compile Include="Code\Battle\Cards\Mobs\CardSmallRabbit.cs" />
+    <Compile Include="Code\Battle\Cards\Mobs\CardSquirrel.cs" />
+    <Compile Include="Code\Battle\Cards\Mobs\CardTroll.cs" />
+    <Compile Include="Code\Battle\Hand.cs" />
+    <Compile Include="Code\Battle\Interfaces\EmptyBattleObserver.cs" />
+    <Compile Include="Code\Battle\Interfaces\IBattleObserver.cs" />
+    <Compile Include="Code\Battle\Players\AwesomeAiPlayer.cs" />
+    <Compile Include="Code\Battle\Players\GenericAiPlayer.cs" />
+    <Compile Include="Code\Battle\Players\HumanPlayer.cs" />
+    <Compile Include="Code\Battle\Players\Player.cs" />
+    <Compile Include="Code\Battle\Spells\Spell.cs" />
+    <Compile Include="Code\Campaign\Campaign.cs" />
+    <Compile Include="Code\Campaign\CampaignFactory.cs" />
+    <Compile Include="Code\Campaign\Quest.cs" />
+    <Compile Include="Code\Campaign\QuestFactory.cs" />
+    <Compile Include="Code\Card.cs" />
+    <Compile Include="Code\CardAbility.cs" />
+    <Compile Include="Code\CardFactory.cs" />
+    <Compile Include="Code\DragHelper.cs" />
+    <Compile Include="Code\ICityUI.cs" />
+    <Compile Include="Code\ICreateHeroUI.cs" />
+    <Compile Include="Code\ISmithUI.cs" />
+    <Compile Include="Code\IMerchantUI.cs" />
+    <Compile Include="Code\IPostBattleUI.cs" />
+    <Compile Include="Code\ILonghouseUI.cs" />
+    <Compile Include="Code\ISeerUI.cs" />
+    <Compile Include="Code\IValkyrieUI.cs" />
+    <Compile Include="Code\PlayerFactory.cs" />
+    <Compile Include="Code\SequentialActions.cs" />
+    <Compile Include="Code\Battle\CombatDeck.cs" />
+    <Compile Include="Code\DAC.cs" />
+    <Compile Include="Code\Deck.cs" />
+    <Compile Include="Code\Encounter.cs" />
+    <Compile Include="Code\EncounterFactory.cs" />
+    <Compile Include="Code\GameController.cs" />
+    <Compile Include="Code\IGameEngineObserver.cs" />
+    <Compile Include="Code\GameEngine.cs" />
+    <Compile Include="Code\IMainWindowUI.cs" />
+    <Compile Include="Code\IMapUI.cs" />
+    <Compile Include="Code\IProfileUI.cs" />
+    <Compile Include="Code\ISurrenderUI.cs" />
+    <Compile Include="Code\IUIControl.cs" />
+    <Compile Include="Code\Level.cs" />
+    <Compile Include="Code\MapFactory.cs" />
+    <Compile Include="Code\MapLocation.cs" />
+    <Compile Include="Code\IPreBattleUI.cs" />
+    <Compile Include="Code\MapCoordinates.cs" />
+    <Compile Include="Code\StaticInit.cs" />
+    <Compile Include="Code\Druid.cs" />
+    <Compile Include="Code\Sorcerer.cs" />
+    <Compile Include="Code\Hunter.cs" />
+    <Compile Include="Code\WPFGUIUtil.cs" />
+    <Compile Include="Code\Hero.cs" />
+    <Compile Include="Code\SoundUtil.cs" />
+    <Compile Include="Code\Treasure.cs" />
+    <Compile Include="Code\VikingSagaUserProfile.cs" />
+    <Compile Include="Code\Warrior.cs" />
+    <Compile Include="Controls\BattleBoardControl.xaml.cs">
+      <DependentUpon>BattleBoardControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ButtonControl.xaml.cs">
+      <DependentUpon>ButtonControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CityCardControl.xaml.cs">
+      <DependentUpon>CityCardControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CityControl.xaml.cs">
+      <DependentUpon>CityControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CreateHeroControl.xaml.cs">
+      <DependentUpon>CreateHeroControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CreateProfileControl.xaml.cs">
+      <DependentUpon>CreateProfileControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LonghouseControl.xaml.cs">
+      <DependentUpon>LonghouseControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SmithHouseControl.xaml.cs">
+      <DependentUpon>SmithHouseControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ValkyrieControl.xaml.cs">
+      <DependentUpon>ValkyrieControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MerchantControl.xaml.cs">
+      <DependentUpon>MerchantControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SeerControl.xaml.cs">
+      <DependentUpon>SeerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ExtensionMethods.cs" />
+    <Compile Include="Controls\BottomToolbar.xaml.cs">
+      <DependentUpon>BottomToolbar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\IHeroHomeUI.cs" />
+    <Compile Include="Controls\FloatingInfo.xaml.cs">
+      <DependentUpon>FloatingInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\EditDeckControl.xaml.cs">
+      <DependentUpon>EditDeckControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\IDeckEditUI.cs" />
+    <Compile Include="Controls\MapLocationImage.cs" />
+    <Compile Include="Code\IBattleBoardUI.cs" />
+    <Compile Include="Code\Map.cs" />
+    <Compile Include="Controls\HeroHomeControl.xaml.cs">
+      <DependentUpon>HeroHomeControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ProfileHomeControl.xaml.cs">
+      <DependentUpon>ProfileHomeControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RipControl.xaml.cs">
+      <DependentUpon>RipControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TopToolbar.xaml.cs">
+      <DependentUpon>TopToolbar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WorldMapControl.xaml.cs">
+      <DependentUpon>WorldMapControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Code\Log.cs" />
+    <Compile Include="Controls\MessageInfoControl.xaml.cs">
+      <DependentUpon>MessageInfoControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\CreateHeroWindow.xaml.cs">
+      <DependentUpon>CreateHeroWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\LogWindow.xaml.cs">
+      <DependentUpon>LogWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\PostBattleWindow.xaml.cs">
+      <DependentUpon>PostBattleWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\PreBattleWindow.xaml.cs">
+      <DependentUpon>PreBattleWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\SurrenderWindow.xaml.cs">
+      <DependentUpon>SurrenderWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Controls\BattleBoardControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\BottomToolbar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ButtonControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CityCardControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CityControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CreateHeroControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CreateProfileControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\LonghouseControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SmithHouseControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ValkyrieControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\MerchantControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\SeerControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\FloatingInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\EditDeckControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\HeroHomeControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ProfileHomeControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\RipControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TopToolbar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\WorldMapControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CardControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CardPlaceholder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MessageInfoControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\CreateHeroWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\CreateProfileWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\EditDeckWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\HeroCardControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\LoginWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controls\CardControl.xaml.cs">
+      <DependentUpon>CardControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CardPlaceholder.xaml.cs">
+      <DependentUpon>CardPlaceholder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\CreateProfileWindow.xaml.cs">
+      <DependentUpon>CreateProfileWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\EditDeckWindow.xaml.cs">
+      <DependentUpon>EditDeckWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\HeroCardControl.xaml.cs">
+      <DependentUpon>HeroCardControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Windows\LogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\PostBattleWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\PreBattleWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\SurrenderWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <Resource Include="Resources\fonts\ComicRunes.otf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\backgrounds\battle-form-background-1900x1200.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\warcry.png" />
+    <Resource Include="Resources\backgrounds\general-form-background-1900x1200.jpg" />
+    <Resource Include="Resources\backgrounds\viking-village-1280x720.jpg" />
+    <Resource Include="Resources\backgrounds\women-winter-snow 800x450.jpg" />
+    <Resource Include="Resources\blood-skull-150x150.png" />
+    <Resource Include="Resources\bloodsplatter.png" />
+    <Resource Include="Resources\buttons\fight-button-64x58.png" />
+    <Resource Include="Resources\buttons\surrender-128x128.png" />
+    <Resource Include="Resources\buttons\fight-button-68x77.png" />
+    <Resource Include="Resources\cards\10143282.jpg" />
+    <Resource Include="Resources\cards\Battles.jpg" />
+    <Resource Include="Resources\cards\card-back-side-150x150.png" />
+    <Resource Include="Resources\cards\card-back-side-186x263.png" />
+    <Resource Include="Resources\cards\defeated-tombstone.jpg" />
+    <Resource Include="Resources\cards\Fantasy-Flight-Rune-Age-Card.png" />
+    <Resource Include="Resources\cards\Fantasy-Flight-The-Watcher-in-the-Water-Cards.png" />
+    <Resource Include="Resources\cards\fantasy_card_art_by_johnmccambridge-d3c7eop.jpg" />
+    <Resource Include="Resources\cards\kerebrus.jpg" />
+    <Resource Include="Resources\cards\niobe.jpg" />
+    <Resource Include="Resources\cards\overking-bathezid.jpg" />
+    <Resource Include="Resources\cards\tarot_card_back_cover_by_karla_chan-d2xwqmz.jpg" />
+    <Resource Include="Resources\backgrounds\dead-wood.jpg" />
+    <Resource Include="Resources\backgrounds\green-mountains-lake.jpg" />
+    <Resource Include="Resources\backgrounds\loot-pile.jpg" />
+    <Resource Include="Resources\backgrounds\mist-wood-mountains.jpg" />
+    <Resource Include="Resources\backgrounds\rough-bare-terrain.jpg" />
+    <Resource Include="Resources\backgrounds\treasure-cave.jpg" />
+    <Resource Include="Resources\backgrounds\wood-dark.jpg" />
+    <Resource Include="Resources\backgrounds\wood-normal.jpg" />
+    <Resource Include="Resources\heroes\druid-hero.png" />
+    <Resource Include="Resources\heroes\hunter-hero.png" />
+    <Resource Include="Resources\heroes\sorcerer-hero.png" />
+    <Resource Include="Resources\heroes\warrior-hero.png" />
+    <Resource Include="Resources\cards\card-backside.png" />
+    <Resource Include="Resources\buttons\Fight.png" />
+    <Resource Include="Resources\buttons\Surrender.png" />
+    <Resource Include="Resources\buttons\green-button.png" />
+    <Resource Include="Resources\backgrounds\loot2.png" />
+    <Resource Include="Resources\cards\card-unknown.png" />
+    <Resource Include="Resources\buttons\sigil-left.png" />
+    <Resource Include="Resources\buttons\sigil-right.png" />
+    <Resource Include="Resources\buttons\mute-2-48.png" />
+    <Resource Include="Resources\buttons\mute-3-48.png" />
+    <Resource Include="Resources\buttons\speaker-48.png" />
+    <Resource Include="Resources\mobs\mana-potion.png" />
+    <Resource Include="Resources\cards\city-merchant.png" />
+    <Resource Include="Resources\cards\city-seer.png" />
+    <Resource Include="Resources\cards\city-smith.png" />
+    <Resource Include="Resources\cards\city-valkyrie.png" />
+    <Resource Include="Resources\effects\card-ripped.png" />
+    <Resource Include="Resources\backgrounds\you-were-defeated.jpg" />
+    <Resource Include="Resources\borders\selected-card-red-border.png" />
+    <Resource Include="Resources\effects\dead-card-overlay.png" />
+    <Resource Include="Resources\cards\card-template.png" />
+    <Resource Include="Resources\cards\hero-template.png" />
+    <Resource Include="Resources\backgrounds\hero-home-background3.png" />
+    <Resource Include="Resources\borders\selected-card-blue-border.png" />
+    <Resource Include="Resources\cards\city-barmaid.png" />
+    <Resource Include="Resources\backgrounds\valkyrie-background.jpg" />
+    <Resource Include="Resources\backgrounds\seer-background.jpg" />
+    <Resource Include="Resources\backgrounds\longhouse-background.png" />
+    <Resource Include="Resources\backgrounds\market-background.jpg" />
+    <Resource Include="Resources\backgrounds\smithy-background.jpg" />
+    <Resource Include="Resources\borders\selected-card-green.png" />
+    <Content Include="Resources\long-scream.mp3" />
+    <Resource Include="Resources\maps\middle-earth-map-1600x1200.jpg" />
+    <Resource Include="Resources\markers\green-marker-24x24.png" />
+    <Resource Include="Resources\markers\green-highlighted-marker-24x24.png" />
+    <Resource Include="Resources\markers\boss4-marker-64x47.png" />
+    <Resource Include="Resources\mobs\cave-troll.png" />
+    <Resource Include="Resources\mobs\peasant.png" />
+    <Resource Include="Resources\mobs\pixie-female-nut.png" />
+    <Resource Include="Resources\mobs\skeleton-warrior.png" />
+    <Resource Include="Resources\mobs\small-bear.png" />
+    <Resource Include="Resources\mobs\small-fox.png" />
+    <Resource Include="Resources\mobs\wild-boar.png" />
+    <Resource Include="Resources\mobs\small-rabbit.png" />
+    <Resource Include="Resources\mobs\unknown.png" />
+    <Resource Include="Resources\mobs\healing-potion.png" />
+    <Resource Include="Resources\mobs\bandit.png" />
+    <Resource Include="Resources\mobs\dwarf.png" />
+    <Resource Include="Resources\mobs\ghost.png" />
+    <Resource Include="Resources\mobs\leech.png" />
+    <Resource Include="Resources\mobs\rat.png" />
+    <Resource Include="Resources\mobs\raven.png" />
+    <Resource Include="Resources\mobs\shadow.png" />
+    <Resource Include="Resources\mobs\spider-small.png" />
+    <Resource Include="Resources\mobs\troll.png" />
+    <Resource Include="Resources\mobs\worm.png" />
+    <Resource Include="Resources\maps\WorldMap.png" />
+    <Resource Include="Resources\mobs\wolf.png" />
+    <Resource Include="Resources\mobs\elder-rabbit.png" />
+    <Resource Include="Resources\mobs\diseased-rabbit.png" />
+    <Resource Include="Resources\mobs\warcry.png" />
+    <Resource Include="Resources\maps\map1_viking_saga.png" />
+    <Content Include="Resources\music\medieval-fantasy1.mp3" />
+    <Content Include="Resources\short-hurt-male.wav" />
+    <Content Include="Resources\sounds\danger.wav" />
+    <Content Include="Resources\sounds\draw-card-1.wav" />
+    <Content Include="Resources\sounds\draw-card-2.wav" />
+    <Content Include="Resources\sounds\fanfare-victory.wav" />
+    <Content Include="Resources\sounds\loss.wav" />
+    <Content Include="Resources\sounds\paper-rip.mp3" />
+    <Content Include="Resources\sounds\paper-rip.wav" />
+    <Content Include="Resources\sounds\paper-tear.mp3" />
+    <Content Include="Resources\sounds\paper-tear.wav" />
+    <Content Include="Resources\sounds\walk-forest.wav" />
+    <Content Include="Resources\sword-draw.wav" />
+    <Content Include="Resources\sword-slash.wav" />
+    <Resource Include="Resources\viking-beard-helmet-150x150.png" />
+    <Resource Include="Resources\middle-earth-map.jpg" />
+    <Resource Include="Resources\general-form-background-1600x1200.png" />
+    <Resource Include="Resources\fox-150x150.png" />
+    <Resource Include="Resources\fight_button.png" />
+    <Resource Include="Resources\fight-button-64x58.png" />
+    <Resource Include="Resources\card-back-side-186x263.png" />
+    <Resource Include="Resources\card-back-side-150x150.png" />
+    <Resource Include="Resources\battle-form-background-1900x1200.jpg" />
+    <Resource Include="Resources\battle-form-background-1600x1200.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
