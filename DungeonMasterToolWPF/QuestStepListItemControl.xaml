@@ -1,0 +1,11 @@
+﻿<UserControl x:Class="DungeonMasterToolWPF.QuestStepListItemControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d">
+    <Grid Height="19" Width="347">
+        <TextBlock x:Name="tbQuestStepID" Text="Step 1" />
+        <TextBlock x:Name="tbEdit" Text="EDIT" Margin="256,0,63,0" RenderTransformOrigin="1.105,0.45" />
+    </Grid>
+</UserControl>

@@ -1,0 +1,120 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using GameLib.Battles.Cards;
+using GameLib.Battles.Players.AI;
+
+namespace GameLib.Battles
+{
+    public class GenericAiPlayer : Player
+    {
+        private Random _rnd = new Random(DateTime.UtcNow.Millisecond);
+        public Player Opponent { get { return Battle.GetOpponent(this); } }
+
+        public override void TakeTurn()
+        {
+            //while (true)
+            //{
+            //    int count = AiPlaceCardsSimple(Battle);
+            //    if (count == 0)
+            //        break;
+            //}
+        }
+
+        CardBasicMob GetRandomBoardCard(Player player)
+        {
+            var cards = Battle.Board.AllCards(player).ToList();
+            return cards.Count() == 0 ? null : cards[_rnd.Next(cards.Count)];
+        }
+
+        public int AiPlaceCardsSimple(Battle battle)
+        {
+            int count = 0;
+            var row = battle.Board.GetRow(this);
+
+            int prevCount = 0;
+            for (int handPosition = 0; handPosition < 5; ++handPosition)
+            {
+                if (count != prevCount)
+                {
+                    Observer.AiArtificialDelay();
+                    prevCount = count;
+                }
+
+                var card = Hand.Cards[handPosition];
+
+                if (card == null)
+                    continue;
+
+                if (card.Power > this.Mana)
+                    continue;
+
+                if (card is CardBasicMob)
+                {
+                    int boardPosition;
+                    if (!row.TryGetFreePosition(out boardPosition))
+                        continue;
+
+                    DropCardOnBoard((CardBasicMob)card, handPosition, boardPosition, true);
+                    count++;
+                }
+                else if (card is CardInstant)
+                {
+                    // Can be simplified a lot
+                    if (card is CardInstantCustom)
+                    {
+                        var c = (CardInstantCustom)card;
+                        if (c.Effect == SpellProperty.Result.Negative)
+                        {
+                            if (c.CanTargetEnemyCard)
+                            {
+                                var dstCard = GetRandomBoardCard(Battle.GetOpponent(this));
+                                if (dstCard == null)
+                                    continue;
+
+                                DropCardOtherCard((CardInstantCustom)card, dstCard, true);
+                                count++;
+                            }
+                        }
+                        else
+                        {
+                            if (c.CanTargetOwnCard)
+                            {
+                                var dstCard = GetRandomBoardCard(this);
+                                if (dstCard == null)
+                                    continue;
+
+                                DropCardOtherCard((CardInstantCustom)card, dstCard, true);
+                                count++;
+                            }
+                        }
+                    }
+                    else if (card is CardInstantDmgChange)
+                    {
+                        var c = (CardInstantDmgChange)card;
+                        var targetPlayer = c.Amount < 0 ? Battle.GetOpponent(this) : this;
+                        var dstCard = GetRandomBoardCard(targetPlayer);
+                        if (dstCard == null)
+                            continue;
+
+                        DropCardOtherCard((CardInstantDmgChange)card, dstCard, true);
+                        count++;
+                    }
+                    else if (card is CardInstantSpellProperty)
+                    {
+                        var c = (CardInstantSpellProperty)card;
+                        var targetPlayer = c.Effect == SpellProperty.Result.Negative ? Battle.GetOpponent(this) : this;
+                        var dstCard = GetRandomBoardCard(targetPlayer);
+                        if (dstCard == null)
+                            continue;
+
+                        DropCardOtherCard((CardInstantSpellProperty)card, dstCard, true);
+                        count++;
+                    }
+                }
+            }
+
+            return count;
+        }
+    }
+}

@@ -1,0 +1,38 @@
+﻿<Window x:Class="MapEditor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:game="clr-namespace:Vik.Code.Controls.Maps;assembly=VikGame"
+        Title="MainWindow" Height="350" Width="525">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="279*"/>
+            <RowDefinition Height="41*"/>
+        </Grid.RowDefinitions>
+        <Border x:Name="imageBorder" Background="#FFC7C7C7" BorderThickness="0,0,0,1" BorderBrush="Black" Margin="0,1,0,40" Grid.RowSpan="2">
+            <game:MapControl Name="mapControl" MouseDown="mapControl_MouseDown" ContextMenuOpening="mapControl_ContextMenuOpening" MouseMove="mapControl_MouseMove">
+                <game:MapControl.ContextMenu>
+                    <ContextMenu StaysOpen="true">
+                        <MenuItem Header="Add new location" PreviewMouseDown="imageContextMenu_MouseDown"/>
+                    </ContextMenu>
+                </game:MapControl.ContextMenu>
+            </game:MapControl>
+        </Border>
+        <TextBox Name="tbInfo" Text="0; 0" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#7F000000" Foreground="White"/>
+        <Button Content="Load Image" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="75" Grid.Row="1" Click="LoadImageClick"/>
+        <Button Content="Edit XML" HorizontalAlignment="Left" Margin="106,0,0,10" VerticalAlignment="Bottom" Width="75" Grid.Row="1" Click="EditXmlClick"/>
+        <Button Content="Begin Path" HorizontalAlignment="Left" Margin="216,0,0,9" VerticalAlignment="Bottom" Width="75" Grid.Row="1" Click="BeginPathClick"/>
+        <Button Content="End Path" HorizontalAlignment="Left" Margin="307,0,0,9" VerticalAlignment="Bottom" Width="75" Grid.Row="1" Click="EndPathClick"/>
+        <Button Content="Clear All" HorizontalAlignment="Left" Margin="427,0,0,9" VerticalAlignment="Bottom" Width="75" Grid.Row="1" Click="ClearClick"/>
+        
+        <Border x:Name="borderEnterId" Visibility="Collapsed" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200">
+            <StackPanel>
+                <Label Content="Enter unique id" Background="#FF515151" Foreground="White"/>
+                <TextBox Name="tbUnique" Text="&lt;missing&gt;" />
+                <Button Content="OK" Click="EnterUniqueClick" />
+                <TextBlock Text="Existing ids:" Padding="5,5,0,5" Background="#FFACACAC" />
+                <ListBox Name="lbExisting" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
