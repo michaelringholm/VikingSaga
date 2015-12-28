@@ -1,0 +1,940 @@
+<?xml version="1.0"?>
+<VikingSagaUserProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SelectedHero xsi:type="Warrior">
+    <Name>Ragnar</Name>
+    <Condition>Perfect</Condition>
+    <HP>10</HP>
+    <RemainingHP>0</RemainingHP>
+    <XP>4</XP>
+    <Level>1</Level>
+    <Mana>3</Mana>
+    <RemainingMana>0</RemainingMana>
+    <CardImageURL>heroes\warrior-hero.png</CardImageURL>
+    <Gold>2</Gold>
+    <Map>
+      <HeroCoordinates>
+        <X>10</X>
+        <Y>10</Y>
+      </HeroCoordinates>
+      <MapImagePath>maps\middle-earth-map-1600x1200.jpg</MapImagePath>
+      <Locations>
+        <MapLocation>
+          <Coordinates>
+            <X>10</X>
+            <Y>10</Y>
+          </Coordinates>
+          <Encounter xsi:type="AIEncounter">
+            <Hero xsi:type="Warrior">
+              <Name>a small rabbit</Name>
+              <Condition>Perfect</Condition>
+              <HP>3</HP>
+              <RemainingHP>0</RemainingHP>
+              <XP>0</XP>
+              <Level>1</Level>
+              <Mana>3</Mana>
+              <RemainingMana>0</RemainingMana>
+              <CardImageURL>mobs\small-rabbit.png</CardImageURL>
+              <Gold>0</Gold>
+            </Hero>
+            <PlayableCards>
+              <Card>
+                <Name>a Rabbit</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>small-rabbit.png</CardImageURL>
+              </Card>
+              <Card>
+                <Name>a Rabbit</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>small-rabbit.png</CardImageURL>
+              </Card>
+              <Card>
+                <Name>a Rabbit</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>small-rabbit.png</CardImageURL>
+              </Card>
+              <Card>
+                <Name>a Rabbit</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>small-rabbit.png</CardImageURL>
+              </Card>
+              <Card>
+                <Name>a Rabbit</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>small-rabbit.png</CardImageURL>
+              </Card>
+            </PlayableCards>
+            <Treasure>
+              <XP>2</XP>
+              <Gold>1</Gold>
+            </Treasure>
+            <PreCombatText>Making your way through the landscape, you have just stumbled upon a small rabbit.</PreCombatText>
+          </Encounter>
+          <Marker>Path</Marker>
+          <ConnectedMapLocations>
+            <MapCoordinates>
+              <X>12</X>
+              <Y>12</Y>
+            </MapCoordinates>
+          </ConnectedMapLocations>
+          <IsBossLocation>false</IsBossLocation>
+          <IsBossDefeated>false</IsBossDefeated>
+        </MapLocation>
+        <MapLocation>
+          <Coordinates>
+            <X>12</X>
+            <Y>12</Y>
+          </Coordinates>
+          <Encounter xsi:type="AIEncounter">
+            <Hero xsi:type="Warrior">
+              <Name>a peasant</Name>
+              <Condition>Perfect</Condition>
+              <HP>3</HP>
+              <RemainingHP>0</RemainingHP>
+              <XP>0</XP>
+              <Level>1</Level>
+              <Mana>4</Mana>
+              <RemainingMana>0</RemainingMana>
+              <CardImageURL>mobs\peasant.png</CardImageURL>
+              <Gold>0</Gold>
+            </Hero>
+            <PlayableCards>
+              <Card>
+                <Name>a Rabbit</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>small-rabbit.png</CardImageURL>
+              </Card>
+              <Card>
+                <Name>a Rabbit</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>small-rabbit.png</CardImageURL>
+              </Card>
+              <Card>
+                <Name>a Rabbit</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>small-rabbit.png</CardImageURL>
+              </Card>
+              <Card>
+                <Name>a Rabbit</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>small-rabbit.png</CardImageURL>
+              </Card>
+              <Card>
+                <Name>a Rabbit</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>small-rabbit.png</CardImageURL>
+              </Card>
+            </PlayableCards>
+            <Treasure>
+              <XP>2</XP>
+              <Gold>1</Gold>
+            </Treasure>
+            <PreCombatText>Making your way through the landscape, you have just stumbled upon a peasant.</PreCombatText>
+          </Encounter>
+          <Marker>Path</Marker>
+          <ConnectedMapLocations>
+            <MapCoordinates>
+              <X>17</X>
+              <Y>14</Y>
+            </MapCoordinates>
+            <MapCoordinates>
+              <X>10</X>
+              <Y>10</Y>
+            </MapCoordinates>
+          </ConnectedMapLocations>
+          <IsBossLocation>false</IsBossLocation>
+          <IsBossDefeated>false</IsBossDefeated>
+        </MapLocation>
+        <MapLocation>
+          <Coordinates>
+            <X>17</X>
+            <Y>14</Y>
+          </Coordinates>
+          <Encounter xsi:type="AIEncounter">
+            <Hero xsi:type="Warrior">
+              <Name>a wild boar</Name>
+              <Condition>Perfect</Condition>
+              <HP>3</HP>
+              <RemainingHP>0</RemainingHP>
+              <XP>0</XP>
+              <Level>1</Level>
+              <Mana>3</Mana>
+              <RemainingMana>0</RemainingMana>
+              <CardImageURL>mobs\wild-boar.png</CardImageURL>
+              <Gold>0</Gold>
+            </Hero>
+            <PlayableCards>
+              <Card>
+                <Name>a Rabbit</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>small-rabbit.png</CardImageURL>
+              </Card>
+              <Card>
+                <Name>a Rabbit</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>small-rabbit.png</CardImageURL>
+              </Card>
+              <Card>
+                <Name>a Rabbit</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>small-rabbit.png</CardImageURL>
+              </Card>
+              <Card>
+                <Name>a Rabbit</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>small-rabbit.png</CardImageURL>
+              </Card>
+              <Card>
+                <Name>a Rabbit</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>small-rabbit.png</CardImageURL>
+              </Card>
+              <Card>
+                <Name>a Rabbit</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>small-rabbit.png</CardImageURL>
+              </Card>
+            </PlayableCards>
+            <Treasure>
+              <XP>2</XP>
+              <Gold>1</Gold>
+            </Treasure>
+            <PreCombatText>Making your way through the landscape, you have just stumbled upon a wild boar.</PreCombatText>
+          </Encounter>
+          <Marker>Path</Marker>
+          <ConnectedMapLocations>
+            <MapCoordinates>
+              <X>21</X>
+              <Y>30</Y>
+            </MapCoordinates>
+            <MapCoordinates>
+              <X>12</X>
+              <Y>12</Y>
+            </MapCoordinates>
+          </ConnectedMapLocations>
+          <IsBossLocation>false</IsBossLocation>
+          <IsBossDefeated>false</IsBossDefeated>
+        </MapLocation>
+        <MapLocation>
+          <Coordinates>
+            <X>21</X>
+            <Y>30</Y>
+          </Coordinates>
+          <Encounter xsi:type="AIEncounter">
+            <Hero xsi:type="Warrior">
+              <Name>a wild boar</Name>
+              <Condition>Perfect</Condition>
+              <HP>3</HP>
+              <RemainingHP>0</RemainingHP>
+              <XP>0</XP>
+              <Level>1</Level>
+              <Mana>3</Mana>
+              <RemainingMana>0</RemainingMana>
+              <CardImageURL>mobs\wild-boar.png</CardImageURL>
+              <Gold>0</Gold>
+            </Hero>
+            <PlayableCards>
+              <Card>
+                <Name>a Rabbit</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>small-rabbit.png</CardImageURL>
+              </Card>
+              <Card>
+                <Name>a Rabbit</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>small-rabbit.png</CardImageURL>
+              </Card>
+              <Card>
+                <Name>a Rabbit</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>small-rabbit.png</CardImageURL>
+              </Card>
+            </PlayableCards>
+            <Treasure>
+              <XP>2</XP>
+              <Gold>1</Gold>
+            </Treasure>
+            <PreCombatText>Making your way through the landscape, you have just stumbled upon a wild boar.</PreCombatText>
+          </Encounter>
+          <Marker>Path</Marker>
+          <ConnectedMapLocations>
+            <MapCoordinates>
+              <X>31</X>
+              <Y>40</Y>
+            </MapCoordinates>
+            <MapCoordinates>
+              <X>17</X>
+              <Y>14</Y>
+            </MapCoordinates>
+          </ConnectedMapLocations>
+          <IsBossLocation>false</IsBossLocation>
+          <IsBossDefeated>false</IsBossDefeated>
+        </MapLocation>
+        <MapLocation>
+          <Coordinates>
+            <X>31</X>
+            <Y>40</Y>
+          </Coordinates>
+          <Encounter xsi:type="AIEncounter">
+            <Hero xsi:type="Warrior">
+              <Name>a small fox</Name>
+              <Condition>Perfect</Condition>
+              <HP>3</HP>
+              <RemainingHP>0</RemainingHP>
+              <XP>0</XP>
+              <Level>1</Level>
+              <Mana>3</Mana>
+              <RemainingMana>0</RemainingMana>
+              <CardImageURL>mobs\small-fox.png</CardImageURL>
+              <Gold>0</Gold>
+            </Hero>
+            <PlayableCards>
+              <Card>
+                <Name>a Rabbit</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>small-rabbit.png</CardImageURL>
+              </Card>
+            </PlayableCards>
+            <Treasure>
+              <XP>2</XP>
+              <Gold>1</Gold>
+            </Treasure>
+            <PreCombatText>Making your way through the landscape, you have just stumbled upon a small fox.</PreCombatText>
+          </Encounter>
+          <Marker>Path</Marker>
+          <ConnectedMapLocations>
+            <MapCoordinates>
+              <X>41</X>
+              <Y>50</Y>
+            </MapCoordinates>
+            <MapCoordinates>
+              <X>21</X>
+              <Y>30</Y>
+            </MapCoordinates>
+          </ConnectedMapLocations>
+          <IsBossLocation>false</IsBossLocation>
+          <IsBossDefeated>false</IsBossDefeated>
+        </MapLocation>
+        <MapLocation>
+          <Coordinates>
+            <X>41</X>
+            <Y>50</Y>
+          </Coordinates>
+          <Encounter xsi:type="AIEncounter">
+            <Hero xsi:type="Warrior">
+              <Name>a small rabbit</Name>
+              <Condition>Perfect</Condition>
+              <HP>3</HP>
+              <RemainingHP>0</RemainingHP>
+              <XP>0</XP>
+              <Level>1</Level>
+              <Mana>3</Mana>
+              <RemainingMana>0</RemainingMana>
+              <CardImageURL>mobs\small-rabbit.png</CardImageURL>
+              <Gold>0</Gold>
+            </Hero>
+            <PlayableCards>
+              <Card>
+                <Name>a Rabbit</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>small-rabbit.png</CardImageURL>
+              </Card>
+              <Card>
+                <Name>a Rabbit</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>small-rabbit.png</CardImageURL>
+              </Card>
+              <Card>
+                <Name>a Rabbit</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>small-rabbit.png</CardImageURL>
+              </Card>
+              <Card>
+                <Name>a Rabbit</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>small-rabbit.png</CardImageURL>
+              </Card>
+              <Card>
+                <Name>a Rabbit</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>small-rabbit.png</CardImageURL>
+              </Card>
+              <Card>
+                <Name>a Rabbit</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>small-rabbit.png</CardImageURL>
+              </Card>
+            </PlayableCards>
+            <Treasure>
+              <XP>2</XP>
+              <Gold>1</Gold>
+            </Treasure>
+            <PreCombatText>Making your way through the landscape, you have just stumbled upon a small rabbit.</PreCombatText>
+          </Encounter>
+          <Marker>Path</Marker>
+          <ConnectedMapLocations>
+            <MapCoordinates>
+              <X>51</X>
+              <Y>60</Y>
+            </MapCoordinates>
+            <MapCoordinates>
+              <X>31</X>
+              <Y>40</Y>
+            </MapCoordinates>
+          </ConnectedMapLocations>
+          <IsBossLocation>false</IsBossLocation>
+          <IsBossDefeated>false</IsBossDefeated>
+        </MapLocation>
+        <MapLocation>
+          <Coordinates>
+            <X>51</X>
+            <Y>60</Y>
+          </Coordinates>
+          <Encounter xsi:type="AIEncounter">
+            <Hero xsi:type="Warrior">
+              <Name>a small rabbit</Name>
+              <Condition>Perfect</Condition>
+              <HP>3</HP>
+              <RemainingHP>0</RemainingHP>
+              <XP>0</XP>
+              <Level>1</Level>
+              <Mana>3</Mana>
+              <RemainingMana>0</RemainingMana>
+              <CardImageURL>mobs\small-rabbit.png</CardImageURL>
+              <Gold>0</Gold>
+            </Hero>
+            <PlayableCards>
+              <Card>
+                <Name>a Rabbit</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>small-rabbit.png</CardImageURL>
+              </Card>
+              <Card>
+                <Name>a Rabbit</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>small-rabbit.png</CardImageURL>
+              </Card>
+              <Card>
+                <Name>a Rabbit</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>small-rabbit.png</CardImageURL>
+              </Card>
+              <Card>
+                <Name>a Rabbit</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>small-rabbit.png</CardImageURL>
+              </Card>
+              <Card>
+                <Name>a Rabbit</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>small-rabbit.png</CardImageURL>
+              </Card>
+            </PlayableCards>
+            <Treasure>
+              <XP>2</XP>
+              <Gold>1</Gold>
+            </Treasure>
+            <PreCombatText>Making your way through the landscape, you have just stumbled upon a small rabbit.</PreCombatText>
+          </Encounter>
+          <Marker>Path</Marker>
+          <ConnectedMapLocations>
+            <MapCoordinates>
+              <X>56</X>
+              <Y>70</Y>
+            </MapCoordinates>
+            <MapCoordinates>
+              <X>41</X>
+              <Y>50</Y>
+            </MapCoordinates>
+          </ConnectedMapLocations>
+          <IsBossLocation>false</IsBossLocation>
+          <IsBossDefeated>false</IsBossDefeated>
+        </MapLocation>
+        <MapLocation>
+          <Coordinates>
+            <X>56</X>
+            <Y>70</Y>
+          </Coordinates>
+          <Encounter xsi:type="AIEncounter">
+            <Hero xsi:type="Warrior">
+              <Name>a small fox</Name>
+              <Condition>Perfect</Condition>
+              <HP>3</HP>
+              <RemainingHP>0</RemainingHP>
+              <XP>0</XP>
+              <Level>1</Level>
+              <Mana>3</Mana>
+              <RemainingMana>0</RemainingMana>
+              <CardImageURL>mobs\small-fox.png</CardImageURL>
+              <Gold>0</Gold>
+            </Hero>
+            <PlayableCards>
+              <Card>
+                <Name>a Rabbit</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>small-rabbit.png</CardImageURL>
+              </Card>
+              <Card>
+                <Name>a Rabbit</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>small-rabbit.png</CardImageURL>
+              </Card>
+              <Card>
+                <Name>a Rabbit</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>small-rabbit.png</CardImageURL>
+              </Card>
+            </PlayableCards>
+            <Treasure>
+              <XP>2</XP>
+              <Gold>1</Gold>
+            </Treasure>
+            <PreCombatText>Making your way through the landscape, you have just stumbled upon a small fox.</PreCombatText>
+          </Encounter>
+          <Marker>Path</Marker>
+          <ConnectedMapLocations>
+            <MapCoordinates>
+              <X>62</X>
+              <Y>80</Y>
+            </MapCoordinates>
+            <MapCoordinates>
+              <X>51</X>
+              <Y>60</Y>
+            </MapCoordinates>
+          </ConnectedMapLocations>
+          <IsBossLocation>false</IsBossLocation>
+          <IsBossDefeated>false</IsBossDefeated>
+        </MapLocation>
+        <MapLocation>
+          <Coordinates>
+            <X>62</X>
+            <Y>80</Y>
+          </Coordinates>
+          <Encounter xsi:type="AIEncounter">
+            <Hero xsi:type="Warrior">
+              <Name>a small rabbit</Name>
+              <Condition>Perfect</Condition>
+              <HP>3</HP>
+              <RemainingHP>0</RemainingHP>
+              <XP>0</XP>
+              <Level>1</Level>
+              <Mana>3</Mana>
+              <RemainingMana>0</RemainingMana>
+              <CardImageURL>mobs\small-rabbit.png</CardImageURL>
+              <Gold>0</Gold>
+            </Hero>
+            <PlayableCards>
+              <Card>
+                <Name>a Rabbit</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>small-rabbit.png</CardImageURL>
+              </Card>
+              <Card>
+                <Name>a Rabbit</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>small-rabbit.png</CardImageURL>
+              </Card>
+              <Card>
+                <Name>a Rabbit</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>small-rabbit.png</CardImageURL>
+              </Card>
+              <Card>
+                <Name>a Rabbit</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>small-rabbit.png</CardImageURL>
+              </Card>
+            </PlayableCards>
+            <Treasure>
+              <XP>2</XP>
+              <Gold>1</Gold>
+            </Treasure>
+            <PreCombatText>Making your way through the landscape, you have just stumbled upon a small rabbit.</PreCombatText>
+          </Encounter>
+          <Marker>Path</Marker>
+          <ConnectedMapLocations>
+            <MapCoordinates>
+              <X>65</X>
+              <Y>86</Y>
+            </MapCoordinates>
+            <MapCoordinates>
+              <X>56</X>
+              <Y>70</Y>
+            </MapCoordinates>
+          </ConnectedMapLocations>
+          <IsBossLocation>false</IsBossLocation>
+          <IsBossDefeated>false</IsBossDefeated>
+        </MapLocation>
+        <MapLocation>
+          <Coordinates>
+            <X>65</X>
+            <Y>86</Y>
+          </Coordinates>
+          <Encounter xsi:type="AIEncounter">
+            <Hero xsi:type="Warrior">
+              <Name>a mountain troll</Name>
+              <Condition>Perfect</Condition>
+              <HP>12</HP>
+              <RemainingHP>0</RemainingHP>
+              <XP>0</XP>
+              <Level>2</Level>
+              <Mana>5</Mana>
+              <RemainingMana>0</RemainingMana>
+              <CardImageURL>mobs\cave-troll.png</CardImageURL>
+              <Gold>0</Gold>
+            </Hero>
+            <PlayableCards>
+              <Card>
+                <Name>a Wild Boar</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>wild-boar.png</CardImageURL>
+              </Card>
+              <Card>
+                <Name>a Wild Boar</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>wild-boar.png</CardImageURL>
+              </Card>
+              <Card>
+                <Name>a Wild Boar</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>wild-boar.png</CardImageURL>
+              </Card>
+              <Card>
+                <Name>a Wild Boar</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>wild-boar.png</CardImageURL>
+              </Card>
+              <Card>
+                <Name>a Wild Boar</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>wild-boar.png</CardImageURL>
+              </Card>
+              <Card>
+                <Name>a Wild Boar</Name>
+                <HP>1</HP>
+                <RemainingHP>0</RemainingHP>
+                <Attack>1</Attack>
+                <ManaCost>1</ManaCost>
+                <CardImageURL>wild-boar.png</CardImageURL>
+              </Card>
+            </PlayableCards>
+            <Treasure>
+              <XP>2</XP>
+              <Gold>1</Gold>
+            </Treasure>
+            <PreCombatText>Entering a dimly lit cave you feel yourself unable to flee, prepare to face a mountain troll!</PreCombatText>
+          </Encounter>
+          <Marker>Boss</Marker>
+          <ConnectedMapLocations>
+            <MapCoordinates>
+              <X>62</X>
+              <Y>80</Y>
+            </MapCoordinates>
+          </ConnectedMapLocations>
+          <IsBossLocation>true</IsBossLocation>
+          <IsBossDefeated>false</IsBossDefeated>
+        </MapLocation>
+      </Locations>
+      <Width>1200</Width>
+      <Height>800</Height>
+    </Map>
+  </SelectedHero>
+  <Deck>
+    <AllCards>
+      <Card>
+        <Name>a pixie</Name>
+        <HP>1</HP>
+        <RemainingHP>0</RemainingHP>
+        <Attack>1</Attack>
+        <ManaCost>1</ManaCost>
+        <CardImageURL>pixie-female-nut.png</CardImageURL>
+      </Card>
+      <Card>
+        <Name>a Wild Boar</Name>
+        <HP>1</HP>
+        <RemainingHP>0</RemainingHP>
+        <Attack>1</Attack>
+        <ManaCost>1</ManaCost>
+        <CardImageURL>wild-boar.png</CardImageURL>
+      </Card>
+      <Card>
+        <Name>a pixie</Name>
+        <HP>1</HP>
+        <RemainingHP>0</RemainingHP>
+        <Attack>1</Attack>
+        <ManaCost>1</ManaCost>
+        <CardImageURL>pixie-female-nut.png</CardImageURL>
+      </Card>
+      <Card>
+        <Name>a Peasant</Name>
+        <HP>2</HP>
+        <RemainingHP>0</RemainingHP>
+        <Attack>1</Attack>
+        <ManaCost>1</ManaCost>
+        <CardImageURL>peasant.png</CardImageURL>
+      </Card>
+      <Card>
+        <Name>a skeleton warrior</Name>
+        <HP>1</HP>
+        <RemainingHP>0</RemainingHP>
+        <Attack>1</Attack>
+        <ManaCost>1</ManaCost>
+        <CardImageURL>skeleton-warrior.png</CardImageURL>
+      </Card>
+      <Card>
+        <Name>a spider</Name>
+        <HP>1</HP>
+        <RemainingHP>0</RemainingHP>
+        <Attack>1</Attack>
+        <ManaCost>1</ManaCost>
+        <CardImageURL>spider.png</CardImageURL>
+      </Card>
+      <Card>
+        <Name>a spider</Name>
+        <HP>1</HP>
+        <RemainingHP>0</RemainingHP>
+        <Attack>1</Attack>
+        <ManaCost>1</ManaCost>
+        <CardImageURL>spider.png</CardImageURL>
+      </Card>
+      <Card>
+        <Name>a pixie</Name>
+        <HP>1</HP>
+        <RemainingHP>0</RemainingHP>
+        <Attack>1</Attack>
+        <ManaCost>1</ManaCost>
+        <CardImageURL>pixie-female-nut.png</CardImageURL>
+      </Card>
+      <Card>
+        <Name>a Peasant</Name>
+        <HP>2</HP>
+        <RemainingHP>0</RemainingHP>
+        <Attack>1</Attack>
+        <ManaCost>1</ManaCost>
+        <CardImageURL>peasant.png</CardImageURL>
+      </Card>
+      <Card>
+        <Name>a small bear</Name>
+        <HP>1</HP>
+        <RemainingHP>0</RemainingHP>
+        <Attack>1</Attack>
+        <ManaCost>1</ManaCost>
+        <CardImageURL>small-bear.png</CardImageURL>
+      </Card>
+    </AllCards>
+    <PlayableCards>
+      <Card>
+        <Name>a pixie</Name>
+        <HP>1</HP>
+        <RemainingHP>1</RemainingHP>
+        <Attack>1</Attack>
+        <ManaCost>1</ManaCost>
+        <CardImageURL>pixie-female-nut.png</CardImageURL>
+      </Card>
+      <Card>
+        <Name>a Wild Boar</Name>
+        <HP>1</HP>
+        <RemainingHP>1</RemainingHP>
+        <Attack>1</Attack>
+        <ManaCost>1</ManaCost>
+        <CardImageURL>wild-boar.png</CardImageURL>
+      </Card>
+      <Card>
+        <Name>a pixie</Name>
+        <HP>1</HP>
+        <RemainingHP>1</RemainingHP>
+        <Attack>1</Attack>
+        <ManaCost>1</ManaCost>
+        <CardImageURL>pixie-female-nut.png</CardImageURL>
+      </Card>
+      <Card>
+        <Name>a Peasant</Name>
+        <HP>2</HP>
+        <RemainingHP>2</RemainingHP>
+        <Attack>1</Attack>
+        <ManaCost>1</ManaCost>
+        <CardImageURL>peasant.png</CardImageURL>
+      </Card>
+      <Card>
+        <Name>a skeleton warrior</Name>
+        <HP>1</HP>
+        <RemainingHP>1</RemainingHP>
+        <Attack>1</Attack>
+        <ManaCost>1</ManaCost>
+        <CardImageURL>skeleton-warrior.png</CardImageURL>
+      </Card>
+      <Card>
+        <Name>a spider</Name>
+        <HP>1</HP>
+        <RemainingHP>1</RemainingHP>
+        <Attack>1</Attack>
+        <ManaCost>1</ManaCost>
+        <CardImageURL>spider.png</CardImageURL>
+      </Card>
+      <Card>
+        <Name>a spider</Name>
+        <HP>1</HP>
+        <RemainingHP>1</RemainingHP>
+        <Attack>1</Attack>
+        <ManaCost>1</ManaCost>
+        <CardImageURL>spider.png</CardImageURL>
+      </Card>
+      <Card>
+        <Name>a pixie</Name>
+        <HP>1</HP>
+        <RemainingHP>1</RemainingHP>
+        <Attack>1</Attack>
+        <ManaCost>1</ManaCost>
+        <CardImageURL>pixie-female-nut.png</CardImageURL>
+      </Card>
+      <Card>
+        <Name>a Peasant</Name>
+        <HP>2</HP>
+        <RemainingHP>2</RemainingHP>
+        <Attack>1</Attack>
+        <ManaCost>1</ManaCost>
+        <CardImageURL>peasant.png</CardImageURL>
+      </Card>
+      <Card>
+        <Name>a small bear</Name>
+        <HP>1</HP>
+        <RemainingHP>1</RemainingHP>
+        <Attack>1</Attack>
+        <ManaCost>1</ManaCost>
+        <CardImageURL>small-bear.png</CardImageURL>
+      </Card>
+    </PlayableCards>
+    <MaxDeckSize>10</MaxDeckSize>
+  </Deck>
+  <Gold>0</Gold>
+  <Password>viking</Password>
+  <Name>ethlore</Name>
+</VikingSagaUserProfile>

@@ -1,0 +1,56 @@
+Andre ting
+==========
+-Valkyrie skræmbillede hvor der vises en control der består af en kombination af et card og en gold cost. 
+Det skal være muligt at dragge kortet fra listen af "døde" kort til valkyriekortet hvis man har penge nok.
+- Smith skal købe/sælge weapons og armors (equipment based cards)
+- Seer skal købe/sælge potion og spells (magic based cards)
+- Merchant skal købe/sælge mobs (person based cards)
+
+De tre ovenstående skærmbillede skal vise en shop lignende vindue med differentieret baggrund.
+
+-Visit Hel/Niflheim, skal give mulighed for at kæmpe mod allerede defeated encounters
+- På map skal også vises ens position, levende/døde kort, gold og level.
+
+
+Abilities
+=============
+Warcry (hero kort der giver +1 attack til alle kort med melee damage, sker umiddelbart når kortet smides på bordet)
+Protect (tager damage istedet for de umiddelbart omkringliggende kort, aktiveres når de andre kort angribes)
+Weaken/curse (nedsætter damage for direkte opponent, sker så snart kortet lægges)
+Claw/swipe (rammer direkte opponent samt dennes direkte omkringliggende kort altså modstanderens, del af angreb)
+Medic (regen til de direkte omkringliggende kort, efter endt runde)
+Aura of healing (regen til alle friendly kort, DRUID only tænker jeg)
+Fire shield (angriber tager damage når et kort med fireshield rammes, instant ved angreb)
+Ice shield (som fire shield bare ice damage, instant ved angreb)
+Surprise attack (angriber allerede i første runde)
+Rage (for en ekstra attack for hver gang kortet selv angriber, limit cap f.eks. 3 ved lev1 rage)
+
+
+
+-økse i kort effekt (overlay)
+-slag lydeffekt
+-ramt lydeffekt
+-kort dør(sendes til valhalla) hvis død i battle
+-ofre guld for at genoplive kort fra Valhalla
+-Arena/pit til XP grind / Random battle (og til Encounter mod Encounter)
+-vis hele deck på Hero skærmbillede samt top performing cards
+-overvej Hero abilities (f.eks. cheap revive)
+-vælg hero type ved create new hero
+-veteranstatus på cards samt winning streak, battles won og battles lost
+-fastlås resolution så vi kan lave baggrund med fordybninger
+-guid (ID) på alle kort
+-guid (ID) på alle Heroes (lige nu bruger jeg Name som ikke er unikt, kun profile name er unikt, det bruges til at finde ud af hvem der vandt)
+-word map vs. region maps (locked og unlocked)
+
+
+
+1547*870 (fraktion af 1600*900)
+
+- Player1 - skal være bagside på hand eller?
+- Opløsning
+- Edit deck
+- Historie ved startup - magler tekst
+- Flere HP til diverse kort som minimum?
+- Select current hero
+- Centrering af main window (detalje)
+- Fjern døde kort
