@@ -1,0 +1,24 @@
+* {
+	font-family: Calibri;
+	font-size: 10pt;
+}
+
+.card {
+	display: table-cell; 
+	padding: 6px;
+	cursor: pointer;
+}
+
+.cardDropZone {
+	width: 250px;
+	height: 250px;
+	border: dashed 2px;
+	margin: 4px;
+}
+
+[draggable=true] {
+  -khtml-user-drag: element;
+  -webkit-user-drag: element;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}

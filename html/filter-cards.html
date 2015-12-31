@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html data-ng-app="cardModule">
+<meta charset="UTF-8">
+<head>
+	<link rel="stylesheet" type="text/css" href="/AngularJS-Tutorial/resources/css/card.css">
+
+	<script src="/AngularJS-Tutorial/resources/js/jquery-2.1.4.min.js"></script>
+	<script src="/AngularJS-Tutorial/resources/js/jquery-ui.min.js"></script>
+	<script src="/AngularJS-Tutorial/resources/js/angular.min.js"></script>
+	<script src="/AngularJS-Tutorial/resources/js/om/card.js"></script>	
+</head>
+<body>
+	<div>
+		<label>Card Filter:</label> <input type="text" data-ng-model="cardName" placeholder="Card name">
+		<hr>
+		<h1>HTML5 Drag n Drop</h1>
+		
+		<div data-ng-controller="CardController">
+			<div id="{{card.Id}}" data-card-id="{{card.Id}}" data-ng-repeat="card in cards | filter:{Title:cardName}" class="card" data-ng-model="card" draggable="true" ondragstart="drag(event)">
+				<div>{{card.Title}}</div>
+				<img data-ng-src="{{card.ImgPath}}" style="width: 200px; height: 200px;" />
+			</div>
+		</div>
+
+		<div id="555" data-card-id="666" class="card" draggable="true" ondragstart="drag(event)">
+			HELLO
+		</div>
+		
+		<div class="cardDropZone" ondrop="drop(event)" ondragover="allowDrop(event)">DROP HERE</div>
+	</div>
+</body>
+</html>
