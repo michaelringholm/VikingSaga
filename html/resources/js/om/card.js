@@ -48,6 +48,14 @@ function drawImage(canvas, imgSrc, rotation, leftPos, topPos, width, height) {
 	context.rotate(rotation * Math.PI / 180);
 }
 
+///////////// HTML5 Audio API //////////////////////
+// http://www.freesfx.co.uk/sfx/dropping
+
+function playSound(soundSrc) {
+	var snd = new Audio(soundSrc); // buffers automatically when created
+	snd.play();
+}
+
 
 //////////////////////////// DRAG N DROP /////////////////////////////
 function allowDrop(ev) {
@@ -67,6 +75,8 @@ function drop(ev) {
     var card = $(".card[data-card-id=" + cardId + "]");
     //ev.target.appendChild(document.getElementById(data));
     $(ev.target).append(card);
-    console.log($(card.html()));
+	
+	playSound('./resources/sounds/drop.mp3');
+    console.log($(card.html()));	
     console.log("drop complete!");
 }
