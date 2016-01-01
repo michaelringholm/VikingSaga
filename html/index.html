@@ -29,11 +29,9 @@
 		
 		<h2>Hand</h2>
 		<div data-ng-controller="CardController">
-			<div id="{{card.Id}}" data-card-id="{{card.Id}}" data-ng-repeat="card in cards" class="card" draggable="true" ondragstart="drag(event)">
-				
+			<div id="{{card.Id}}" data-card-id="{{card.Id}}" data-ng-repeat="card in cards" class="card" draggable="true" ondragstart="drag(event)">				
 				<div>{{card.Title}}</div>
-				<img data-ng-src="{{card.ImgPath}}" style="width: 200px; height: 200px;" />
-				
+				<canvas data-img-src="{{card.ImgPath}}" data-rotation="10" />
 			</div>
 		</div>
 	</div>

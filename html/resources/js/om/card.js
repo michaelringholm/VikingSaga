@@ -27,15 +27,16 @@ function AngularJSHelper() {
 ///JQUERY
 
 $(function() {
-	
+	$("canvas").each(function() {
+		drawImage(this, $(this).attr("data-img-src"), $(this).attr("data-rotation"), 20, 20, 100, 100);
+	});
 });
 
 
 
 //////////// HTML5 Image Rotation ////////////////////////
 
-function drawImage(canvasSelector, imgSrc, rotation, leftPos, topPos, width, height) {
-	var canvas = $(selector);
+function drawImage(canvas, imgSrc, rotation, leftPos, topPos, width, height) {
 	var context = canvas.getContext("2d");
 
 	var imageObj = new Image();
