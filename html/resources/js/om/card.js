@@ -31,6 +31,23 @@ $(function() {
 });
 
 
+
+//////////// HTML5 Image Rotation ////////////////////////
+
+function drawImage(canvasSelector, imgSrc, rotation, leftPos, topPos, width, height) {
+	var canvas = $(selector);
+	var context = canvas.getContext("2d");
+
+	var imageObj = new Image();
+	imageObj.src = imgSrc;
+	imageObj.onload = function() {
+		context.drawImage(imageObj, leftPos, topPos, width, height);
+	};
+
+	context.rotate(rotation * Math.PI / 180);
+}
+
+
 //////////////////////////// DRAG N DROP /////////////////////////////
 function allowDrop(ev) {
     ev.preventDefault();

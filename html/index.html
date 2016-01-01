@@ -14,6 +14,14 @@
 	<div>
 		<h1>Board</h1>
 		
+		<h2>Opponent</h2>				
+		<div data-ng-controller="CardController">
+			<div id="{{card.Id}}" data-card-id="{{card.Id}}" data-ng-repeat="card in oppponentPartyCards" class="card" draggable="true" ondragstart="drag(event)">
+				<div>{{card.Title}}</div>
+				<img data-ng-src="{{card.ImgPath}}" style="width: 200px; height: 200px;" />
+			</div>
+		</div>
+		
 		<h2>Party</h2>				
 		<div data-ng-controller="CardController">
 			<div class="cardDropZone card" data-ng-repeat="card in handCards" ondrop="drop(event)" ondragover="allowDrop(event)">DROP HERE</div>
@@ -22,8 +30,10 @@
 		<h2>Hand</h2>
 		<div data-ng-controller="CardController">
 			<div id="{{card.Id}}" data-card-id="{{card.Id}}" data-ng-repeat="card in cards" class="card" draggable="true" ondragstart="drag(event)">
+				
 				<div>{{card.Title}}</div>
 				<img data-ng-src="{{card.ImgPath}}" style="width: 200px; height: 200px;" />
+				
 			</div>
 		</div>
 	</div>
