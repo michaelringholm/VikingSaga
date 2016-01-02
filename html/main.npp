@@ -1,10 +1,12 @@
 <NotepadPlus>
     <Session activeView="0">
-        <mainView activeIndex="0">
-            <File firstVisibleLine="0" xOffset="0" scrollWidth="1184" startPos="0" endPos="0" selMode="0" lang="HTML" encoding="-1" filename="E:\GitHub\VikingSaga\html\index.html" backupFilePath="" originalFileLastModifTimestamp="1451568640" />
-            <File firstVisibleLine="0" xOffset="0" scrollWidth="560" startPos="0" endPos="0" selMode="0" lang="JavaScript" encoding="-1" filename="E:\GitHub\VikingSaga\html\resources\js\om\card.js" backupFilePath="" originalFileLastModifTimestamp="1451568586" />
-            <File firstVisibleLine="0" xOffset="0" scrollWidth="456" startPos="0" endPos="0" selMode="0" lang="JavaScript" encoding="-1" filename="E:\GitHub\VikingSaga\html\resources\js\om\card-controller.js" backupFilePath="" originalFileLastModifTimestamp="1451568623" />
-            <File firstVisibleLine="0" xOffset="0" scrollWidth="232" startPos="0" endPos="0" selMode="0" lang="CSS" encoding="-1" filename="E:\GitHub\VikingSaga\html\resources\css\card.css" backupFilePath="" originalFileLastModifTimestamp="1451567450" />
+        <mainView activeIndex="5">
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1312" startPos="1389" endPos="1389" selMode="0" lang="HTML" encoding="-1" filename="E:\GitHub\VikingSaga\html\index.html" backupFilePath="" originalFileLastModifTimestamp="1451649711" />
+            <File firstVisibleLine="5" xOffset="0" scrollWidth="1312" startPos="560" endPos="579" selMode="0" lang="HTML" encoding="-1" filename="E:\GitHub\VikingSaga\html\battle-board.html" backupFilePath="" originalFileLastModifTimestamp="1451760351" />
+            <File firstVisibleLine="33" xOffset="0" scrollWidth="888" startPos="1553" endPos="1553" selMode="0" lang="JavaScript" encoding="-1" filename="E:\GitHub\VikingSaga\html\resources\js\om\card.js" backupFilePath="" originalFileLastModifTimestamp="1451760652" />
+            <File firstVisibleLine="15" xOffset="0" scrollWidth="576" startPos="878" endPos="878" selMode="0" lang="JavaScript" encoding="-1" filename="E:\GitHub\VikingSaga\html\resources\js\om\card-controller.js" backupFilePath="" originalFileLastModifTimestamp="1451760526" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="232" startPos="339" endPos="339" selMode="0" lang="CSS" encoding="-1" filename="E:\GitHub\VikingSaga\html\resources\css\card.css" backupFilePath="" originalFileLastModifTimestamp="1451760039" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="592" startPos="570" endPos="570" selMode="0" lang="HTML" encoding="-1" filename="E:\GitHub\VikingSaga\html\animated-text.html" backupFilePath="" originalFileLastModifTimestamp="1451760883" />
         </mainView>
         <subView activeIndex="0" />
     </Session>

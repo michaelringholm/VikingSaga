@@ -4,16 +4,25 @@
 }
 
 .card {
-	display: table-cell; 
-	padding: 6px;
+	width: 150px;
+	height: 150px;
+	display: inline-block;
+	border: dashed 2px;
+	margin: 8px;
 	cursor: pointer;
 }
 
 .cardDropZone {
-	width: 250px;
-	height: 250px;
+	width: 150px;
+	height: 150px;
 	border: dashed 2px;
-	margin: 4px;
+	margin: 8px;
+	display: inline-block;
+}
+
+canvas {
+	width:100%;
+	height: 100%;
 }
 
 [draggable=true] {

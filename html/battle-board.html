@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html data-ng-app="cardModule">
+<meta charset="UTF-8">
+<head>
+	<link rel="stylesheet" type="text/css" href="resources/css/card.css">
+
+	<script src="resources/js/jquery-2.1.4.min.js"></script>
+	<script src="resources/js/jquery-ui.min.js"></script>
+	<script src="resources/js/angular.min.js"></script>
+	
+	<script src="resources/js/om/html5-stuff.js"></script>	
+	<script src="resources/js/om/card-controller.js"></script>	
+	<script src="resources/js/om/card.js"></script>	
+</head>
+<body>
+	<div>
+		<h1>Board</h1>
+		
+		<h2>Opponent</h2>				
+		<div data-ng-controller="CardController" class="oppponentPartyCards">>
+			<div id="{{card.Id}}" data-card-id="{{card.Id}}" data-ng-repeat="card in oppponentPartyCards" class="card" draggable="true" ondragstart="drag(event)">
+				<div>{{card.Title}}</div>
+				<canvas data-img-src="{{card.ImgPath}}" data-rotation="0" />
+			</div>
+		</div>
+		
+		<h2>Party</h2>				
+		<div data-ng-controller="CardController" class="partyCards">
+			<div class="cardDropZone card" data-ng-repeat="card in partyCards" ondrop="drop(event)" ondragover="allowDrop(event)">
+				<div>{{card.Title}}</div>
+				<canvas data-img-src="{{card.ImgPath}}" data-rotation="0" />
+			</div>
+		</div>
+		
+		<h2>Hand</h2>
+		<div data-ng-controller="CardController" class="handCards">
+			<div id="{{handCards[0].Id}}" data-card-id="{{cards[0].Id}}" class="card" draggable="true" ondragstart="drag(event)">				
+				<div>{{handCards[0].Title}}</div>
+				<canvas data-img-src="{{handCards[0].ImgPath}}" data-rotation="10" />
+			</div>
+			<div id="{{handCards[1].Id}}" data-card-id="{{cards[1].Id}}" class="card" draggable="true" ondragstart="drag(event)">				
+				<div>{{handCards[1].Title}}</div>
+				<canvas data-img-src="{{handCards[1].ImgPath}}" data-rotation="20" />
+			</div>
+			<div id="{{handCards[2].Id}}" data-card-id="{{cards[0].Id}}" class="card" draggable="true" ondragstart="drag(event)">				
+				<div>{{handCards[2].Title}}</div>
+				<canvas data-img-src="{{handCards[2].ImgPath}}" data-rotation="30" />
+			</div>
+			<div id="{{handCards[3].Id}}" data-card-id="{{cards[3].Id}}" class="card" draggable="true" ondragstart="drag(event)">				
+				<div>{{handCards[3].Title}}</div>
+				<canvas data-img-src="{{handCards[3].ImgPath}}" data-rotation="10" />
+			</div>			
+			<div id="{{handCards[4].Id}}" data-card-id="{{cards[4].Id}}" class="card" draggable="true" ondragstart="drag(event)">				
+				<div>{{handCards[4].Title}}</div>
+				<canvas data-img-src="{{handCards[4].ImgPath}}" data-rotation="10" />
+			</div>			
+		</div>
+	</div>
+</body>
+</html>

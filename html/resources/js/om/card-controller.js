@@ -1,80 +1,85 @@
 function CardController($scope) {
-	$scope.cards = [
+	$scope.partyCards = [
 		{
 			Id : 1,
-			Title : 'Fox',
+			Title : "Fox archer",
 			ImgPath : './resources/images/fox-archer.jpg'
 		},
 		{
 			Id : 2,
-			Title : 'Bear',
-			ImgPath : './resources/images/bear.jpg'
+			Title : "Fox archer",
+			ImgPath : './resources/images/fox-archer.jpg'
 		},
 				{
 			Id : 3,
-			Title : 'Bear',
-			ImgPath : './resources/images/bear.jpg'
+			Title : "Fox archer",
+			ImgPath : './resources/images/fox-archer.jpg'
 		},
 				{
 			Id : 4,
-			Title : 'Bear',
-			ImgPath : './resources/images/bear.jpg'
+			Title : "Fox archer",
+			ImgPath : './resources/images/fox-archer.jpg'
 		},
 		{
 			Id : 5,
-			Title : "Skeleton",
-			ImgPath : './resources/images/skeleton.jpg'
+			Title : "Bear",
+			ImgPath : './resources/images/bear.jpg'
 		} 
 	];
 	
 	$scope.handCards = [
 		{
 			Id : 6,
-			Title : 'Fox',
-			ImgPath : './resources/images/fox-archer.jpg'
+			Title : "Tiny Healing Potion",
+			ImgPath : './resources/images/abilities/healing-potion.jpg',
+			UsageText : 'Healed!'
 		},
 		{
 			Id : 7,
-			Title : 'Bear',
-			ImgPath : './resources/images/bear.jpg'
+			Title : "Tiny Healing Potion",
+			ImgPath : './resources/images/abilities/healing-potion.jpg',
+			UsageText : 'Healed!'
 		},
 		{
 			Id : 8,
-			Title : 'Bear',
-			ImgPath : './resources/images/bear.jpg'
+			Title : "Tiny Healing Potion",
+			ImgPath : './resources/images/abilities/healing-potion.jpg',
+			UsageText : 'Healed!'
 		},
 		{
 			Id : 9,
-			Title : 'Bear',
-			ImgPath : './resources/images/bear.jpg'
+			Title : "Tiny Healing Potion",
+			ImgPath : './resources/images/abilities/healing-potion.jpg',
+			UsageText : 'Healed!'
 		},
 		{
 			Id : 10,
-			Title : "Skeleton",
-			ImgPath : './resources/images/skeleton.jpg'
+			Title : "Tiny Healing Potion",
+			ImgPath : './resources/images/abilities/healing-potion.jpg',
+			UsageText : 'Healed!'
 		} 
 	];
 		
 	$scope.oppponentPartyCards = [
 		{
 			Id : 11,
-			Title : 'Fox',
-			ImgPath : './resources/images/fox-archer.jpg'
+			Title : "Skeleton",
+			ImgPath : './resources/images/skeleton.jpg'
 		},
 		{
 			Id : 12,
-			Title : 'Bear',
-			ImgPath : './resources/images/bear.jpg'
+			Title : "Skeleton",
+			ImgPath : './resources/images/skeleton.jpg'
 		},
 		{
 			Id : 13,
-			Title : 'Bear',
-			ImgPath : './resources/images/bear.jpg'
+			Title : "Skeleton",
+			ImgPath : './resources/images/skeleton.jpg'
 		},
 				{
 			Id : 14,
-			Title : 'Bear',
-			ImgPath : './resources/images/bear.jpg'
+			Title : "Skeleton",
+			ImgPath : './resources/images/skeleton.jpg'
 		},
 		{
 			Id : 15,
