@@ -9,51 +9,18 @@
 	<script src="resources/js/jquery-ui.min.js"></script>
 	
 	<script src="resources/js/om/html5-stuff.js"></script>
+	<script src="resources/js/om/text-animater.js"></script>
 	
-		<script type="text/javascript">
-		var ctx, step = 10, steps = 50;
-		delay = 20;
-			 
-		function initUnderlyingImg() {
-			var context = $("#imgCanvas")[0].getContext("2d");
-			var imageObj = new Image();
-			imageObj.src = './resources/images/fox-archer.jpg';
-			imageObj.onload = function() {
-				context.drawImage(imageObj, 0, 0, 300, 200);
-			};
-
-			//context.rotate(rotation * Math.PI / 180);
-		}
-		
-		function initAnimatedText() {
-			var canvas = document.getElementById("hoverCanvas");
-			ctx = canvas.getContext("2d");
-			ctx.fillStyle = "yellow";
-			ctx.font = "10pt Helvetica";
-			ctx.textAlign = "center";
-			ctx.textBaseline = "middle";
-			TextSmallToBig();			
-		}
-		
-		function TextSmallToBig() {
-			var canvas = document.getElementById("hoverCanvas");
-			step++;
-			ctx.clearRect(0, 0, canvas.width, canvas.height);
-			ctx.save();
-			ctx.translate(canvas.width / 2, canvas.height / 2);
-			ctx.font = step + "pt Helvetica";
-			ctx.fillText("Healed!", 0, 0);
-			ctx.restore();
-			if (step < steps)
-				var t = setTimeout('TextSmallToBig()', 20);
-			else
-				ctx.clearRect(0, 0, canvas.width, canvas.height);
-		}
+	<script type="text/javascript">
+		$(function() {
+			var textAnimater = new TextAnimater('./resources/images/fox-archer.jpg', 'Healed!', $("#baseCanvas")[0], $("#hoverCanvas")[0]);
+			textAnimater.runAnimation();
+		});		
 	</script>
  
 </head>
-<body onload="initAnimatedText();initUnderlyingImg();">
-	<canvas id="imgCanvas" style="width:300px; height:200px; position: absolute; left: 0; top: 0; z-index: 0;">
+<body>
+	<canvas id="baseCanvas" style="width:300px; height:200px; position: absolute; left: 0; top: 0; z-index: 0;">
 		This browser or document mode doesn't support canvas object
 	</canvas>
 	<canvas id="hoverCanvas" style="width:300px; height:200px; position: absolute; left: 0; top: 0; z-index: 1;">
