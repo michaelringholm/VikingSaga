@@ -13,18 +13,48 @@
 	
 	<script type="text/javascript">
 		$(function() {
-			var textAnimater = new TextAnimater('./resources/images/fox-archer.jpg', 'Healed!', $("#baseCanvas")[0], $("#hoverCanvas")[0]);
-			textAnimater.runAnimation();
-		});		
+			initBaseCanvas($("#baseCanvas")[0]);
+			initBaseCanvas($("#baseCanvas2")[0]);
+			
+			var textAnimater1 = new TextAnimater('Healed!', $("#hoverCanvas")[0]);
+			textAnimater1.runAnimation();
+			
+			var textAnimater2 = new TextAnimater('Healed!', $("#hoverCanvas2")[0]);
+			textAnimater2.runAnimation();
+		});
+		
+		function initBaseCanvas(baseCanvas) {
+			var context = baseCanvas.getContext("2d");
+			var imageObj = new Image();
+			imageObj.src = './resources/images/fox-archer.jpg';
+			imageObj.onload = function() {
+				context.drawImage(imageObj, 0, 0, 300, 200);
+		}
+
+		//context.rotate(rotation * Math.PI / 180);
+	};
 	</script>
  
 </head>
-<body>
-	<canvas id="baseCanvas" style="width:300px; height:200px; position: absolute; left: 0; top: 0; z-index: 0;">
-		This browser or document mode doesn't support canvas object
-	</canvas>
-	<canvas id="hoverCanvas" style="width:300px; height:200px; position: absolute; left: 0; top: 0; z-index: 1;">
-		This browser or document mode doesn't support canvas object
-	</canvas>
+<body>	
+	<div style="display:inline-block; position:relative; width:300px; height:200px;">
+		<h2>1</h2>
+		<canvas id="baseCanvas" style="width:200px; height:150px; position: absolute; left: 0; top: 0; z-index: 0;">
+			This browser or document mode doesn't support canvas object
+		</canvas>
+		<canvas id="hoverCanvas" style="width:200px; height:150px; position: absolute; left: 0; top: 0; z-index: 1;">
+			This browser or document mode doesn't support canvas object
+		</canvas>
+	</div>
+		
+	<div style="display:inline-block;  position:relative; width:300px; height:200px;">
+		<h2>2</h2>
+		<canvas id="baseCanvas2" style="width:200px; height:150px; position: absolute; left: 0; top: 0; z-index: 0;">
+			This browser or document mode doesn't support canvas object
+		</canvas>
+		<canvas id="hoverCanvas2" style="width:200px; height:150px; position: absolute; left: 0; top: 0; z-index: 1;">
+			This browser or document mode doesn't support canvas object
+		</canvas>
+	</div>
 </body>
 </html>
